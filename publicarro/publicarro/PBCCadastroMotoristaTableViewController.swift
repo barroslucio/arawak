@@ -1,8 +1,13 @@
 
 import UIKit
+import CoreLocation
+
 
 class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate,
-UINavigationControllerDelegate {
+UINavigationControllerDelegate, CLLocationManagerDelegate {
+    
+    let locationManager = CLLocationManager()
+
     
     //OUTLES
     @IBOutlet weak var nome: UITextField!
@@ -19,6 +24,12 @@ UINavigationControllerDelegate {
     
     @IBOutlet weak var imagePicker: UIButton!
     let picker = UIImagePickerController()
+    @IBAction func abrirSettings(sender: AnyObject) {
+        let settingsUrl = NSURL(string: UIApplicationOpenSettingsURLString)
+        if let url = settingsUrl {
+            UIApplication.sharedApplication().openURL(url)
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,7 +48,21 @@ UINavigationControllerDelegate {
         
         picker.delegate = self
         
+        self.locationManager.requestAlwaysAuthorization()
         
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+
+        
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
     }
     
     override func didReceiveMemoryWarning() {

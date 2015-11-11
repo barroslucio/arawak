@@ -1,9 +1,12 @@
 
 import UIKit
 import Parse
+import CoreLocation
 
 class PBCCadastroMotoristaViewController: UIViewController
 {
+    
+    
     //Instância da classe com os outlets
     private var embeddedCadastroMotoristaViewController : PBCCadastroMotoristaTableViewController!
 
