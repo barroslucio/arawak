@@ -17,6 +17,7 @@
 		2412BF881BDE5D2500C53372 /* publicarroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2412BF871BDE5D2500C53372 /* publicarroUITests.swift */; };
 		2412BF9A1BDE668900C53372 /* PageItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2412BF991BDE668900C53372 /* PageItemController.swift */; };
 		2412BF9C1BDE717600C53372 /* PBCColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2412BF9B1BDE717600C53372 /* PBCColor.swift */; };
+		24C42D891BF39DB0005CAD4C /* PBCImagemCNHViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C42D881BF39DB0005CAD4C /* PBCImagemCNHViewController.swift */; };
 		2A550BDD1BE24F7000036839 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A550BDC1BE24F7000036839 /* Bolts.framework */; };
 		2A550BDF1BE24F7C00036839 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A550BDE1BE24F7C00036839 /* Parse.framework */; };
 		2A550BE11BE24FC000036839 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A550BE01BE24FC000036839 /* Accounts.framework */; };
@@ -33,13 +34,13 @@
 		2A679E781BE1063B00969DDF /* PBCAnunciosLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A679E771BE1063B00969DDF /* PBCAnunciosLoginViewController.swift */; };
 		2AD4EFF41BE3973500F5DF29 /* PBCCadastroPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD4EFF31BE3973500F5DF29 /* PBCCadastroPopUpViewController.swift */; };
 		2AD4EFF61BE3B90F00F5DF29 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD4EFF51BE3B90F00F5DF29 /* ParseUI.framework */; };
-		778622891BEA46C9008136AC /* PBCCadastroMotoristaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778622881BEA46C9008136AC /* PBCCadastroMotoristaTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		778C30671BEA36A20091548E /* PBCCadastroMotoristaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C30661BEA36A20091548E /* PBCCadastroMotoristaViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		778C306D1BEA3F350091548E /* PBCLoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C306C1BEA3F350091548E /* PBCLoginTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		778C306F1BEA400C0091548E /* PBCOrcamentoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C306E1BEA400C0091548E /* PBCOrcamentoTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		778E6D271BF248E000A44106 /* PBCLoadAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E6D261BF248E000A44106 /* PBCLoadAnimationViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		7794DEBF1BE932130069E00A /* PBCOrcamentoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7794DEBE1BE932130069E00A /* PBCOrcamentoViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		7794DEC11BE933A20069E00A /* PBCLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7794DEC01BE933A20069E00A /* PBCLoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		778622891BEA46C9008136AC /* PBCCadastroMotoristaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778622881BEA46C9008136AC /* PBCCadastroMotoristaTableViewController.swift */; };
+		778C30671BEA36A20091548E /* PBCCadastroMotoristaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C30661BEA36A20091548E /* PBCCadastroMotoristaViewController.swift */; };
+		778C306D1BEA3F350091548E /* PBCLoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C306C1BEA3F350091548E /* PBCLoginTableViewController.swift */; };
+		778C306F1BEA400C0091548E /* PBCOrcamentoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C306E1BEA400C0091548E /* PBCOrcamentoTableViewController.swift */; };
+		778E6D271BF248E000A44106 /* PBCLoadAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E6D261BF248E000A44106 /* PBCLoadAnimationViewController.swift */; };
+		7794DEBF1BE932130069E00A /* PBCOrcamentoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7794DEBE1BE932130069E00A /* PBCOrcamentoViewController.swift */; };
+		7794DEC11BE933A20069E00A /* PBCLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7794DEC01BE933A20069E00A /* PBCLoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		2412BF891BDE5D2500C53372 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2412BF991BDE668900C53372 /* PageItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageItemController.swift; sourceTree = "<group>"; };
 		2412BF9B1BDE717600C53372 /* PBCColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCColor.swift; sourceTree = "<group>"; };
+		24C42D881BF39DB0005CAD4C /* PBCImagemCNHViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCImagemCNHViewController.swift; sourceTree = "<group>"; };
 		2A550BDC1BE24F7000036839 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		2A550BDE1BE24F7C00036839 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		2A550BE01BE24FC000036839 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -169,6 +171,7 @@
 				2412BF661BDE5D2500C53372 /* ViewController.swift */,
 				2412BF991BDE668900C53372 /* PageItemController.swift */,
 				2412BF681BDE5D2500C53372 /* Main.storyboard */,
+				24C42D881BF39DB0005CAD4C /* PBCImagemCNHViewController.swift */,
 				778E6D261BF248E000A44106 /* PBCLoadAnimationViewController.swift */,
 				778C306E1BEA400C0091548E /* PBCOrcamentoTableViewController.swift */,
 				778C306C1BEA3F350091548E /* PBCLoginTableViewController.swift */,
@@ -373,6 +376,7 @@
 				778C30671BEA36A20091548E /* PBCCadastroMotoristaViewController.swift in Sources */,
 				2412BF6D1BDE5D2500C53372 /* publicarro.xcdatamodeld in Sources */,
 				7794DEBF1BE932130069E00A /* PBCOrcamentoViewController.swift in Sources */,
+				24C42D891BF39DB0005CAD4C /* PBCImagemCNHViewController.swift in Sources */,
 				2A679E781BE1063B00969DDF /* PBCAnunciosLoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

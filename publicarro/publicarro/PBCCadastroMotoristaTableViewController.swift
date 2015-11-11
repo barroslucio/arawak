@@ -24,7 +24,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var imagePicker: UIButton!
     let picker = UIImagePickerController()
-    var chosenImage : UIImage?
+    static var chosenImage : UIImage?
 
     
     @IBAction func abrirSettings(sender: AnyObject) {
@@ -184,14 +184,15 @@ UINavigationControllerDelegate, CLLocationManagerDelegate {
         
         let showPhoto = UIAlertAction(title: "Visualizar", style: .Default, handler: { (camera) -> Void in
             
-            print("ver foto")
+            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("ImagemCNHViewControler")
+            self.presentViewController(controller, animated: true, completion: nil)
         })
         
         let cancel = UIAlertAction(title: "Cancelar", style: .Cancel, handler: { (cancel) -> Void in
             self.dismissViewControllerAnimated(true, completion: nil)
         })
         
-        if (imagePicker.imageView?.backgroundColor != chosenImage)
+        if (imagePicker.imageView?.backgroundColor != PBCCadastroMotoristaTableViewController.chosenImage)
         {
             actionSheetCamera.addAction(showPhoto)
         }
@@ -210,9 +211,9 @@ UINavigationControllerDelegate, CLLocationManagerDelegate {
         picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
-        chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+        PBCCadastroMotoristaTableViewController.chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage
         
-        imagePicker.setBackgroundImage(chosenImage, forState: UIControlState.Normal)
+        imagePicker.setBackgroundImage(PBCCadastroMotoristaTableViewController.chosenImage, forState: UIControlState.Normal)
         dismissViewControllerAnimated(true, completion: nil) //5
     }
     
