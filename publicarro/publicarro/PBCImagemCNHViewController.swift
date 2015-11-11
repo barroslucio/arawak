@@ -12,6 +12,9 @@ class PBCImagemCNHViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
+    
+    var chosenImage:UIImage?
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()

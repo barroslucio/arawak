@@ -184,8 +184,10 @@ UINavigationControllerDelegate, CLLocationManagerDelegate {
         
         let showPhoto = UIAlertAction(title: "Visualizar", style: .Default, handler: { (camera) -> Void in
             
-            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("ImagemCNHViewControler")
-            self.presentViewController(controller, animated: true, completion: nil)
+//            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("ImagemCNHViewControler")
+//            self.presentViewController(controller, animated: true, completion: nil)
+            
+            self.performSegueWithIdentifier("segueImagemCNH", sender: nil)
         })
         
         let cancel = UIAlertAction(title: "Cancelar", style: .Cancel, handler: { (cancel) -> Void in
@@ -245,7 +247,17 @@ UINavigationControllerDelegate, CLLocationManagerDelegate {
             completion: nil)//4
         
     }
-    
+    //Segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        
+        if(segue.identifier == "segueImagemCNH")
+        {
+            print("Visualizando imagem")
+        }
+        
+    }
+
 
     
     
