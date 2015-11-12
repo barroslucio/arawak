@@ -21,6 +21,7 @@ class PBCImagemCNHViewController: UIViewController, UIScrollViewDelegate {
         
         self.scrollView.minimumZoomScale = 1.0;
         self.scrollView.maximumZoomScale = 6.0;
+
     }
 
     override func didReceiveMemoryWarning()

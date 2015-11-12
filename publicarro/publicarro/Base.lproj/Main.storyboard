@@ -597,23 +597,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GN1-bg-NDH">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GN1-bg-NDH">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="n5i-rP-2ay">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n5i-rP-2ay">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <animations/>
                                     </imageView>
                                 </subviews>
                                 <animations/>
-                                <constraints>
-                                    <constraint firstItem="n5i-rP-2ay" firstAttribute="centerX" secondItem="GN1-bg-NDH" secondAttribute="centerX" id="L2y-Vw-M3H"/>
-                                    <constraint firstItem="n5i-rP-2ay" firstAttribute="leading" secondItem="GN1-bg-NDH" secondAttribute="leading" id="XiW-OS-mPZ"/>
-                                    <constraint firstItem="n5i-rP-2ay" firstAttribute="top" secondItem="GN1-bg-NDH" secondAttribute="top" id="dP9-pp-f8i"/>
-                                    <constraint firstItem="n5i-rP-2ay" firstAttribute="centerY" secondItem="GN1-bg-NDH" secondAttribute="centerY" id="eZe-0V-Ygt"/>
-                                    <constraint firstAttribute="trailing" secondItem="n5i-rP-2ay" secondAttribute="trailing" id="jCP-ti-EZi"/>
-                                    <constraint firstAttribute="bottom" secondItem="n5i-rP-2ay" secondAttribute="bottom" id="n0G-YN-I2T"/>
-                                </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="Kg9-da-iGp" id="3g5-TH-wBD"/>
                                 </connections>
@@ -622,10 +614,10 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="GN1-bg-NDH" firstAttribute="leading" secondItem="bE0-ql-uEI" secondAttribute="leading" id="KeA-at-twR"/>
-                            <constraint firstAttribute="trailing" secondItem="GN1-bg-NDH" secondAttribute="trailing" id="Ulo-9R-TgH"/>
-                            <constraint firstItem="GN1-bg-NDH" firstAttribute="top" secondItem="bE0-ql-uEI" secondAttribute="top" id="XBi-o0-MJ9"/>
-                            <constraint firstItem="GN1-bg-NDH" firstAttribute="bottom" secondItem="fPk-V4-oyX" secondAttribute="top" id="yIv-UV-HqZ"/>
+                            <constraint firstItem="n5i-rP-2ay" firstAttribute="top" secondItem="mxN-fl-dQv" secondAttribute="bottom" id="3ry-cF-i6p"/>
+                            <constraint firstItem="fPk-V4-oyX" firstAttribute="top" secondItem="n5i-rP-2ay" secondAttribute="bottom" id="B6D-nf-uqe"/>
+                            <constraint firstItem="n5i-rP-2ay" firstAttribute="leading" secondItem="bE0-ql-uEI" secondAttribute="leadingMargin" constant="-20" id="OSL-B7-5UB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="n5i-rP-2ay" secondAttribute="trailing" constant="-20" id="Y6B-dK-mBe"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vfG-Pd-MLx"/>
