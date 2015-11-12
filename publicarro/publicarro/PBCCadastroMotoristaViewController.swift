@@ -6,6 +6,8 @@ import CoreLocation
 class PBCCadastroMotoristaViewController: UIViewController
 {
     
+    // Outlet da constraint de base do botão de cadastro que vai ser manipulado quando o teclado aparecer ou sumir.
+    @IBOutlet var bottonConstraint: NSLayoutConstraint!
     
     //Instância da classe com os outlets
     private var embeddedCadastroMotoristaViewController : PBCCadastroMotoristaTableViewController!
@@ -15,9 +17,57 @@ class PBCCadastroMotoristaViewController: UIViewController
         super.viewDidLoad()
 
         navigationController?.navigationBar.hidden = false
+        
+        let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        view.addGestureRecognizer(dismiss)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: self.view.window)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: self.view.window)
 
     }
+    
+    func DismissKeyboard(){
+        view.endEditing(true)
+    }
+    
+    
+    func keyboardWillShow(notification:NSNotification) {
+        adjustingHeight(true, notification: notification)
+    }
+    
+    func keyboardWillHide(notification:NSNotification) {
+        adjustingHeight(false, notification: notification)
+    }
+    
+    func adjustingHeight(show:Bool, notification:NSNotification) {
+        // 1
+        var userInfo = notification.userInfo!
+        // 2
+        let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
+        // 3
+        let animationDurarion = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
+        // 4
+        let changeInHeight = (CGRectGetHeight(keyboardFrame)) * (show ? 1 : -1)
+        //5
+        if (show && self.bottonConstraint.constant == 0){
+            UIView.animateWithDuration(animationDurarion, animations: { () -> Void in
+                self.bottonConstraint.constant += changeInHeight
+            })
+        }
+        else if (!show){
+            UIView.animateWithDuration(animationDurarion, animations: { () -> Void in
+                self.bottonConstraint.constant += changeInHeight
+            })
+        }
+        
+    }
 
+    
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: self.view.window)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: self.view.window)
+    }
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
