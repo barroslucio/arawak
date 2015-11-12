@@ -208,6 +208,8 @@ UINavigationControllerDelegate, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
+  
+        
         
         //obter atualizacao da localizacao
     
@@ -216,9 +218,8 @@ UINavigationControllerDelegate, CLLocationManagerDelegate {
     //essa funcao é acionada quando novas atualizacoes de localizacao estao disponiveis
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        // coordenadas
-        var locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        
+       
         CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: {(placemarks,error)-> Void in
             
             if (error != nil) {
@@ -238,15 +239,23 @@ UINavigationControllerDelegate, CLLocationManagerDelegate {
             
                  })
         
+        
+        
+        var locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        
     }
     
     func displayLocationInfo(placemark:CLPlacemark){
+        
+        
         
             
             // parar de atualizar local para economizar bateria
             locationManager.stopUpdatingLocation()
         
             print(placemark.addressDictionary)
+        
             print(placemark.locality)
         
             print(placemark.postalCode)
