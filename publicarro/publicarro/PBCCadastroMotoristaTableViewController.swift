@@ -264,9 +264,20 @@ UINavigationControllerDelegate, CLLocationManagerDelegate {
     
         
     }
+    
+    //Segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        
+        if(segue.identifier == "segueImagemCNH")
+        {
+            print("Visualizando imagem")
+        }
+        
+    }
+    
     //essa funcao é acionada quando novas atualizacoes de localizacao estao disponiveis
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         
        
         CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: {(placemarks,error)-> Void in
@@ -314,6 +325,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate {
             print(placemark.country)
         
      
+
 
     
         
