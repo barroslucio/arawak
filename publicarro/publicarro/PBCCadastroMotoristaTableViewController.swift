@@ -24,12 +24,16 @@ UINavigationControllerDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var imagePicker: UIButton!
     let picker = UIImagePickerController()
+    var chosenImage : UIImage?
+
+    
     @IBAction func abrirSettings(sender: AnyObject) {
         let settingsUrl = NSURL(string: UIApplicationOpenSettingsURLString)
         if let url = settingsUrl {
             UIApplication.sharedApplication().openURL(url)
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -167,14 +171,38 @@ UINavigationControllerDelegate, CLLocationManagerDelegate {
     //IMAGE
     @IBAction func imagePickerAction(sender: AnyObject)
     {
+        let actionSheetCamera = UIAlertController(title: "", message: "Adicione a foto da sua habilitação", preferredStyle: UIAlertControllerStyle.ActionSheet)
         
-        picker.allowsEditing = false
-        picker.sourceType = UIImagePickerControllerSourceType.Camera
-        picker.cameraCaptureMode = .Photo
-        picker.modalPresentationStyle = .FullScreen
-        presentViewController(picker,
-            animated: true,
-            completion: nil)
+        
+        let camera = UIAlertAction(title: "Tirar foto", style: .Default, handler: { (camera) -> Void in
+            self.shootPhoto()
+        })
+        
+        let library = UIAlertAction(title: "Biblioteca de fotos", style: .Default, handler: { (camera) -> Void in
+            self.photoFromLibrary()
+        })
+        
+        let showPhoto = UIAlertAction(title: "Visualizar", style: .Default, handler: { (camera) -> Void in
+            
+            print("ver foto")
+        })
+        
+        let cancel = UIAlertAction(title: "Cancelar", style: .Cancel, handler: { (cancel) -> Void in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })
+        
+        if (imagePicker.imageView?.backgroundColor != chosenImage)
+        {
+            actionSheetCamera.addAction(showPhoto)
+        }
+        actionSheetCamera.addAction(camera)
+        actionSheetCamera.addAction(library)
+        actionSheetCamera.addAction(cancel)
+        
+        
+        
+        self.presentViewController(actionSheetCamera, animated: true, completion: nil)
+        
     }
     
     //MARK: Delegates
@@ -182,19 +210,42 @@ UINavigationControllerDelegate, CLLocationManagerDelegate {
         picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+        chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage
         
-        imagePicker.imageView?.contentMode = .ScaleAspectFit
-        imagePicker.imageView!.image = chosenImage //4
-        //        view.backgroundColor = UIColor(patternImage: chosenImage) //4
-        
+        imagePicker.setBackgroundImage(chosenImage, forState: UIControlState.Normal)
         dismissViewControllerAnimated(true, completion: nil) //5
     }
+    
     func imagePickerControllerDidCancel(picker: UIImagePickerController)
     {
         dismissViewControllerAnimated(true, completion: nil)
         
     }
+    
+    func shootPhoto() {
+        if UIImagePickerController.availableCaptureModesForCameraDevice(.Rear) != nil {
+            picker.allowsEditing = false
+            picker.sourceType = UIImagePickerControllerSourceType.Camera
+            picker.cameraCaptureMode = .Photo
+            picker.modalPresentationStyle = .FullScreen
+            presentViewController(picker,
+                animated: true,
+                completion: nil)
+        }
+    }
+    
+    func photoFromLibrary()
+    {
+        picker.allowsEditing = false //2
+        picker.sourceType = .PhotoLibrary //3
+        picker.modalPresentationStyle = .Popover
+        presentViewController(picker,
+            animated: true,
+            completion: nil)//4
+        
+    }
+    
+
     
     
     // localizacao do motorista

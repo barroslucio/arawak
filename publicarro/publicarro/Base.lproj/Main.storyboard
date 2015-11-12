@@ -873,6 +873,9 @@
                                                     <rect key="frame" x="23" y="35" width="129" height="97"/>
                                                     <animations/>
                                                     <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="imagePickerAction:" destination="rsu-3j-Xfi" eventType="touchUpInside" id="1vG-8e-dgY"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Foto da CNH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlh-jj-dyb">
                                                     <rect key="frame" x="169" y="35" width="109" height="21"/>
@@ -1065,6 +1068,9 @@
                         </connections>
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="imagePicker" destination="N5X-KF-9sm" id="5eo-CC-mkL"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qVJ-4z-HjC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
