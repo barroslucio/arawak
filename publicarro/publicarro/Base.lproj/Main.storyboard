@@ -1005,7 +1005,7 @@
                                                         <action selector="abrirSettings:" destination="rsu-3j-Xfi" eventType="touchUpInside" id="LCf-lA-p0a"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RQD-no-WN5">
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RQD-no-WN5" userLabel="Sim">
                                                     <rect key="frame" x="76" y="258" width="110" height="65"/>
                                                     <animations/>
                                                     <color key="backgroundColor" red="0.18431372549019609" green="0.22352941176470587" blue="0.2627450980392157" alpha="1" colorSpace="calibratedRGB"/>
@@ -1014,7 +1014,7 @@
                                                         <action selector="sim:" destination="rsu-3j-Xfi" eventType="touchUpInside" id="cXc-Ir-Hfa"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QPe-Y0-8sU">
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QPe-Y0-8sU" userLabel="Não">
                                                     <rect key="frame" x="189" y="258" width="110" height="65"/>
                                                     <animations/>
                                                     <color key="backgroundColor" red="0.1843137255" green="0.22352941179999999" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>

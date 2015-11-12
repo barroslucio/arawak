@@ -207,12 +207,9 @@ UINavigationControllerDelegate, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        
-  
-        
-        
-        //obter atualizacao da localizacao
     
+        
+        //obter atualizacao da localizaca
         
     }
     //essa funcao é acionada quando novas atualizacoes de localizacao estao disponiveis
@@ -247,31 +244,18 @@ UINavigationControllerDelegate, CLLocationManagerDelegate {
     }
     
     func displayLocationInfo(placemark:CLPlacemark){
-        
-        
-        
-            
-            // parar de atualizar local para economizar bateria
-            locationManager.stopUpdatingLocation()
-        
-            print(placemark.addressDictionary)
-        
-            print(placemark.locality)
-        
-            print(placemark.postalCode)
-        
-            print(placemark.administrativeArea)
-        
-            print(placemark.country)
-        
-     
-
     
+        // parar de atualizar local para economizar bateria
+        
+        locationManager.stopUpdatingLocation()
+        
+        print(placemark.addressDictionary)
+        print(placemark.country)
+        print(placemark.locality)
+        print(placemark.administrativeArea)
+        print(placemark.postalCode)
         
     }
-    
- 
-
     
 
   
@@ -281,8 +265,6 @@ UINavigationControllerDelegate, CLLocationManagerDelegate {
         print("Erro ao atualizar a localizacao" + error.localizedDescription)
     }
     
- 
 
-    
     
 }
