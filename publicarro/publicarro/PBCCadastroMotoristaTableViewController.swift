@@ -242,12 +242,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate {
         presentViewController(picker,
             animated: true,
             completion: nil)//4
-        
     }
-    
-
-    
-    
     // localizacao do motorista
     
     @IBAction func sim(sender:AnyObject){
