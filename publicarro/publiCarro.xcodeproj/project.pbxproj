@@ -40,6 +40,8 @@
 		778E6D271BF248E000A44106 /* PBCLoadAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E6D261BF248E000A44106 /* PBCLoadAnimationViewController.swift */; };
 		7794DEBF1BE932130069E00A /* PBCOrcamentoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7794DEBE1BE932130069E00A /* PBCOrcamentoViewController.swift */; };
 		7794DEC11BE933A20069E00A /* PBCLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7794DEC01BE933A20069E00A /* PBCLoginViewController.swift */; };
+		EE0F1B0B1BF4E4AF00989195 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0F1B0A1BF4E4AF00989195 /* MapKit.framework */; };
+		EE0F1B0D1BF4E51100989195 /* PBCMapaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0F1B0C1BF4E51100989195 /* PBCMapaViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +101,8 @@
 		778E6D261BF248E000A44106 /* PBCLoadAnimationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCLoadAnimationViewController.swift; sourceTree = "<group>"; };
 		7794DEBE1BE932130069E00A /* PBCOrcamentoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCOrcamentoViewController.swift; sourceTree = "<group>"; };
 		7794DEC01BE933A20069E00A /* PBCLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCLoginViewController.swift; sourceTree = "<group>"; };
+		EE0F1B0A1BF4E4AF00989195 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		EE0F1B0C1BF4E51100989195 /* PBCMapaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PBCMapaViewController.swift; path = ../PBCMapaViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE0F1B0B1BF4E4AF00989195 /* MapKit.framework in Frameworks */,
 				2A550BF71BE2506B00036839 /* libsqlite3.tbd in Frameworks */,
 				2A550BF51BE2504800036839 /* libz.tbd in Frameworks */,
 				2A550BF31BE2502D00036839 /* SystemConfiguration.framework in Frameworks */,
@@ -164,6 +169,7 @@
 		2412BF631BDE5D2500C53372 /* publicarro */ = {
 			isa = PBXGroup;
 			children = (
+				EE0F1B0C1BF4E51100989195 /* PBCMapaViewController.swift */,
 				778622881BEA46C9008136AC /* PBCCadastroMotoristaTableViewController.swift */,
 				2412BF641BDE5D2500C53372 /* AppDelegate.swift */,
 				2412BF661BDE5D2500C53372 /* ViewController.swift */,
@@ -209,6 +215,7 @@
 			children = (
 				2A550BF61BE2506B00036839 /* libsqlite3.tbd */,
 				2A550BF41BE2504800036839 /* libz.tbd */,
+				EE0F1B0A1BF4E4AF00989195 /* MapKit.framework */,
 				2AD4EFF51BE3B90F00F5DF29 /* ParseUI.framework */,
 				2A550BF21BE2502D00036839 /* SystemConfiguration.framework */,
 				2A550BEE1BE2501200036839 /* Social.framework */,
@@ -360,6 +367,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE0F1B0D1BF4E51100989195 /* PBCMapaViewController.swift in Sources */,
 				778622891BEA46C9008136AC /* PBCCadastroMotoristaTableViewController.swift in Sources */,
 				2AD4EFF41BE3973500F5DF29 /* PBCCadastroPopUpViewController.swift in Sources */,
 				2412BF671BDE5D2500C53372 /* ViewController.swift in Sources */,

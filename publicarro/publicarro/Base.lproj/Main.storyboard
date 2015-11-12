@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zkl-zE-LtD">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -1009,7 +1010,7 @@
                                                     <rect key="frame" x="76" y="258" width="110" height="65"/>
                                                     <animations/>
                                                     <color key="backgroundColor" red="0.18431372549019609" green="0.22352941176470587" blue="0.2627450980392157" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" title="Button"/>
+                                                    <state key="normal" title="Sim"/>
                                                     <connections>
                                                         <action selector="sim:" destination="rsu-3j-Xfi" eventType="touchUpInside" id="cXc-Ir-Hfa"/>
                                                     </connections>
@@ -1018,7 +1019,10 @@
                                                     <rect key="frame" x="189" y="258" width="110" height="65"/>
                                                     <animations/>
                                                     <color key="backgroundColor" red="0.1843137255" green="0.22352941179999999" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" title="Button"/>
+                                                    <state key="normal" title="Não"/>
+                                                    <connections>
+                                                        <segue destination="rzB-qo-qz8" kind="show" id="8Ww-ff-4d3"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Neste momento, você está em casa?" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="13" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ap5-Rd-d1P">
                                                     <rect key="frame" x="27" y="220" width="291" height="26"/>
@@ -1054,6 +1058,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qVJ-4z-HjC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2222.5" y="2289.5"/>
+        </scene>
+        <!--Mapa View Controller-->
+        <scene sceneID="tUT-mi-Rjf">
+            <objects>
+                <viewController id="rzB-qo-qz8" customClass="PBCMapaViewController" customModule="publiCarro" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QgR-CB-4Ev"/>
+                        <viewControllerLayoutGuide type="bottom" id="WR1-Vj-0hu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XR3-ye-ceD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gdg-1x-j1H">
+                                <rect key="frame" x="-4" y="0.0" width="383" height="667"/>
+                                <animations/>
+                                <connections>
+                                    <outlet property="delegate" destination="rzB-qo-qz8" id="cDf-hH-vtV"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gdg-1x-j1H" firstAttribute="leading" secondItem="XR3-ye-ceD" secondAttribute="leadingMargin" constant="-20" id="GvM-la-WG6"/>
+                            <constraint firstItem="WR1-Vj-0hu" firstAttribute="top" secondItem="gdg-1x-j1H" secondAttribute="bottom" id="IJk-20-Lds"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gdg-1x-j1H" secondAttribute="trailing" constant="-20" id="ORq-Ld-6jh"/>
+                            <constraint firstItem="gdg-1x-j1H" firstAttribute="top" secondItem="QgR-CB-4Ev" secondAttribute="bottom" id="f6L-zP-qK6"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rxX-2v-7cu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2503.5" y="3030.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WzX-jp-Tpc">
