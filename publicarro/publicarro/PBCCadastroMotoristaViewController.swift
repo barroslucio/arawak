@@ -15,7 +15,7 @@ class PBCCadastroMotoristaViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
+        
         navigationController?.navigationBar.hidden = false
         
         let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
@@ -23,7 +23,7 @@ class PBCCadastroMotoristaViewController: UIViewController
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: self.view.window)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: self.view.window)
-
+        
     }
     
     func DismissKeyboard(){
@@ -61,7 +61,7 @@ class PBCCadastroMotoristaViewController: UIViewController
         }
         
     }
-
+    
     
     override func viewWillDisappear(animated: Bool) {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: self.view.window)
@@ -78,8 +78,10 @@ class PBCCadastroMotoristaViewController: UIViewController
         if embeddedCadastroMotoristaViewController.emailTextField.text?.isEmpty == true
         {
             let alertController = UIAlertController(title: "Erro", message: "Email não informado", preferredStyle: .Alert)
-            //alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            presentViewController(alertController, animated: true, completion: nil)
+            presentViewController(alertController, animated: false, completion: nil)
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.0*Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
+                alertController.dismissViewControllerAnimated(false, completion: nil)
+            })
             return false
         }
         return true
@@ -89,15 +91,15 @@ class PBCCadastroMotoristaViewController: UIViewController
     {
         if validarCampos() == true
         {
-    
+            
             //Objeto da classes _User
             let user = PFUser()
-        
+            
             user.username = embeddedCadastroMotoristaViewController.emailTextField.text
             user.email = user.username
             user.password = embeddedCadastroMotoristaViewController.senhaTextField.text
-        
-        
+            
+            
             //Salvando usuário class (_User)
             user.signUpInBackgroundWithBlock { (sucessUser, errorUser) -> Void in
                 
@@ -109,31 +111,31 @@ class PBCCadastroMotoristaViewController: UIViewController
                 if(errorUser == nil)
                 {
                     print("\n\nUser sucess")
-                
+                    
                     //Objeto da classe Motorista
                     let motorista = PFObject(className: "Motorista")
                     motorista["user"] = user
                     motorista["telefone"] = self.embeddedCadastroMotoristaViewController.celularTextField.text
-
-                
-                
+                    
+                    
+                    
                     //Salvando motorista class (Motorista)
                     motorista.saveInBackgroundWithBlock({ (sucessMotorista, errorMotorista) -> Void in
-                
-                    
+                        
+                        
                         if( sucessMotorista == true)
                         {
                             print("\n\nMotorista sucess")
-                        
+                            
                             //Objeto da classe Carro
                             let carro = PFObject(className: "Carro")
                             carro["motorista"] = motorista
                             carro["renavam"] = self.embeddedCadastroMotoristaViewController.renavamTextField.text
-                
-                        
+                            
+                            
                             //Salvando carro class (Carro)
                             carro.saveInBackgroundWithBlock({ (sucessCarro, errorCarro) -> Void in
-                            
+                                
                                 if( sucessCarro == true)
                                 {
                                     print("\n\nCarro sucess")
@@ -143,7 +145,7 @@ class PBCCadastroMotoristaViewController: UIViewController
                                     print("\n\nCarro error: \(errorCarro)")
                                 }
                             })
-                
+                            
                         }
                         else
                         {
@@ -158,8 +160,8 @@ class PBCCadastroMotoristaViewController: UIViewController
             }
         }
     }
-
-
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         //segue que acessa a classe dos outlets
@@ -168,7 +170,7 @@ class PBCCadastroMotoristaViewController: UIViewController
             embeddedCadastroMotoristaViewController = segue.destinationViewController as? PBCCadastroMotoristaTableViewController
         }
     }
-
+    
 }
 
 
