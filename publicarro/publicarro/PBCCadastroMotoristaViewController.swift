@@ -26,17 +26,7 @@ class PBCCadastroMotoristaViewController: UIViewController
     func validandoTextFields() -> Int
     {
         let fields = [
-            embeddedCadastroMotoristaViewController.nome,
-            embeddedCadastroMotoristaViewController.telefone,
-            embeddedCadastroMotoristaViewController.email,
-            embeddedCadastroMotoristaViewController.senha,
-            embeddedCadastroMotoristaViewController.cpf,
-            embeddedCadastroMotoristaViewController.cep,
-            embeddedCadastroMotoristaViewController.estado,
-            embeddedCadastroMotoristaViewController.cidade,
-            embeddedCadastroMotoristaViewController.bairro,
-            embeddedCadastroMotoristaViewController.endereco,
-            embeddedCadastroMotoristaViewController.renavamCarro
+            embeddedCadastroMotoristaViewController.celularTextField
         ]
         
         for (index, element) in fields.enumerate() {
@@ -51,7 +41,7 @@ class PBCCadastroMotoristaViewController: UIViewController
             
         }
         
-        if(embeddedCadastroMotoristaViewController.senha.text?.characters.count < 6)
+        if(embeddedCadastroMotoristaViewController.senhaTextField.text?.characters.count < 6)
         {
             //A senha é muito curta
             return 1
@@ -73,9 +63,9 @@ class PBCCadastroMotoristaViewController: UIViewController
             //Objeto da classes _User
             let user = PFUser()
         
-            user.username = embeddedCadastroMotoristaViewController.email.text
-            user.email = embeddedCadastroMotoristaViewController.email.text
-            user.password = embeddedCadastroMotoristaViewController.senha.text
+            user.username = embeddedCadastroMotoristaViewController.emailTextField.text
+            user.email = user.username
+            user.password = embeddedCadastroMotoristaViewController.senhaTextField.text
         
         
             //Salvando usuário class (_User)
@@ -93,13 +83,8 @@ class PBCCadastroMotoristaViewController: UIViewController
                     //Objeto da classe Motorista
                     let motorista = PFObject(className: "Motorista")
                     motorista["user"] = user
-                    motorista["nome"] = self.embeddedCadastroMotoristaViewController.nome.text
-                    motorista["telefone"] = self.embeddedCadastroMotoristaViewController.telefone.text
-                    motorista["cpf"] = self.embeddedCadastroMotoristaViewController.cpf.text
-                    motorista["cep"] = self.embeddedCadastroMotoristaViewController.cep.text
-                    motorista["cidade"] = self.embeddedCadastroMotoristaViewController.cidade.text
-                    motorista["bairro"] = self.embeddedCadastroMotoristaViewController.bairro.text
-                    motorista["endereco"] = self.embeddedCadastroMotoristaViewController.endereco.text
+                    motorista["telefone"] = self.embeddedCadastroMotoristaViewController.celularTextField.text
+
                 
                 
                     //Salvando motorista class (Motorista)
@@ -113,7 +98,7 @@ class PBCCadastroMotoristaViewController: UIViewController
                             //Objeto da classe Carro
                             let carro = PFObject(className: "Carro")
                             carro["motorista"] = motorista
-                            carro["renavam"] = self.embeddedCadastroMotoristaViewController.renavamCarro.text
+                            carro["renavam"] = self.embeddedCadastroMotoristaViewController.renavamTextField.text
                 
                         
                             //Salvando carro class (Carro)

@@ -3,24 +3,15 @@ import UIKit
 import CoreLocation
 
 
-class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate,
-UINavigationControllerDelegate, CLLocationManagerDelegate {
+class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CLLocationManagerDelegate
+{
     
     let locationManager = CLLocationManager()
 
-    
-    //OUTLES
-    @IBOutlet weak var nome: UITextField!
-    @IBOutlet weak var telefone: UITextField!
-    @IBOutlet weak var email: UITextField!
-    @IBOutlet weak var senha: UITextField!
-    @IBOutlet weak var cpf: UITextField!
-    @IBOutlet weak var cep: UITextField!
-    @IBOutlet weak var estado: UITextField!
-    @IBOutlet weak var cidade: UITextField!
-    @IBOutlet weak var bairro: UITextField!
-    @IBOutlet weak var endereco: UITextField!
-    @IBOutlet weak var renavamCarro: UITextField!
+    @IBOutlet weak var celularTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var senhaTextField: UITextField!
+    @IBOutlet weak var renavamTextField: UITextField!
     
     @IBOutlet weak var imagePicker: UIButton!
     let picker = UIImagePickerController()
@@ -30,141 +21,105 @@ UINavigationControllerDelegate, CLLocationManagerDelegate {
             UIApplication.sharedApplication().openURL(url)
         }
     }
-    override func viewDidLoad() {
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        
-//        // Adicionando delegate aos outlets
-//        self.telefone.delegate = self
-//        self.cpf.delegate = self
-//        self.cep.delegate = self
-//        self.email.delegate = self
-//        self.senha.delegate = self
-//        self.endereco.delegate = self
-//        self.renavamCarro.delegate = self
-//        self.cidade.delegate = self
-//        self.estado.delegate = self
-//        self.nome.delegate = self
-//        self.bairro.delegate = self
-        
+        celularTextField.delegate = self
+        emailTextField.delegate = self
+        senhaTextField.delegate = self
+        renavamTextField.delegate = self
         picker.delegate = self
-        
-        self.locationManager.requestAlwaysAuthorization()
-        
-        
-        if CLLocationManager.locationServicesEnabled() {
+        locationManager.requestAlwaysAuthorization()
+        if CLLocationManager.locationServicesEnabled()
+        {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
-
-        
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
-    }
-    
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
     }
     
-    //TABLEVIEW
-    
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    {
         return 2
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
         return 1
     }
     
-    
-    
-    //TEXTFIELD
-    
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        if(textField == self.telefone)
-        {
-            return maskTelefone(textField, replacementString: string)
-        }
-        if(textField == self.cpf)
-        {
-            return maskCpf(textField, replacementString: string)
-        }
-        if(textField == self.cep)
-        {
-            return maskCep(textField, replacementString: string)
-        }
-        return true
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    {
+        //        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        //        print("locations = \(locValue.latitude) \(locValue.longitude)")
     }
     
-    // máscara para telefone
-    func maskTelefone(textField: UITextField, replacementString string: String) -> Bool
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
     {
-        if (string.characters.count >= 1) {
-            if (textField.text?.characters.count <= 14) {
-                if (textField.text?.characters.count == 2) {
-                    let tempStr = "(" + textField.text! + ") "
-                    textField.text = tempStr
-                    
-                } else if (textField.text?.characters.count == 10) {
-                    let tempStr = textField.text! + "-"
-                    textField.text = tempStr
+        if textField == renavamTextField
+        {
+            if range.location >= 9
+            {
+                textField.resignFirstResponder()
+                return false
+            }
+        }
+        else if textField == celularTextField
+        {
+            if textField.text?.characters.count <= 14
+            {
+                if range.location == 2
+                {
+                    textField.text = "("+textField.text!+") 9"
                 }
-            } else {
+                else if range.location == 10
+                {
+                    textField.text = textField.text!+"-"
+                }
+            }
+            else
+            {
+                textField.resignFirstResponder()
                 return false;
+            }
+        }
+        else if textField == emailTextField
+        {
+            if range.location >= 20
+            {
+                return false
+            }
+        }
+        else
+        {
+            if range.location >= 6
+            {
+                return false
             }
         }
         return true
     }
     
-    
-    // máscara para cpf
-    func maskCpf(textField: UITextField, replacementString string: String) -> Bool
+    func textFieldShouldReturn(textField: UITextField) -> Bool
     {
-        if (string.characters.count >= 1) {
-            if (textField.text?.characters.count <= 13) {
-                if (textField.text?.characters.count == 3) {
-                    let tempStr = textField.text! + "."
-                    textField.text = tempStr
-                    
-                } else if (textField.text?.characters.count == 7) {
-                    let tempStr = textField.text! + "."
-                    textField.text = tempStr
-                } else if (textField.text?.characters.count == 11) {
-                    let tempStr = textField.text! + "-"
-                    textField.text = tempStr
-                }
-            } else {
-                return false;
-            }
-        }
+        textField.resignFirstResponder()
         return true
     }
     
-    
-    // máscara para cep
-    func maskCep(textField: UITextField, replacementString string: String) -> Bool
+    func textFieldDidBeginEditing(textField: UITextField)
     {
-        if (string.characters.count >= 1) {
-            if (textField.text?.characters.count <= 10) {
-                if (textField.text?.characters.count == 3) {
-                    let tempStr = textField.text! + "."
-                    textField.text = tempStr
-                    
-                } else if (textField.text?.characters.count == 7) {
-                    let tempStr = textField.text! + "-"
-                    textField.text = tempStr
-                }
-            } else {
-                return false;
-            }
+        if textField == celularTextField && celularTextField.text?.isEmpty != true || textField == senhaTextField && senhaTextField.text?.isEmpty != true
+        {
+            textField.text = ""
         }
-        return true
     }
     
-    //IMAGE
     @IBAction func imagePickerAction(sender: AnyObject)
     {
         
@@ -195,6 +150,4 @@ UINavigationControllerDelegate, CLLocationManagerDelegate {
         dismissViewControllerAnimated(true, completion: nil)
         
     }
-    
-    
 }
