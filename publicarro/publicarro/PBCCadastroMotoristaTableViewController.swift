@@ -13,7 +13,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate {
     @IBOutlet weak var nome: UITextField!
     @IBOutlet weak var telefone: UITextField!
     @IBOutlet weak var email: UITextField!
-    @IBOutlet weak var senha: UITextField!
+    @IBOutlet weak var senha: UITextField! 
     @IBOutlet weak var cpf: UITextField!
     @IBOutlet weak var cep: UITextField!
     @IBOutlet weak var estado: UITextField!
@@ -247,7 +247,6 @@ UINavigationControllerDelegate, CLLocationManagerDelegate {
             locationManager.stopUpdatingLocation()
         
             print(placemark.addressDictionary)
-        
             print(placemark.locality)
         
             print(placemark.postalCode)
