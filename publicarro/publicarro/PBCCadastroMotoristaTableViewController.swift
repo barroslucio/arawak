@@ -8,19 +8,10 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
     
     let locationManager = CLLocationManager()
 
-    
-    //OUTLES
-    @IBOutlet weak var nome: UITextField!
-    @IBOutlet weak var telefone: UITextField!
-    @IBOutlet weak var email: UITextField!
-    @IBOutlet weak var senha: UITextField! 
-    @IBOutlet weak var cpf: UITextField!
-    @IBOutlet weak var cep: UITextField!
-    @IBOutlet weak var estado: UITextField!
-    @IBOutlet weak var cidade: UITextField!
-    @IBOutlet weak var bairro: UITextField!
-    @IBOutlet weak var endereco: UITextField!
-    @IBOutlet weak var renavamCarro: UITextField!
+    @IBOutlet weak var celularTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var senhaTextField: UITextField!
+    @IBOutlet weak var renavamTextField: UITextField!
     
     @IBOutlet weak var imagePicker: UIButton!
     let picker = UIImagePickerController()
@@ -34,7 +25,8 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
         }
     }
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         celularTextField.delegate = self
         emailTextField.delegate = self
@@ -48,18 +40,11 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
-
-        
     }
     
  //   func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-      //  let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-      //  print("locations = \(locValue.latitude) \(locValue.longitude)")
-  //  }
-    
     override func didReceiveMemoryWarning()
     {
-        super.didReceiveMemoryWarning()
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
@@ -70,12 +55,6 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return 1
-    }
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
-    {
-        //        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        //        print("locations = \(locValue.latitude) \(locValue.longitude)")
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
@@ -246,9 +225,10 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
     }
     
     //essa funcao é acionada quando novas atualizacoes de localizacao estao disponiveis
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-       
+    
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    {
         CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: {(placemarks,error)-> Void in
             
             if (error != nil) {
@@ -270,7 +250,7 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
         
         
         
-        var locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
         print("locations = \(locValue.latitude) \(locValue.longitude)")
         
     }

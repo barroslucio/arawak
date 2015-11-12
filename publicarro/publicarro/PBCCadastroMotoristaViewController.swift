@@ -11,7 +11,7 @@ class PBCCadastroMotoristaViewController: UIViewController
     
     //Instância da classe com os outlets
     private var embeddedCadastroMotoristaViewController : PBCCadastroMotoristaTableViewController!
-
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -73,41 +73,21 @@ class PBCCadastroMotoristaViewController: UIViewController
         super.didReceiveMemoryWarning()
     }
     
-    func validandoTextFields() -> Int
+    func validarCampos() -> Bool
     {
-        let fields = [
-            embeddedCadastroMotoristaViewController.celularTextField
-        ]
-        
-        for (index, element) in fields.enumerate() {
-            
-            if(element.text == "" || element.text == " " || element.text == "  " || element.text == "   ")
-            {
-                print("vazio \(index): \(element.text)")
-                
-                //Existe algum campo vazio
-                return 0
-            }
-            
-        }
-        
-        if(embeddedCadastroMotoristaViewController.senhaTextField.text?.characters.count < 6)
+        if embeddedCadastroMotoristaViewController.emailTextField.text?.isEmpty == true
         {
-            //A senha é muito curta
-            return 1
-            
+            let alertController = UIAlertController(title: "Erro", message: "Email não informado", preferredStyle: .Alert)
+            //alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            presentViewController(alertController, animated: true, completion: nil)
+            return false
         }
-        
-        //Todos os campos são válidos
-        return 2
-        
+        return true
     }
     
-    @IBAction func cadastro(sender: AnyObject)
+    @IBAction func cadastroTapped(sender: AnyObject)
     {
-        let sucessTextFields = validandoTextFields()
-    
-        if(sucessTextFields == 2)
+        if validarCampos() == true
         {
     
             //Objeto da classes _User
@@ -176,12 +156,6 @@ class PBCCadastroMotoristaViewController: UIViewController
                     print("\n\nUser error: \(errorUser)")
                 }
             }
-        }else if(sucessTextFields == 0)
-        {
-            print("\n\nExiste campos vazios")
-        }else if(sucessTextFields == 1)
-        {
-            print("\n\nSenha muito curta")
         }
     }
 
