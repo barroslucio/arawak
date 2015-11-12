@@ -585,6 +585,52 @@
             </objects>
             <point key="canvasLocation" x="2721.5" y="2289.5"/>
         </scene>
+        <!--Imagem da CNH-->
+        <scene sceneID="Mgh-JU-QFE">
+            <objects>
+                <viewController storyboardIdentifier="ImagemCNHViewControler" title="Imagem da CNH" modalTransitionStyle="crossDissolve" id="Kg9-da-iGp" customClass="PBCImagemCNHViewController" customModule="publiCarro" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mxN-fl-dQv"/>
+                        <viewControllerLayoutGuide type="bottom" id="fPk-V4-oyX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bE0-ql-uEI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GN1-bg-NDH">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n5i-rP-2ay">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <animations/>
+                                    </imageView>
+                                </subviews>
+                                <animations/>
+                                <connections>
+                                    <outlet property="delegate" destination="Kg9-da-iGp" id="3g5-TH-wBD"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="n5i-rP-2ay" firstAttribute="top" secondItem="mxN-fl-dQv" secondAttribute="bottom" id="3ry-cF-i6p"/>
+                            <constraint firstItem="fPk-V4-oyX" firstAttribute="top" secondItem="n5i-rP-2ay" secondAttribute="bottom" id="B6D-nf-uqe"/>
+                            <constraint firstItem="n5i-rP-2ay" firstAttribute="leading" secondItem="bE0-ql-uEI" secondAttribute="leadingMargin" constant="-20" id="OSL-B7-5UB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="n5i-rP-2ay" secondAttribute="trailing" constant="-20" id="Y6B-dK-mBe"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="vfG-Pd-MLx"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="imageView" destination="n5i-rP-2ay" id="oBs-Hn-D9g"/>
+                        <outlet property="scrollView" destination="GN1-bg-NDH" id="wUc-1h-8HM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uVH-hD-4Mk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2222.5" y="3061.5"/>
+        </scene>
         <!--Orçamento-->
         <scene sceneID="BTJ-Fc-uW8">
             <objects>
@@ -1070,6 +1116,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="imagePicker" destination="N5X-KF-9sm" id="5eo-CC-mkL"/>
+                        <segue destination="Kg9-da-iGp" kind="show" identifier="segueImagemCNH" id="GBI-08-xKt"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qVJ-4z-HjC" userLabel="First Responder" sceneMemberID="firstResponder"/>
