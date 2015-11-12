@@ -1010,6 +1010,9 @@
                                                     <animations/>
                                                     <color key="backgroundColor" red="0.18431372549019609" green="0.22352941176470587" blue="0.2627450980392157" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal" title="Button"/>
+                                                    <connections>
+                                                        <action selector="sim:" destination="rsu-3j-Xfi" eventType="touchUpInside" id="cXc-Ir-Hfa"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QPe-Y0-8sU">
                                                     <rect key="frame" x="189" y="258" width="110" height="65"/>

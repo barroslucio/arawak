@@ -60,10 +60,10 @@ UINavigationControllerDelegate, CLLocationManagerDelegate {
         
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
-    }
+ //   func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+      //  let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+      //  print("locations = \(locValue.latitude) \(locValue.longitude)")
+  //  }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -195,6 +195,86 @@ UINavigationControllerDelegate, CLLocationManagerDelegate {
         dismissViewControllerAnimated(true, completion: nil)
         
     }
+    
+    
+    // localizacao do motorista
+    
+    @IBAction func sim(sender:AnyObject){
+        
+        //definição das classes  do delegado para locationmanager
+        //especifica a precisão da localizacao e comeca a receber atualizacoes de localizacao do coreLocation
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        
+        //obter atualizacao da localizacao
+    
+        
+    }
+    //essa funcao é acionada quando novas atualizacoes de localizacao estao disponiveis
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        // coordenadas
+        var locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: {(placemarks,error)-> Void in
+            
+            if (error != nil) {
+                print("Reverse geocoder failed with error" + error!.localizedDescription)
+                return
+            }
+            
+            if placemarks?.count > 0{
+                let pm = placemarks![0] as CLPlacemark
+                self.displayLocationInfo(pm)
+                
+            }
+            
+            else{
+                print("Problema com Geocoder")
+            }
+            
+                 })
+        
+    }
+    
+    func displayLocationInfo(placemark:CLPlacemark){
+        
+            
+            // parar de atualizar local para economizar bateria
+            locationManager.stopUpdatingLocation()
+        
+            print(placemark.addressDictionary)
+        
+            print(placemark.locality)
+        
+            print(placemark.postalCode)
+        
+            print(placemark.administrativeArea)
+        
+            print(placemark.country)
+        
+     
+
+    
+        
+    }
+    
+ 
+
+    
+
+  
+    // essa funcao e chamado quando receber erros de localizacao
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        
+        print("Erro ao atualizar a localizacao" + error.localizedDescription)
+    }
+    
+ 
+
     
     
 }
