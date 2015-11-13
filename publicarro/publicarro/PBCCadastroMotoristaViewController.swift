@@ -94,7 +94,7 @@ class PBCCadastroMotoristaViewController: UIViewController
             let user = PFUser()
         
             user.username = embeddedCadastroMotoristaViewController.emailTextField.text
-            user.email = user.username
+            user.email = embeddedCadastroMotoristaViewController.emailTextField.text
             user.password = embeddedCadastroMotoristaViewController.senhaTextField.text
         
         
@@ -108,22 +108,36 @@ class PBCCadastroMotoristaViewController: UIViewController
                 
                 if(errorUser == nil)
                 {
-                    print("\n\nUser sucess")
+                    print("\n\nSave user sucess")
                 
+                    
                     //Objeto da classe Motorista
                     let motorista = PFObject(className: "Motorista")
                     motorista["user"] = user
                     motorista["telefone"] = self.embeddedCadastroMotoristaViewController.celularTextField.text
+                    motorista["latitude"] = Double((PBCCadastroMotoristaTableViewController.locationTeste?.latitude)!)
+                    motorista["longitude"] = Double((PBCCadastroMotoristaTableViewController.locationTeste?.longitude)!)
 
-                
-                
+                    if(PBCCadastroMotoristaTableViewController.chosenImage != nil)
+                    {
+                        print("image")
+                    let imageData = UIImageJPEGRepresentation(PBCCadastroMotoristaTableViewController.chosenImage!, 0.1)
+                    let imageFile = PFFile(name:"image.png", data:imageData!)
+                    
+                    motorista["imageCNH"] = imageFile
+                    }else{
+                        print("nil image")
+
+                    }
+                    
+                    
                     //Salvando motorista class (Motorista)
                     motorista.saveInBackgroundWithBlock({ (sucessMotorista, errorMotorista) -> Void in
                 
                     
                         if( sucessMotorista == true)
                         {
-                            print("\n\nMotorista sucess")
+                            print("\n\nSave motorista sucess")
                         
                             //Objeto da classe Carro
                             let carro = PFObject(className: "Carro")
@@ -136,24 +150,24 @@ class PBCCadastroMotoristaViewController: UIViewController
                             
                                 if( sucessCarro == true)
                                 {
-                                    print("\n\nCarro sucess")
+                                    print("\n\nSave carro sucess")
                                 }
                                 else
                                 {
-                                    print("\n\nCarro error: \(errorCarro)")
+                                    print("\n\nSave carro error: \(errorCarro)")
                                 }
                             })
                 
                         }
                         else
                         {
-                            print("\n\nMotorista error: \(errorMotorista)")
+                            print("\n\nSave motorista error: \(errorMotorista)")
                         }
                     })
                 }
                 else
                 {
-                    print("\n\nUser error: \(errorUser)")
+                    print("\n\nSave user error: \(errorUser)")
                 }
             }
         }
@@ -170,78 +184,3 @@ class PBCCadastroMotoristaViewController: UIViewController
     }
 
 }
-
-
-/*
-let alert = UIAlertController(title: "Alerta", message: "teste", preferredStyle: UIAlertControllerStyle.Alert)
-
-let subview = alert.view.subviews.first! as UIView
-
-let alertContentView = subview.subviews.first! as UIView
-
-let ok = UIAlertAction(title: "ok", style: .Default, handler: { (ok) -> Void in
-alert.dismissViewControllerAnimated(true, completion: nil)
-})
-
-let attributedMessage = NSAttributedString(string: "Message message message", attributes: [
-NSFontAttributeName : UIFont.systemFontOfSize(15, weight: 3),
-NSForegroundColorAttributeName : UIColor.whiteColor()
-])
-
-let attributedTitle = NSAttributedString(string: "Title of alert", attributes: [
-NSFontAttributeName : UIFont.systemFontOfSize(20, weight: 5),
-NSForegroundColorAttributeName : UIColor.whiteColor()
-])
-
-alert.setValue(attributedMessage, forKey: "attributedMessage")
-alert.setValue(attributedTitle, forKey: "attributedTitle")
-
-alertContentView.backgroundColor = UIColor(red:0.11, green:0.15, blue:0.18, alpha:1.0)
-alertContentView.layer.cornerRadius = 5;
-
-alert.view.tintColor = UIColor.whiteColor();
-
-alert.addAction(ok)
-
-self.presentViewController(alert, animated: true, completion: nil)
-*/
-
-
-
-/*
-//Define a color
-let color = UIColor.redColor()
-
-//Make a controller
-let alertVC = UIAlertController(title: "Dont care what goes here, since we're about to change below", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-
-//Title String
-var hogan = NSMutableAttributedString(string: "Presenting the great... Hulk Hogan!")
-
-//Make the attributes, like size and color
-hogan.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(40.0), range: NSMakeRange(24, 11))
-
-hogan.addAttribute(NSForegroundColorAttributeName, value: color, range: NSMakeRange(0, NSString(string: hogan.string).length))
-
-//Set the new title
-//Use "attributedMessage" for the message
-alertVC.setValue(hogan, forKey: "attributedTitle")
-
-//This will change the button color
-alertVC.view.tintColor = UIColor.orangeColor()
-
-//Make the button
-let button:UIAlertAction  = UIAlertAction(title: "Label text", style: UIAlertActionStyle.Default, handler: { (e:UIAlertAction!) -> Void in
-print("\(e)")
-})
-
-//You can add images to the button
-let accessoryImage:UIImage = UIImage(named: "pessoaIcon")!
-button.setValue(accessoryImage, forKey:"image")
-
-//Add the button to the alert
-alertVC.addAction(button)
-
-//Finally present it
-self.presentViewController(alertVC, animated: true, completion:  nil)
-*/
