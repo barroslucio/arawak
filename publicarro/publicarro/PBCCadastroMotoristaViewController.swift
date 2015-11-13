@@ -118,6 +118,7 @@ class PBCCadastroMotoristaViewController: UIViewController
             let user = PFUser()
             
             user.username = embeddedCadastroMotoristaViewController.emailTextField.text
+            user.email = embeddedCadastroMotoristaViewController.emailTextField.text
             user.password = embeddedCadastroMotoristaViewController.senhaTextField.text
             user.email = user.username
             
@@ -126,13 +127,27 @@ class PBCCadastroMotoristaViewController: UIViewController
             user.signUpInBackgroundWithBlock { (sucessUser, errorUser) -> Void in
                 if(errorUser == nil)
                 {
-                    print("\n\nUser sucess")
+                    print("\n\nSave user sucess")
+                
                     
                     //Objeto da classe Motorista
                     let motorista = PFObject(className: "Motorista")
                     motorista["user"] = user
                     motorista["telefone"] = self.embeddedCadastroMotoristaViewController.celularTextField.text
+                    motorista["latitude"] = Double((PBCCadastroMotoristaTableViewController.locationTeste?.latitude)!)
+                    motorista["longitude"] = Double((PBCCadastroMotoristaTableViewController.locationTeste?.longitude)!)
+
+                    if(PBCCadastroMotoristaTableViewController.chosenImage != nil)
+                    {
+                        print("image")
+                    let imageData = UIImageJPEGRepresentation(PBCCadastroMotoristaTableViewController.chosenImage!, 0.1)
+                    let imageFile = PFFile(name:"image.png", data:imageData!)
                     
+                    motorista["imageCNH"] = imageFile
+                    }else{
+                        print("nil image")
+
+                    }
                     
                     
                     //Salvando motorista class (Motorista)
@@ -141,8 +156,8 @@ class PBCCadastroMotoristaViewController: UIViewController
                         
                         if( sucessMotorista == true)
                         {
-                            print("\n\nMotorista sucess")
-                            
+                            print("\n\nSave motorista sucess")
+                        
                             //Objeto da classe Carro
                             let carro = PFObject(className: "Carro")
                             carro["motorista"] = motorista
