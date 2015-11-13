@@ -75,12 +75,34 @@ class PBCCadastroMotoristaViewController: UIViewController
     
     func validarCampos() -> Bool
     {
-        if embeddedCadastroMotoristaViewController.emailTextField.text?.isEmpty == true
+        if embeddedCadastroMotoristaViewController.renavamTextField.text?.isEmpty == true || embeddedCadastroMotoristaViewController.celularTextField.text?.isEmpty == true || embeddedCadastroMotoristaViewController.senhaTextField.text?.isEmpty == true
         {
-            let alertController = UIAlertController(title: "Erro", message: "Email não informado", preferredStyle: .Alert)
-            presentViewController(alertController, animated: false, completion: nil)
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.0*Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
-                alertController.dismissViewControllerAnimated(false, completion: nil)
+            var mensagem = String()
+            if embeddedCadastroMotoristaViewController.renavamTextField.text?.isEmpty == true
+            {
+                mensagem = "Renavam não informado."
+            }
+            else if embeddedCadastroMotoristaViewController.renavamTextField.text?.characters.count < 9
+            {
+                mensagem = "Renavam inválido."
+            }
+            else if embeddedCadastroMotoristaViewController.celularTextField.text?.isEmpty == true
+            {
+                mensagem = "Celular não informado."
+            }
+            else if embeddedCadastroMotoristaViewController.celularTextField.text?.characters.count <= 13
+            {
+                mensagem = "Celular incorreto."
+            }
+            else if embeddedCadastroMotoristaViewController.senhaTextField.text?.isEmpty == true
+            {
+                mensagem = "Informe uma senha !"
+            }
+            let alertView = UIAlertController(title: "Aviso", message: mensagem, preferredStyle: .Alert)
+            presentViewController(alertView, animated: false, completion: nil)
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.0*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),
+            {
+                alertView.dismissViewControllerAnimated(false, completion: nil)
             })
             return false
         }
@@ -96,18 +118,12 @@ class PBCCadastroMotoristaViewController: UIViewController
             let user = PFUser()
             
             user.username = embeddedCadastroMotoristaViewController.emailTextField.text
-            user.email = user.username
             user.password = embeddedCadastroMotoristaViewController.senhaTextField.text
+            user.email = user.username
             
             
             //Salvando usuário class (_User)
             user.signUpInBackgroundWithBlock { (sucessUser, errorUser) -> Void in
-                
-                if(errorUser?.code == 125)
-                {
-                    print("email invalido")
-                }
-                
                 if(errorUser == nil)
                 {
                     print("\n\nUser sucess")
@@ -155,7 +171,25 @@ class PBCCadastroMotoristaViewController: UIViewController
                 }
                 else
                 {
-                    print("\n\nUser error: \(errorUser)")
+                    print("\n\n-----> Erro no Parse: \(errorUser)\n\n")
+                    if errorUser != nil
+                    {
+                        var mensagem = String()
+                        switch errorUser?.code
+                        {
+                            case 125?: mensagem = "Email inválido."
+                            break
+                            case 200?: mensagem = "Email não informado."
+                            break
+                            default: mensagem = "ALGUM ERRO"
+                        }
+                        let alertView = UIAlertController(title: "Aviso", message: mensagem, preferredStyle: .Alert)
+                        self.presentViewController(alertView, animated: false, completion: nil)
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.0*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),
+                        {
+                            alertView.dismissViewControllerAnimated(false, completion: nil)
+                        })
+                    }
                 }
             }
         }
@@ -172,78 +206,3 @@ class PBCCadastroMotoristaViewController: UIViewController
     }
     
 }
-
-
-/*
-let alert = UIAlertController(title: "Alerta", message: "teste", preferredStyle: UIAlertControllerStyle.Alert)
-
-let subview = alert.view.subviews.first! as UIView
-
-let alertContentView = subview.subviews.first! as UIView
-
-let ok = UIAlertAction(title: "ok", style: .Default, handler: { (ok) -> Void in
-alert.dismissViewControllerAnimated(true, completion: nil)
-})
-
-let attributedMessage = NSAttributedString(string: "Message message message", attributes: [
-NSFontAttributeName : UIFont.systemFontOfSize(15, weight: 3),
-NSForegroundColorAttributeName : UIColor.whiteColor()
-])
-
-let attributedTitle = NSAttributedString(string: "Title of alert", attributes: [
-NSFontAttributeName : UIFont.systemFontOfSize(20, weight: 5),
-NSForegroundColorAttributeName : UIColor.whiteColor()
-])
-
-alert.setValue(attributedMessage, forKey: "attributedMessage")
-alert.setValue(attributedTitle, forKey: "attributedTitle")
-
-alertContentView.backgroundColor = UIColor(red:0.11, green:0.15, blue:0.18, alpha:1.0)
-alertContentView.layer.cornerRadius = 5;
-
-alert.view.tintColor = UIColor.whiteColor();
-
-alert.addAction(ok)
-
-self.presentViewController(alert, animated: true, completion: nil)
-*/
-
-
-
-/*
-//Define a color
-let color = UIColor.redColor()
-
-//Make a controller
-let alertVC = UIAlertController(title: "Dont care what goes here, since we're about to change below", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-
-//Title String
-var hogan = NSMutableAttributedString(string: "Presenting the great... Hulk Hogan!")
-
-//Make the attributes, like size and color
-hogan.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(40.0), range: NSMakeRange(24, 11))
-
-hogan.addAttribute(NSForegroundColorAttributeName, value: color, range: NSMakeRange(0, NSString(string: hogan.string).length))
-
-//Set the new title
-//Use "attributedMessage" for the message
-alertVC.setValue(hogan, forKey: "attributedTitle")
-
-//This will change the button color
-alertVC.view.tintColor = UIColor.orangeColor()
-
-//Make the button
-let button:UIAlertAction  = UIAlertAction(title: "Label text", style: UIAlertActionStyle.Default, handler: { (e:UIAlertAction!) -> Void in
-print("\(e)")
-})
-
-//You can add images to the button
-let accessoryImage:UIImage = UIImage(named: "pessoaIcon")!
-button.setValue(accessoryImage, forKey:"image")
-
-//Add the button to the alert
-alertVC.addAction(button)
-
-//Finally present it
-self.presentViewController(alertVC, animated: true, completion:  nil)
-*/
