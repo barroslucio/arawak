@@ -154,18 +154,22 @@ class PBCCadastroMotoristaViewController: UIViewController
                                 
                                 if( sucessCarro == true)
                                 {
-                                    print("\n\nCarro sucess")
+                                    print("\n\nSave carro sucess")
                                 }
                                 else
                                 {
-                                    print("\n\nCarro error: \(errorCarro)")
+                                    print("\n\nSave carro error: \(errorCarro)")
+                                    motorista.deleteInBackground()
+                                    user.deleteInBackground()
+
                                 }
                             })
                             
                         }
                         else
                         {
-                            print("\n\nMotorista error: \(errorMotorista)")
+                            print("\n\nSave motorista error: \(errorMotorista)")
+                            user.deleteInBackground()
                         }
                     })
                 }

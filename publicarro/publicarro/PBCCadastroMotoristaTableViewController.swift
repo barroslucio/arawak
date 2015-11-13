@@ -7,7 +7,7 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
 {
     
     let locationManager = CLLocationManager()
-
+    static var locationTeste = CLLocationCoordinate2D?()
     @IBOutlet weak var celularTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var senhaTextField: UITextField!
@@ -251,6 +251,7 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
         
         
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        PBCCadastroMotoristaTableViewController.locationTeste = manager.location!.coordinate
         print("locations = \(locValue.latitude) \(locValue.longitude)")
         
     }
