@@ -155,6 +155,9 @@ class PBCCadastroMotoristaViewController: UIViewController
                                 else
                                 {
                                     print("\n\nSave carro error: \(errorCarro)")
+                                    motorista.deleteInBackground()
+                                    user.deleteInBackground()
+
                                 }
                             })
                 
@@ -162,6 +165,7 @@ class PBCCadastroMotoristaViewController: UIViewController
                         else
                         {
                             print("\n\nSave motorista error: \(errorMotorista)")
+                            user.deleteInBackground()
                         }
                     })
                 }
