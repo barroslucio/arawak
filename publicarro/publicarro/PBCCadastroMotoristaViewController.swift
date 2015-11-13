@@ -181,6 +181,8 @@ class PBCCadastroMotoristaViewController: UIViewController
                             break
                             case 200?: mensagem = "Email não informado."
                             break
+                            case 202?: mensagem = "Este email não está disponível"
+                            break
                             default: mensagem = "ALGUM ERRO"
                         }
                         let alertView = UIAlertController(title: "Aviso", message: mensagem, preferredStyle: .Alert)
