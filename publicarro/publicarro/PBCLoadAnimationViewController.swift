@@ -19,94 +19,131 @@ class PBCLoadAnimationViewController: UIViewController {
     
     @IBOutlet weak var carro: UIImageView!
     
-    var valor: CGFloat!
-
+    var valor: CGFloat?
+    var stop: Bool?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         valor = self.view.bounds.width/2
-        
         animacao()
         
         // Do any additional setup after loading the view.
     }
-
+    
+    override func viewDidAppear(animated: Bool) {
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+   
+    
+    
     func animacao(){
         
-        UIView.animateWithDuration(0.2, delay: 0, options: [], animations: { () -> Void in
-            self.carro.center.x = self.valor
-            }) { (result: Bool) -> Void in
-                
-                
-                UIView.animateWithDuration(0.15, delay: 0, options: [], animations: { () -> Void in
-                    self.janela1.center.x = self.view.bounds.width/2+30
-                    }) { (result: Bool) -> Void in
-                        
-                        
-                        UIView.animateWithDuration(0.15, delay: 0, options: [], animations: { () -> Void in
-                            self.janela2.center.x = self.view.bounds.width/2 - 27
-                            }) { (result: Bool) -> Void in
-                                
-                                
-                                UIView.animateWithDuration(0.15, delay: 0, options: [], animations: { () -> Void in
-                                    self.janela3.center.x = self.view.bounds.width/2 - 75
-                                    }) { (result: Bool) -> Void in
-                                        
-                                        
-                                        UIView.animateWithDuration(0.15, delay: 0, options: [], animations: { () -> Void in
-                                            self.roda1.center.x = self.view.bounds.width/2 + 80
-                                            }) { (result: Bool) -> Void in
-                                                
-                                                UIView.animateWithDuration(0.15, delay: 0, options: [], animations: { () -> Void in
-                                                    self.roda2.center.x = self.view.bounds.width/2 - 78
-                                                    }) { (result: Bool) -> Void in
-                                                        
-                                                        
-                                                        UIView.animateWithDuration(0.6, delay: 0, options: [], animations: { () -> Void in
-                                                            
-                                                            self.carro.center.x = self.view.bounds.height
-                                                            self.janela1.center.x = self.view.bounds.height
-                                                            self.janela2.center.x = self.view.bounds.height
-                                                            self.janela3.center.x = self.view.bounds.height
-                                                            self.roda1.center.x = self.view.bounds.height
-                                                            self.roda2.center.x = self.view.bounds.height
-                                                            
-                                                            }) { (result: Bool) -> Void in
-                                                                
-                                                                
-                                                                if (result){
-                                                                    
-                                                                    print("oi")
-                                                                    self.janela1.center.x = -50
-                                                                    self.janela2.center.x = -50
-                                                                    self.janela3.center.x = -50
-                                                                    self.roda1.center.x = -50
-                                                                    self.roda2.center.x = -50
-                                                                    self.carro.center.x = -50
-                                                                    
-                                                                    self.valor = self.view.bounds.width/2
-                                                                    
-                                                                    self.animacao()
-                                                                    
-                                                                }
-                                                                
-                                                        }
-                                                        
-                                                }
-                                                
-                                        }
-                                        
-                                }
-                                
+     
+            UIView.animateWithDuration(0.2, delay: 0, options: [], animations: { () -> Void in
+                if(self.carro != nil){
+                    
+                    self.carro.center.x = self.valor!
+
+                }
+                }) { (result: Bool) -> Void in
+                    
+                    
+                    UIView.animateWithDuration(0.15, delay: 0, options: [], animations: { () -> Void in
+                        if(self.janela1 != nil){
+                        self.janela1.center.x = self.view.bounds.width/2+30
                         }
                         
-                }
-        }
+                        }) { (result: Bool) -> Void in
+                            
+                            
+                            UIView.animateWithDuration(0.15, delay: 0, options: [], animations: { () -> Void in
+                                if(self.janela2 != nil){
+
+                                self.janela2.center.x = self.view.bounds.width/2 - 27
+                                }
+                                }) { (result: Bool) -> Void in
+                                    
+                                    
+                                    UIView.animateWithDuration(0.15, delay: 0, options: [], animations: { () -> Void in
+                                        if(self.janela3 != nil){
+
+                                        self.janela3.center.x = self.view.bounds.width/2 - 75
+                                        }
+                                        }) { (result: Bool) -> Void in
+                                            
+                                            
+                                            UIView.animateWithDuration(0.15, delay: 0, options: [], animations: { () -> Void in
+                                                if(self.roda1 != nil){
+
+                                                self.roda1.center.x = self.view.bounds.width/2 + 80
+                                                }
+                                                }) { (result: Bool) -> Void in
+                                                    
+                                                    UIView.animateWithDuration(0.15, delay: 0, options: [], animations: { () -> Void in
+                                                        if(self.roda2 != nil){
+
+                                                        self.roda2.center.x = self.view.bounds.width/2 - 78
+                                                        }
+                                                        }) { (result: Bool) -> Void in
+                                                            
+                                                            
+                                                            UIView.animateWithDuration(0.6, delay: 0, options: [], animations: { () -> Void in
+                                                                if(self.janela1 != nil){
+
+                                                                self.carro.center.x = self.view.bounds.height
+                                                                self.janela1.center.x = self.view.bounds.height
+                                                                self.janela2.center.x = self.view.bounds.height
+                                                                self.janela3.center.x = self.view.bounds.height
+                                                                self.roda1.center.x = self.view.bounds.height
+                                                                self.roda2.center.x = self.view.bounds.height
+                                                                }
+                                                                }) { (result: Bool) -> Void in
+                                                                    
+                                                                    
+                                                                    if (result){
+                                                                        
+                                                                        //print("oi")
+                                                                        if(self.janela1 != nil){
+
+                                                                        self.janela1.center.x = -50
+                                                                        self.janela2.center.x = -50
+                                                                        self.janela3.center.x = -50
+                                                                        self.roda1.center.x = -50
+                                                                        self.roda2.center.x = -50
+                                                                        self.carro.center.x = -50
+                                                                        
+                                                                        }
+                                                                        self.animacao()
+                                                                        
+                                                                        
+                                                                        
+                                                                      
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                    }
+                                                                    
+                                                            }
+                                                            
+                                                    }
+                                                    
+                                            }
+                                            
+                                    }
+                                    
+                            }
+                            
+                    }
+                    
+            }
+        
+       
     }
 
 

@@ -5,10 +5,9 @@ import CoreLocation
 
 class PBCCadastroMotoristaViewController: UIViewController
 {
-    
+    let loadAnimationView = PBCLoadAnimationViewController()
     // Outlet da constraint de base do botão de cadastro que vai ser manipulado quando o teclado aparecer ou sumir.
     @IBOutlet var bottonConstraint: NSLayoutConstraint!
-    
     //Instância da classe com os outlets
     private var embeddedCadastroMotoristaViewController : PBCCadastroMotoristaTableViewController!
     
@@ -109,11 +108,22 @@ class PBCCadastroMotoristaViewController: UIViewController
         return true
     }
     
+    //variavel que vai receber a view de load
+    var controller: UIViewController?
+
     @IBAction func cadastroTapped(sender: AnyObject)
     {
+    
         if validarCampos() == true
         {
-            
+        
+            //se os campos estiverem validados, carrega a view de load
+            controller = storyboard!.instantiateViewControllerWithIdentifier("LoadView")
+            addChildViewController(controller!)
+            UIView.transitionWithView(view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {self.view.addSubview(self.controller!.view)}, completion: nil)
+        
+
+        
             //Objeto da classes _User
             let user = PFUser()
             
@@ -121,6 +131,7 @@ class PBCCadastroMotoristaViewController: UIViewController
             user.email = embeddedCadastroMotoristaViewController.emailTextField.text
             user.password = embeddedCadastroMotoristaViewController.senhaTextField.text
             user.email = user.username
+            
             
             
             //Salvando usuário class (_User)
@@ -170,6 +181,8 @@ class PBCCadastroMotoristaViewController: UIViewController
                                 if( sucessCarro == true)
                                 {
                                     print("\n\nSave carro sucess")
+                                    //caso tenha conseguido salvar com sucesso, para de exibir a view de load.
+                                    self.controller!.view.removeFromSuperview()
                                 }
                                 else
                                 {
@@ -178,7 +191,10 @@ class PBCCadastroMotoristaViewController: UIViewController
                                     user.deleteInBackground()
 
                                 }
+                                
                             })
+                            
+                            
                             
                         }
                         else
@@ -204,6 +220,10 @@ class PBCCadastroMotoristaViewController: UIViewController
                             break
                             default: mensagem = "ALGUM ERRO"
                         }
+                        
+                        //caso tenha dado erro remove a tela de load antes de exibir o erro.
+                        self.controller!.view.removeFromSuperview()
+
                         let alertView = UIAlertController(title: "Aviso", message: mensagem, preferredStyle: .Alert)
                         self.presentViewController(alertView, animated: false, completion: nil)
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.0*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),
@@ -213,7 +233,13 @@ class PBCCadastroMotoristaViewController: UIViewController
                     }
                 }
             }
+            
         }
+        
+        
+        
+       
+        
     }
     
     
