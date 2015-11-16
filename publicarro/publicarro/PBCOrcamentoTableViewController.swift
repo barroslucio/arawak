@@ -4,7 +4,7 @@ import UIKit
 class PBCOrcamentoTableViewController: UITableViewController, UITextFieldDelegate
 {
     @IBOutlet weak var nomeTextField: UITextField!
-    @IBOutlet weak var telefoneTextField: UITextField!
+    @IBOutlet weak var celularTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var qtdCarros: UILabel!
     @IBOutlet weak var qtdMeses: UILabel!
@@ -14,7 +14,7 @@ class PBCOrcamentoTableViewController: UITableViewController, UITextFieldDelegat
     {
         super.viewDidLoad()
         nomeTextField.delegate = self
-        telefoneTextField.delegate = self
+        celularTextField.delegate = self
         emailTextField.delegate = self
     }
 
@@ -41,18 +41,35 @@ class PBCOrcamentoTableViewController: UITableViewController, UITextFieldDelegat
         qtdMeses.text = Int(sender.value).description
     }
     
-    func textFieldDidEndEditing(textField: UITextField)
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
     {
-        if nomeTextField.text?.isEmpty == false && telefoneTextField.text?.isEmpty == false && emailTextField.text?.isEmpty == false
+        if textField == celularTextField
         {
-            
+            if textField.text?.characters.count <= 14
+            {
+                if range.location == 2
+                {
+                    textField.text = "("+textField.text!+") 9"
+                }
+                else if range.location == 10
+                {
+                    textField.text = textField.text!+"-"
+                }
+            }
+            else
+            {
+                return false
+            }
         }
-        else
-        {
-            
-        }
+        return true
     }
-
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
         return 1

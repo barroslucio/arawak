@@ -93,10 +93,6 @@ class PBCCadastroMotoristaViewController: UIViewController
             {
                 mensagem = "Celular incorreto."
             }
-            else if embeddedCadastroMotoristaViewController.senhaTextField.text?.isEmpty == true
-            {
-                mensagem = "Informe uma senha !"
-            }
             let alertView = UIAlertController(title: "Aviso", message: mensagem, preferredStyle: .Alert)
             presentViewController(alertView, animated: false, completion: nil)
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.0*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),
@@ -130,7 +126,6 @@ class PBCCadastroMotoristaViewController: UIViewController
             user.username = embeddedCadastroMotoristaViewController.emailTextField.text
             user.email = embeddedCadastroMotoristaViewController.emailTextField.text
             user.password = embeddedCadastroMotoristaViewController.senhaTextField.text
-            user.email = user.username
             
             
             
@@ -213,12 +208,10 @@ class PBCCadastroMotoristaViewController: UIViewController
                         switch errorUser?.code
                         {
                             case 125?: mensagem = "Email inválido."
-                            break
-                            case 200?: mensagem = "Email não informado."
-                            break
-                            case 202?: mensagem = "Este email não está disponível"
-                            break
-                            default: mensagem = "ALGUM ERRO"
+                            case 200?: mensagem = "Informe um email."
+                            case 201?: mensagem = "Informe uma senha."
+                            case 202?: mensagem = "Email já cadastrado."
+                            default: mensagem = "[ALGUM ERRO]"
                         }
                         
                         //caso tenha dado erro remove a tela de load antes de exibir o erro.

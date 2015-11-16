@@ -42,9 +42,9 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
         }
     }
     
- //   func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     override func didReceiveMemoryWarning()
     {
+        super.didReceiveMemoryWarning()
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
@@ -86,14 +86,7 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
                 return false;
             }
         }
-        else if textField == emailTextField
-        {
-            if range.location >= 20
-            {
-                return false
-            }
-        }
-        else
+        else if textField == senhaTextField
         {
             if range.location >= 6
             {
