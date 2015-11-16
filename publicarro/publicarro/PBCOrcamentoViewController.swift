@@ -2,9 +2,9 @@
 import UIKit
 import Parse
 
-class PBCOrcamentoViewController: UIViewController
+class PBCOrcamentoViewController: UIViewController, UIAlertViewDelegate
 {
-    @IBOutlet var bottonConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottonConstraint: NSLayoutConstraint!
     @IBOutlet weak var orcamentoButton: UIButton!
     
     private var embeddedViewController: PBCOrcamentoTableViewController!
@@ -20,52 +20,57 @@ class PBCOrcamentoViewController: UIViewController
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func orcamentoButtonTapped(sender: AnyObject)
+    func validarCampos() -> Bool
     {
-        let orcamento = PFObject(className: "Orcamento")
-        orcamento["nome"] = embeddedViewController.nomeTextField.text
-        orcamento["telefone"] = embeddedViewController.telefoneTextField.text
-        orcamento["email"] = embeddedViewController.emailTextField.text
-        orcamento.saveInBackgroundWithBlock
-        {(sucess, error) -> Void in
-            print(sucess)
-            print(error)
+        if embeddedViewController.nomeTextField.text?.isEmpty == true || embeddedViewController.emailTextField.text?.isEmpty == true || embeddedViewController.celularTextField.text?.isEmpty == true || embeddedViewController.celularTextField.text?.characters.count <= 14
+        {
+            var mensagem = String()
+            if embeddedViewController.nomeTextField.text?.isEmpty == true
+            {
+                mensagem = "Informe seu nome."
+            }
+            else if embeddedViewController.celularTextField.text?.isEmpty == true
+            {
+                mensagem = "Informe seu celular."
+            }
+            else if embeddedViewController.celularTextField.text?.characters.count <= 14
+            {
+                mensagem = "Celular inválido."
+            }
+            else
+            {
+                mensagem = "Informe seu email."
+            }
+            let alertView = UIAlertController(title: "Aviso", message: mensagem, preferredStyle: .Alert)
+            presentViewController(alertView, animated: false, completion: nil)
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.0*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),{
+                alertView.dismissViewControllerAnimated(false, completion: nil)
+            })
+            return false
         }
+        return true
     }
     
-//    func keyboardWillShow(notification:NSNotification)
-//    {
-//        adjustingHeight(true, notification: notification)
-//    }
-//    
-//    func keyboardWillHide(notification:NSNotification)
-//    {
-//        adjustingHeight(false, notification: notification)
-//    }
-//    
-//    func adjustingHeight(show:Bool, notification:NSNotification)
-//    {
-//        // 1
-//        var userInfo = notification.userInfo!
-//        // 2
-//        let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
-//        // 3
-//        let animationDurarion = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
-//        // 4
-//        let changeInHeight = (CGRectGetHeight(keyboardFrame)) * (show ? 1 : -1)
-//        //5
-//        if (show && self.bottonConstraint.constant == 0){
-//            UIView.animateWithDuration(animationDurarion, animations: { () -> Void in
-//                self.bottonConstraint.constant += changeInHeight
-//            })
-//        }
-//        else if (!show){
-//            UIView.animateWithDuration(animationDurarion, animations: { () -> Void in
-//                self.bottonConstraint.constant += changeInHeight
-//            })
-//        }
-//    }
-    
+    @IBAction func orcamentoTapped(sender: AnyObject)
+    {
+        if validarCampos() == true
+        {
+            let orcamento = PFObject(className: "Orcamento")
+            orcamento["nome"] = self.embeddedViewController.nomeTextField.text
+            orcamento["telefone"] = self.embeddedViewController.celularTextField.text
+            orcamento["email"] = self.embeddedViewController.emailTextField.text
+            orcamento["carros"] = Int(self.embeddedViewController.qtdCarros.text!)
+            orcamento["meses"] = Int(self.embeddedViewController.qtdMeses.text!)
+            orcamento.saveInBackground()
+            let alertView = UIAlertController(title: "Aviso", message: "Orçamento feito com sucesso, aguarde nosso retorno!", preferredStyle: .Alert)
+            alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            self.presentViewController(alertView, animated: false, completion: nil)
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(3.0*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),{
+                    alertView.dismissViewControllerAnimated(false, completion: nil)
+            })
+        }
+    }
+        
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         if segue.identifier == "OrcamentoEmbedSegue"
