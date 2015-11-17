@@ -52,36 +52,48 @@ class PBCLoginViewController: UIViewController
     
     @IBAction func loginTapped(sender: AnyObject)
     {
-//        let controller = storyboard!.instantiateViewControllerWithIdentifier("LoadView")
-//        addChildViewController(controller)
-//        UIView.transitionWithView(view, duration: 0.0, options: UIViewAnimationOptions.TransitionNone, animations: {self.view.addSubview(controller.view)}, completion: nil)
-        PFUser.logInWithUsernameInBackground(embeddedLoginViewController.emailTextField.text!, password: embeddedLoginViewController.senhaTextField.text!, block: { (user, error) -> Void in
-//            controller.view.removeFromSuperview()
-            if user != nil
-            {
-                print("Usuário Logado")
-            }
-            else
-            {
-                var mensagem = String()
-                switch(error?.code)
+        if isConnectedToNetwork()
+        {
+    //        let controller = storyboard!.instantiateViewControllerWithIdentifier("LoadView")
+    //        addChildViewController(controller)
+    //        UIView.transitionWithView(view, duration: 0.0, options: UIViewAnimationOptions.TransitionNone, animations: {self.view.addSubview(controller.view)}, completion: nil)
+            PFUser.logInWithUsernameInBackground(embeddedLoginViewController.emailTextField.text!, password: embeddedLoginViewController.senhaTextField.text!, block: { (user, error) -> Void in
+    //            controller.view.removeFromSuperview()
+                if user != nil
                 {
-                case 101?:
-                    mensagem = "Email ou senha incorretos."
-                    break
-                default:
-                    mensagem = "[ALGUM ERRO]"
-                    break
+                    print("Usuário Logado")
                 }
-                let alertView = UIAlertController(title: "Aviso", message: mensagem, preferredStyle: .Alert)
-                self.presentViewController(alertView, animated: false, completion: nil)
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),{
-                    alertView.dismissViewControllerAnimated(false, completion: nil)
-                })
-            }
-        })
-    }
+                else
+                {
+                    var mensagem = String()
+                    switch(error?.code)
+                    {
+                    case 101?:
+                        mensagem = "Email ou senha incorretos."
+                        break
+                    default:
+                        mensagem = "[ALGUM ERRO]"
+                        break
+                    }
+                    let alertView = UIAlertController(title: "Aviso", message: mensagem, preferredStyle: .Alert)
+                    self.presentViewController(alertView, animated: false, completion: nil)
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),{
+                        alertView.dismissViewControllerAnimated(false, completion: nil)
+                    })
+                }
+            })
+        } else {
+            let alertView = UIAlertController(title: "Aviso", message: "Sem conexão com a Internet", preferredStyle: .Alert)
     
+            self.presentViewController(alertView, animated: false, completion: nil)
+    
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.2*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),
+            {
+                alertView.dismissViewControllerAnimated(false, completion: nil)
+            })
+        }
+    }
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         //segue para a table view controller
