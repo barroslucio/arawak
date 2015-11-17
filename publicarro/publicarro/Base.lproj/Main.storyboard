@@ -1143,6 +1143,7 @@
                         <outlet property="imagePicker" destination="N5X-KF-9sm" id="5eo-CC-mkL"/>
                         <outlet property="renavamTextField" destination="7rM-4K-g0d" id="ZQ2-JI-BJ6"/>
                         <outlet property="senhaTextField" destination="vxI-pa-FCW" id="C9c-Dk-MqZ"/>
+                        <outlet property="switchControl" destination="Hf3-vz-Nvp" id="8DP-o9-b8j"/>
                         <segue destination="Kg9-da-iGp" kind="show" identifier="segueImagemCNH" id="GBI-08-xKt"/>
                     </connections>
                 </tableViewController>

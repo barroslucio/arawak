@@ -147,6 +147,13 @@ class PBCCadastroMotoristaViewController: UIViewController
                     motorista["longitude"] = Double(location.longitude)
                     motorista["localizacao"] = PFGeoPoint(latitude: Double(location.latitude), longitude: Double(location.longitude))
                     
+                    motorista["taxista"] = self.embeddedCadastroMotoristaViewController.switchControl.on
+                    
+                    motorista["ativo"] = false
+
+
+                    
+                    
                     if(PBCCadastroMotoristaTableViewController.chosenImage != nil)
                     {
                         print("image")

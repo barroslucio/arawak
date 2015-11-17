@@ -15,7 +15,7 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var senhaTextField: UITextField!
     @IBOutlet weak var renavamTextField: UITextField!
-    
+    @IBOutlet weak var switchControl: UISwitch!
     // IMAGE
     @IBOutlet weak var imagePicker: UIButton!
     let picker = UIImagePickerController()
