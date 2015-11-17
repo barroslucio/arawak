@@ -70,6 +70,7 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
         let reg = MKCoordinateRegionMakeWithDistance(location.coordinate, 1500, 1500)
         self.mapView.setRegion(reg, animated: true)
         
+    
         geoCode(location)
         
         
