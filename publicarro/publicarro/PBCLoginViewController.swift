@@ -77,16 +77,18 @@ class PBCLoginViewController: UIViewController
                 print(error)
                 switch(error?.code)
                 {
-                    case 101?:
-                        let alertView = UIAlertController(title: "Aviso", message: "Email ou senha incorretos.", preferredStyle: .Alert)
-                        self.presentViewController(alertView, animated: false, completion: nil)
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),{
-                            alertView.dismissViewControllerAnimated(false, completion: nil)
-                        })
+                case 101?:
+                    mensagem = "Email ou senha incorretos."
                     break
-                    default:
+                default:
+                    mensagem = "[ALGUM ERRO]"
                     break
                 }
+                let alertView = UIAlertController(title: "Aviso", message: mensagem, preferredStyle: .Alert)
+                self.presentViewController(alertView, animated: false, completion: nil)
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),{
+                    alertView.dismissViewControllerAnimated(false, completion: nil)
+                })
             }
         })
     }
