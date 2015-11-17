@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import Parse
 
 class PBCLoginViewController: UIViewController {
-
+    
     @IBOutlet var bottonConstraint: NSLayoutConstraint!
+    
+    private var embeddedLoginViewController : PBCLoginTableViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +26,7 @@ class PBCLoginViewController: UIViewController {
         
         
         navigationController?.navigationBar.hidden = false
-
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -37,7 +40,7 @@ class PBCLoginViewController: UIViewController {
     }
     
     func DismissKeyboard(){
-        view.endEditing(true)
+        view.endEditing(false)
     }
     //
     //    func keyboardWillShow(sender: NSNotification){
@@ -75,7 +78,7 @@ class PBCLoginViewController: UIViewController {
     }
     
     func keyboardWillHide(notification:NSNotification) {
-        adjustingHeight(false, notification: notification)
+        adjustingHeight(true, notification: notification)
     }
     
     func adjustingHeight(show:Bool, notification:NSNotification) {
@@ -100,5 +103,39 @@ class PBCLoginViewController: UIViewController {
         }
         
     }
-
+    
+    @IBAction func loginAction(sender: AnyObject) {
+        
+        let username = embeddedLoginViewController.emailTextField.text
+        let password = embeddedLoginViewController.senhaTextField.text
+        
+        let spinner: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0, 0, 150, 150)) as UIActivityIndicatorView
+        spinner.startAnimating()
+        
+        // Send a request to login
+        PFUser.logInWithUsernameInBackground(username!, password: password!, block: { (user, error) -> Void in
+            
+            // Stop the spinner
+            spinner.stopAnimating()
+            
+            if ((user) != nil) {
+                print("Login successful")
+            } else {
+                print("Login failure")
+            }
+        })
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        //segue que acessa a classe dos outlets
+        if(segue.identifier == "LoginEmbedSegue")
+        {
+            embeddedLoginViewController = segue.destinationViewController as? PBCLoginTableViewController
+        }
+    }
+    
 }
+
+

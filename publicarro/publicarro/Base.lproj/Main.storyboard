@@ -362,6 +362,9 @@
                                 <state key="normal" title="Entrar">
                                     <color key="titleColor" red="0.93991566130000004" green="0.93991566130000004" blue="0.93991566130000004" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginAction:" destination="lue-Ad-I02" eventType="touchUpInside" id="eCG-Kv-wb9"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MnK-m1-Par">
                                 <rect key="frame" x="0.0" y="263" width="376" height="50"/>
@@ -387,7 +390,7 @@
                                 <animations/>
                                 <color key="backgroundColor" red="0.08235294118" green="0.098039215690000001" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <segue destination="fAh-3F-KxO" kind="embed" id="vZW-7I-1qk"/>
+                                    <segue destination="fAh-3F-KxO" kind="embed" identifier="LoginEmbedSegue" id="vZW-7I-1qk"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -478,6 +481,9 @@
                                                     <state key="normal" title="Esqueceu a senha?">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="resetPassword:" destination="fAh-3F-KxO" eventType="touchUpInside" id="BJx-SN-5Ol"/>
+                                                    </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9g9-0C-3YK">
                                                     <rect key="frame" x="-5" y="256" width="380" height="1"/>
@@ -523,6 +529,10 @@
                         </connections>
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="LZc-YK-skc" id="0MD-NF-yPb"/>
+                        <outlet property="senhaTextField" destination="PGE-YS-5hi" id="qt7-Ia-GwN"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="576-yf-57A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
