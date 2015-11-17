@@ -19,7 +19,6 @@ class PBCLoginTableViewController: UITableViewController, UITextFieldDelegate
         super.didReceiveMemoryWarning()
     }
     
-    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
         return 1
@@ -35,6 +34,14 @@ class PBCLoginTableViewController: UITableViewController, UITextFieldDelegate
         if let emailTextField = emailTextField
         {
             PFUser.requestPasswordResetForEmailInBackground(emailTextField.text!)
+        }
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField)
+    {
+        if textField == senhaTextField && senhaTextField.text?.isEmpty != true
+        {
+            textField.text = ""
         }
     }
     
