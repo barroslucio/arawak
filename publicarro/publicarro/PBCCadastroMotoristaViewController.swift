@@ -138,11 +138,15 @@ class PBCCadastroMotoristaViewController: UIViewController
                     
                     //Objeto da classe Motorista
                     let motorista = PFObject(className: "Motorista")
+                    let location = PBCCadastroMotoristaTableViewController.motoristaLocation!
+                    
                     motorista["user"] = user
                     motorista["telefone"] = self.embeddedCadastroMotoristaViewController.celularTextField.text
-                    motorista["latitude"] = Double((PBCCadastroMotoristaTableViewController.locationTeste?.latitude)!)
-                    motorista["longitude"] = Double((PBCCadastroMotoristaTableViewController.locationTeste?.longitude)!)
-
+                    
+                    motorista["latitude"] = Double(location.latitude)
+                    motorista["longitude"] = Double(location.longitude)
+                    motorista["localizacao"] = PFGeoPoint(latitude: Double(location.latitude), longitude: Double(location.longitude))
+                    
                     if(PBCCadastroMotoristaTableViewController.chosenImage != nil)
                     {
                         print("image")

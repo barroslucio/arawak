@@ -5,14 +5,18 @@ import CoreLocation
 
 class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CLLocationManagerDelegate
 {
-    
+    // LOCATIONS
     let locationManager = CLLocationManager()
-    static var locationTeste = CLLocationCoordinate2D?()
+    static var motoristaLocation = CLLocationCoordinate2D?()
+    static var detalhesLocation = CLPlacemark?()
+    
+    // TEXTFIELDS
     @IBOutlet weak var celularTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var senhaTextField: UITextField!
     @IBOutlet weak var renavamTextField: UITextField!
     
+    // IMAGE
     @IBOutlet weak var imagePicker: UIButton!
     let picker = UIImagePickerController()
     static var chosenImage : UIImage?
@@ -28,11 +32,17 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        
         celularTextField.delegate = self
         emailTextField.delegate = self
         senhaTextField.delegate = self
         renavamTextField.delegate = self
+        
+        
         picker.delegate = self
+        
+        
         locationManager.requestAlwaysAuthorization()
         if CLLocationManager.locationServicesEnabled()
         {
@@ -42,21 +52,26 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
         }
     }
     
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
     }
     
+    
+    // TABLEVIEW
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
         return 2
     }
+    
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return 1
     }
     
+    // MÉTODOS DAS TEXTFIELDS
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
     {
         if textField == renavamTextField
@@ -96,11 +111,13 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
         return true
     }
     
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
         textField.resignFirstResponder()
         return true
     }
+    
     
     func textFieldDidBeginEditing(textField: UITextField)
     {
@@ -110,6 +127,7 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
         }
     }
     
+    // MÉTODOS DA IMAGEPIKER
     @IBAction func imagePickerAction(sender: AnyObject)
     {
         let actionSheetCamera = UIAlertController(title: "", message: "Adicione a foto da sua habilitação", preferredStyle: UIAlertControllerStyle.ActionSheet)
@@ -124,9 +142,6 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
         })
         
         let showPhoto = UIAlertAction(title: "Visualizar", style: .Default, handler: { (camera) -> Void in
-            
-//            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("ImagemCNHViewControler")
-//            self.presentViewController(controller, animated: true, completion: nil)
             
             self.performSegueWithIdentifier("segueImagemCNH", sender: nil)
         })
@@ -143,13 +158,10 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
         actionSheetCamera.addAction(library)
         actionSheetCamera.addAction(cancel)
         
-        
-        
         self.presentViewController(actionSheetCamera, animated: true, completion: nil)
         
     }
     
-    //MARK: Delegates
     func imagePickerController(
         picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [String : AnyObject])
@@ -166,6 +178,7 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
         
     }
     
+    //acessa a câmera do iPhone
     func shootPhoto() {
         if UIImagePickerController.availableCaptureModesForCameraDevice(.Rear) != nil {
             picker.allowsEditing = false
@@ -178,6 +191,7 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
         }
     }
     
+    //acessa a biblioteca de fotos do iPhone
     func photoFromLibrary()
     {
         picker.allowsEditing = false //2
@@ -187,8 +201,9 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
             animated: true,
             completion: nil)//4
     }
-    // localizacao do motorista
     
+    
+    // MÉTODOS DA LOCALIZAÇÃO
     @IBAction func sim(sender:AnyObject){
         
         //definição das classes  do delegado para locationmanager
@@ -198,28 +213,11 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
-  
-        
-        
         //obter atualizacao da localizacao
-    
-        
     }
     
-    //Segue
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
-    {
-        
-        if(segue.identifier == "segueImagemCNH")
-        {
-            print("Visualizando imagem")
-        }
-        
-    }
     
     //essa funcao é acionada quando novas atualizacoes de localizacao estao disponiveis
-    
-    
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
         CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: {(placemarks,error)-> Void in
@@ -244,16 +242,14 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
         
         
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        PBCCadastroMotoristaTableViewController.locationTeste = manager.location!.coordinate
+        PBCCadastroMotoristaTableViewController.motoristaLocation = manager.location!.coordinate
         print("locations = \(locValue.latitude) \(locValue.longitude)")
         
     }
     
+    //Este método é chamado para interromper a atualzação automática da localiação e printar os detalhes da mesma
     func displayLocationInfo(placemark:CLPlacemark){
         
-        
-        
-            
             // parar de atualizar local para economizar bateria
             locationManager.stopUpdatingLocation()
         
@@ -267,18 +263,8 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
         
             print(placemark.country)
         
-     
-
-
-    
-        
     }
     
- 
-
-    
-
-  
     // essa funcao e chamado quando receber erros de localizacao
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         
@@ -287,6 +273,16 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
     
  
 
-    
+    //SegueS
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        
+        if(segue.identifier == "segueImagemCNH")
+        {
+            print("Visualizando imagem")
+        }
+        
+    }
+
     
 }
