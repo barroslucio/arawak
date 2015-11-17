@@ -171,7 +171,6 @@
 		2412BF631BDE5D2500C53372 /* publicarro */ = {
 			isa = PBXGroup;
 			children = (
-				EE0F1B0C1BF4E51100989195 /* PBCMapaViewController.swift */,
 				778622881BEA46C9008136AC /* PBCCadastroMotoristaTableViewController.swift */,
 				2412BF641BDE5D2500C53372 /* AppDelegate.swift */,
 				2412BF661BDE5D2500C53372 /* ViewController.swift */,
@@ -186,6 +185,7 @@
 				2412BF9B1BDE717600C53372 /* PBCColor.swift */,
 				2A679E771BE1063B00969DDF /* PBCAnunciosLoginViewController.swift */,
 				2AD4EFF31BE3973500F5DF29 /* PBCCadastroPopUpViewController.swift */,
+				EE0F1B0C1BF4E51100989195 /* PBCMapaViewController.swift */,
 				2412BF6E1BDE5D2500C53372 /* Assets.xcassets */,
 				EE37339C1BFA159500F6FCA7 /* pin.png */,
 				2412BF701BDE5D2500C53372 /* LaunchScreen.storyboard */,
