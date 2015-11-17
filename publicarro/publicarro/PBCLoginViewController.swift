@@ -55,6 +55,7 @@ class PBCLoginViewController: UIViewController
     
     @IBAction func loginTapped(sender: AnyObject)
     {
+        //verifica se há conexão com a internet
         if isConnectedToNetwork()
         {
             //se os campos estiverem validados, carrega a view de load
@@ -93,6 +94,7 @@ class PBCLoginViewController: UIViewController
                 }
             })
         }else{
+            //Alert de falha de conexão com a internet
             let alertView = UIAlertController(title: "Aviso", message: "Sem conexão com a internet", preferredStyle: .Alert)
             self.presentViewController(alertView, animated: false, completion: nil)
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),{
@@ -105,6 +107,7 @@ class PBCLoginViewController: UIViewController
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
+        //segue para a table view controller
         if(segue.identifier == "LoginEmbedSegue")
         {
             embeddedLoginViewController = segue.destinationViewController as? PBCLoginTableViewController
