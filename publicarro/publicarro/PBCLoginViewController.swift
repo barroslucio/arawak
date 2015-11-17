@@ -48,15 +48,32 @@ class PBCLoginViewController: UIViewController
         }
     }
     
+    //variavel que vai receber a view de load
+    var controller: UIViewController?
+    
     @IBAction func loginTapped(sender: AnyObject)
     {
+        
+        //se os campos estiverem validados, carrega a view de load
+        controller = storyboard!.instantiateViewControllerWithIdentifier("LoadView")
+        addChildViewController(controller!)
+        UIView.transitionWithView(view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {self.view.addSubview(self.controller!.view)}, completion: nil)
+        
         PFUser.logInWithUsernameInBackground(embeddedLoginViewController.emailTextField.text!, password: embeddedLoginViewController.senhaTextField.text!, block: { (user, error) -> Void in
+            
+            
             if user != nil
             {
+                //caso tenha conseguido salvar com sucesso, para de exibir a view de load.
+                self.controller!.view.removeFromSuperview()
+
                 print("Usuário Logado")
             }
             else
             {
+                //caso tenha conseguido salvar com sucesso, para de exibir a view de load.
+                self.controller!.view.removeFromSuperview()
+
                 print(error)
                 switch(error?.code)
                 {
