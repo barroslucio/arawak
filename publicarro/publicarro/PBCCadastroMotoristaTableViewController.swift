@@ -197,12 +197,9 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        
-  
-        
-        
-        //obter atualizacao da localizacao
     
+        
+        //obter atualizacao da localizaca
         
     }
     
@@ -249,8 +246,12 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
         
     }
     
+    
     func displayLocationInfo(placemark:CLPlacemark){
+    
+        // parar de atualizar local para economizar bateria
         
+        locationManager.stopUpdatingLocation()
         
         
             
@@ -274,9 +275,6 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
         
     }
     
- 
-
-    
 
   
     // essa funcao e chamado quando receber erros de localizacao
@@ -285,8 +283,6 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
         print("Erro ao atualizar a localizacao" + error.localizedDescription)
     }
     
- 
 
-    
     
 }
