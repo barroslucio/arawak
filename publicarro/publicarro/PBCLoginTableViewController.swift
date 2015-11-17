@@ -2,42 +2,45 @@
 import UIKit
 import Parse
 
-class PBCLoginTableViewController: UITableViewController
+class PBCLoginTableViewController: UITableViewController, UITextFieldDelegate
 {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var senhaTextField: UITextField!
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        
+        emailTextField.delegate = self
+        senhaTextField.delegate = self
     }
     
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
     }
     
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
         return 1
     }
     
-    @IBAction func resetPassword(sender: AnyObject) {
-        if let emailTextField = emailTextField {
+    @IBAction func resetPassword(sender: AnyObject)
+    {
+        if let emailTextField = emailTextField
+        {
             PFUser.requestPasswordResetForEmailInBackground(emailTextField.text!)
         }
     }
-    /*
-    // MARK: - Navigation
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+    func textFieldShouldReturn(textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder()
+        return true
     }
-    */
-    
 }
