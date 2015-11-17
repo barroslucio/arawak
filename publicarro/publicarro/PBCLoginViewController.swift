@@ -1,6 +1,7 @@
 
 import UIKit
 import Parse
+import SystemConfiguration
 
 class PBCLoginViewController: UIViewController
 {
@@ -15,6 +16,7 @@ class PBCLoginViewController: UIViewController
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: view.window)
         navigationController?.navigationBar.hidden = false
     }
+    
     
     override func didReceiveMemoryWarning()
     {
@@ -82,9 +84,27 @@ class PBCLoginViewController: UIViewController
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
+        //segue para a table view controller
         if(segue.identifier == "LoginEmbedSegue")
         {
             embeddedLoginViewController = segue.destinationViewController as? PBCLoginTableViewController
         }
+    }
+    
+    // Conexão com a internet
+    func isConnectedToNetwork() -> Bool {
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        let defaultRouteReachability = withUnsafePointer(&zeroAddress) {
+            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
+        }
+        var flags = SCNetworkReachabilityFlags()
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+            return false
+        }
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        return (isReachable && !needsConnection)
     }
 }
