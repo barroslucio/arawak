@@ -249,6 +249,8 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
     
     //Este método é chamado para interromper a atualzação automática da localiação e printar os detalhes da mesma
     func displayLocationInfo(placemark:CLPlacemark){
+    
+        // parar de atualizar local para economizar bateria
         
             // parar de atualizar local para economizar bateria
             locationManager.stopUpdatingLocation()
@@ -271,7 +273,6 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
         print("Erro ao atualizar a localizacao" + error.localizedDescription)
     }
     
- 
 
     //SegueS
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
