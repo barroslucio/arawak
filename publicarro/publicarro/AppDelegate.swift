@@ -7,10 +7,16 @@ import Parse
 class AppDelegate: UIResponder, UIApplicationDelegate
 {
     var window: UIWindow?
+    var locationManager: CLLocationManager?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
     {
         Parse.setApplicationId("DzJB0iDECJ4uHqKIxRw3jNRAjlDLD8blMINbatUS", clientKey: "t5uyClsR4eHjjN1JLHFpYgPbXiXjfeCCMmhqE2K1")
+        
+        
+        locationManager = CLLocationManager()
+        locationManager?.requestWhenInUseAuthorization()
+        
         return true
     }
     
