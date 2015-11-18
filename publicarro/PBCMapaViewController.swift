@@ -67,8 +67,7 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
         
         let location: CLLocation = locations.first!
         self.mapView.centerCoordinate = location.coordinate // defini as coordenada no centro
-        print("Found user's location: \(location)")
-    
+
         let reg = MKCoordinateRegionMakeWithDistance(location.coordinate, 1500, 1500)
         self.mapView.setRegion(reg, animated: true)
         
@@ -113,6 +112,10 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
     
     
     
+    @IBAction func estouAqui(sender: AnyObject) {
+        
+        print("LOCAL DO MOTORISTA: \(endereco)")
+    }
     
     
     
