@@ -11,24 +11,57 @@ import UIKit
 class PBCLoadAnimationViewController: UIViewController {
 
     
+    @IBOutlet var infoLabel: UILabel!
     @IBOutlet weak var roda1: UIImageView!
     @IBOutlet weak var roda2: UIImageView!
     @IBOutlet weak var janela3: UIImageView!
     @IBOutlet weak var janela2: UIImageView!
     @IBOutlet weak var janela1: UIImageView!
     
+    @IBOutlet var respostaImage: UIImageView!
+    @IBOutlet var carroView: UIView!
     @IBOutlet weak var carro: UIImageView!
+    @IBOutlet var backgroundView: UIView!
+    @IBOutlet var respostaView: UIView!
     
     var valor: CGFloat?
     var stop: Bool?
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        valor = self.view.bounds.width/2
+        
+        respostaView.hidden = true
+        if (backgroundView != nil){
+        backgroundView.layer.cornerRadius = 10
+        }
         animacao()
+        
         
         // Do any additional setup after loading the view.
     }
+    
+    func sucesso(){
+        self.respostaView.hidden = false
+        self.respostaImage.image = UIImage(named:"checkIcon.pdf")
+        
+        
+        if (self.carroView != nil){
+            self.carroView.hidden = true
+        }
+        
+    }
+    
+    func falha(){
+        
+        self.respostaView.hidden = false
+        self.respostaImage.image = UIImage(named:"failIcon.pdf")
+        
+        
+        if (self.carroView != nil){
+            self.carroView.hidden = true
+        }
+        
+    }
+    
     
     override func viewDidAppear(animated: Bool) {
     }
@@ -44,104 +77,18 @@ class PBCLoadAnimationViewController: UIViewController {
     func animacao(){
         
      
-            UIView.animateWithDuration(0.2, delay: 0, options: [], animations: { () -> Void in
-                if(self.carro != nil){
-                    
-                    self.carro.center.x = self.valor!
-
+        UIView.animateWithDuration(0.4,
+            delay: 0.0,
+            options: .CurveLinear,
+            animations: {
+                if(self.roda1 != nil && self.roda2 != nil){
+                self.roda1.transform = CGAffineTransformRotate(self.roda1.transform, 3.1415926)
+                self.roda2.transform = CGAffineTransformRotate(self.roda2.transform, 3.1415926)
                 }
-                }) { (result: Bool) -> Void in
-                    
-                    
-                    UIView.animateWithDuration(0.15, delay: 0, options: [], animations: { () -> Void in
-                        if(self.janela1 != nil){
-                        self.janela1.center.x = self.view.bounds.width/2+30
-                        }
-                        
-                        }) { (result: Bool) -> Void in
-                            
-                            
-                            UIView.animateWithDuration(0.15, delay: 0, options: [], animations: { () -> Void in
-                                if(self.janela2 != nil){
+            },
+            completion: {finished in self.animacao()})
+        
 
-                                self.janela2.center.x = self.view.bounds.width/2 - 27
-                                }
-                                }) { (result: Bool) -> Void in
-                                    
-                                    
-                                    UIView.animateWithDuration(0.15, delay: 0, options: [], animations: { () -> Void in
-                                        if(self.janela3 != nil){
-
-                                        self.janela3.center.x = self.view.bounds.width/2 - 75
-                                        }
-                                        }) { (result: Bool) -> Void in
-                                            
-                                            
-                                            UIView.animateWithDuration(0.15, delay: 0, options: [], animations: { () -> Void in
-                                                if(self.roda1 != nil){
-
-                                                self.roda1.center.x = self.view.bounds.width/2 + 80
-                                                }
-                                                }) { (result: Bool) -> Void in
-                                                    
-                                                    UIView.animateWithDuration(0.15, delay: 0, options: [], animations: { () -> Void in
-                                                        if(self.roda2 != nil){
-
-                                                        self.roda2.center.x = self.view.bounds.width/2 - 78
-                                                        }
-                                                        }) { (result: Bool) -> Void in
-                                                            
-                                                            
-                                                            UIView.animateWithDuration(0.6, delay: 0, options: [], animations: { () -> Void in
-                                                                if(self.janela1 != nil){
-
-                                                                self.carro.center.x = self.view.bounds.height
-                                                                self.janela1.center.x = self.view.bounds.height
-                                                                self.janela2.center.x = self.view.bounds.height
-                                                                self.janela3.center.x = self.view.bounds.height
-                                                                self.roda1.center.x = self.view.bounds.height
-                                                                self.roda2.center.x = self.view.bounds.height
-                                                                }
-                                                                }) { (result: Bool) -> Void in
-                                                                    
-                                                                    
-                                                                    if (result){
-                                                                        
-                                                                        //print("oi")
-                                                                        if(self.janela1 != nil){
-
-                                                                        self.janela1.center.x = -50
-                                                                        self.janela2.center.x = -50
-                                                                        self.janela3.center.x = -50
-                                                                        self.roda1.center.x = -50
-                                                                        self.roda2.center.x = -50
-                                                                        self.carro.center.x = -50
-                                                                        
-                                                                        }
-                                                                        self.animacao()
-                                                                        
-                                                                        
-                                                                        
-                                                                      
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                    }
-                                                                    
-                                                            }
-                                                            
-                                                    }
-                                                    
-                                            }
-                                            
-                                    }
-                                    
-                            }
-                            
-                    }
-                    
-            }
         
        
     }

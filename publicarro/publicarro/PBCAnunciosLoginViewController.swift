@@ -15,9 +15,7 @@ class PBCAnunciosLoginViewController: UIViewController, UITableViewDataSource, U
     
     @IBAction func signUpButton(sender: AnyObject)
     {
-        let controller = storyboard!.instantiateViewControllerWithIdentifier("CadastroView")
-        addChildViewController(controller)
-        UIView.transitionWithView(view, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {self.view.addSubview(controller.view)}, completion: nil)
+       
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int

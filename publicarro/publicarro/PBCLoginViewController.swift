@@ -6,6 +6,10 @@ import SystemConfiguration
 class PBCLoginViewController: UIViewController
 {
     
+    
+    //variavel que vai receber a view de load
+    var controller: PBCLoadAnimationViewController!
+
     @IBOutlet var bottonConstraint: NSLayoutConstraint!
     private var embeddedLoginViewController : PBCLoginTableViewController!
     
@@ -52,13 +56,27 @@ class PBCLoginViewController: UIViewController
     
     @IBAction func loginTapped(sender: AnyObject)
     {
+        
+    
+      
+        
         if isConnectedToNetwork()
         {
-    //        let controller = storyboard!.instantiateViewControllerWithIdentifier("LoadView")
-    //        addChildViewController(controller)
-    //        UIView.transitionWithView(view, duration: 0.0, options: UIViewAnimationOptions.TransitionNone, animations: {self.view.addSubview(controller.view)}, completion: nil)
-            PFUser.logInWithUsernameInBackground(embeddedLoginViewController.emailTextField.text!, password: embeddedLoginViewController.senhaTextField.text!, block: { (user, error) -> Void in
-    //            controller.view.removeFromSuperview()
+            //se os campos estiverem validados, carrega a view de load
+            self.controller = storyboard!.instantiateViewControllerWithIdentifier("LoadView") as! PBCLoadAnimationViewController
+            addChildViewController(self.controller!)
+            UIView.transitionWithView(view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+                
+                self.view.addSubview(self.controller!.view)
+                self.controller.infoLabel.text = "Realizando login..."
+                
+                }, completion: nil)
+
+                PFUser.logInWithUsernameInBackground(embeddedLoginViewController.emailTextField.text!, password: embeddedLoginViewController.senhaTextField.text!, block: { (user, error) -> Void in
+                    
+                    
+                    
+                    
                 if user != nil
                 {
                     print("Usuário Logado")
@@ -75,21 +93,29 @@ class PBCLoginViewController: UIViewController
                         mensagem = "[ALGUM ERRO]"
                         break
                     }
-                    let alertView = UIAlertController(title: "Aviso", message: mensagem, preferredStyle: .Alert)
-                    self.presentViewController(alertView, animated: false, completion: nil)
+                    //se os campos estiverem validados, carrega a view de load
+                    self.controller.falha()
+                    self.controller.infoLabel.text = mensagem
+
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),{
-                        alertView.dismissViewControllerAnimated(false, completion: nil)
+                        self.controller.view.removeFromSuperview()
                     })
                 }
             })
         } else {
-            let alertView = UIAlertController(title: "Aviso", message: "Sem conexão com a Internet", preferredStyle: .Alert)
-    
-            self.presentViewController(alertView, animated: false, completion: nil)
-    
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.2*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),
-            {
-                alertView.dismissViewControllerAnimated(false, completion: nil)
+            //se os campos estiverem validados, carrega a view de load
+            self.controller = storyboard!.instantiateViewControllerWithIdentifier("LoadView") as! PBCLoadAnimationViewController
+            addChildViewController(self.controller!)
+            UIView.transitionWithView(view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+                
+                self.view.addSubview(self.controller!.view)
+                self.controller.falha()
+                self.controller.infoLabel.text = "Sem conexão."
+                
+                }, completion: nil)
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),{
+                self.controller.view.removeFromSuperview()
             })
         }
     }
