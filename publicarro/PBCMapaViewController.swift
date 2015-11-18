@@ -15,7 +15,7 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
 
     var locationManager : CLLocationManager!
     var endereco: String!
-    var geoCoder: CLGeocoder!
+    var geoCoder: CLGeocoder! // a classe CLGecoder fornece servicos de uma conversao de uma coordenada
 
     @IBOutlet weak var mapView: MKMapView!
     
@@ -79,7 +79,10 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
     
     func geoCode(location: CLLocation!) {
         
-        geoCoder.cancelGeocode()
+        geoCoder.cancelGeocode() //cancela uma solicitacao de geocodificacao pendente
+        
+       // location contém os dados das coordenadas
+       // envia os dados de localização especificados para o servidor de geocodificação
         
         geoCoder.reverseGeocodeLocation(location, completionHandler: {(data,error) -> Void in
         
@@ -87,11 +90,11 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
                 
                 return
             }
-            
+            // CLPlacemark armazena dados de uma determina Latitude e longitude como cidade, estado ,país
             let loc: CLPlacemark = placemarks[0]
             
             let addressDict: [NSString:NSObject] = loc.addressDictionary as! [NSString: NSObject]
-            
+            // addresssDictionary fornece o endereco completo 
             let addrList = addressDict["FormattedAddressLines"] as! [String]
             
             
