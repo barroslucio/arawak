@@ -50,6 +50,8 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
     func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         let location = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
         
+        //defini as coordenadas no centro do mapa
+        
         geoCode(location)
     }
     
@@ -64,8 +66,8 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
         
         
         let location: CLLocation = locations.first!
-        self.mapView.centerCoordinate = location.coordinate
-        
+        self.mapView.centerCoordinate = location.coordinate // defini as coordenada no centro
+        print("Found user's location: \(location)")
     
         let reg = MKCoordinateRegionMakeWithDistance(location.coordinate, 1500, 1500)
         self.mapView.setRegion(reg, animated: true)
@@ -86,15 +88,15 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
         
         geoCoder.reverseGeocodeLocation(location, completionHandler: {(data,error) -> Void in
         
-            guard let placemarks = data as [CLPlacemark]! else {
-                
-                return
+        guard let placemarks = data as [CLPlacemark]! else {
+            return
             }
+            
             // CLPlacemark armazena dados de uma determina Latitude e longitude como cidade, estado ,país
             let loc: CLPlacemark = placemarks[0]
             
             let addressDict: [NSString:NSObject] = loc.addressDictionary as! [NSString: NSObject]
-            // addresssDictionary fornece o endereco completo 
+            // addresssDictionary fornece o endereco completo
             let addrList = addressDict["FormattedAddressLines"] as! [String]
             
             
