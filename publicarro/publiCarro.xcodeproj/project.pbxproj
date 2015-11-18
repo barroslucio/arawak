@@ -43,6 +43,7 @@
 		7794DEC11BE933A20069E00A /* PBCLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7794DEC01BE933A20069E00A /* PBCLoginViewController.swift */; };
 		EE0F1B0B1BF4E4AF00989195 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0F1B0A1BF4E4AF00989195 /* MapKit.framework */; };
 		EE0F1B0D1BF4E51100989195 /* PBCMapaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0F1B0C1BF4E51100989195 /* PBCMapaViewController.swift */; };
+		EE3733A11BFCBD7400F6FCA7 /* currentLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = EE3733A01BFCBD7400F6FCA7 /* currentLocation.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		7794DEC01BE933A20069E00A /* PBCLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCLoginViewController.swift; sourceTree = "<group>"; };
 		EE0F1B0A1BF4E4AF00989195 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		EE0F1B0C1BF4E51100989195 /* PBCMapaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PBCMapaViewController.swift; path = ../PBCMapaViewController.swift; sourceTree = "<group>"; };
+		EE3733A01BFCBD7400F6FCA7 /* currentLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = currentLocation.png; path = ../../../../Documents/currentLocation.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 				2AD4EFF31BE3973500F5DF29 /* PBCCadastroPopUpViewController.swift */,
 				EE0F1B0C1BF4E51100989195 /* PBCMapaViewController.swift */,
 				2412BF6E1BDE5D2500C53372 /* Assets.xcassets */,
+				EE3733A01BFCBD7400F6FCA7 /* currentLocation.png */,
 				2412BF701BDE5D2500C53372 /* LaunchScreen.storyboard */,
 				2412BF731BDE5D2500C53372 /* Info.plist */,
 				2412BF6B1BDE5D2500C53372 /* publicarro.xcdatamodeld */,
@@ -353,6 +356,7 @@
 			files = (
 				2412BF721BDE5D2500C53372 /* LaunchScreen.storyboard in Resources */,
 				2412BF6F1BDE5D2500C53372 /* Assets.xcassets in Resources */,
+				EE3733A11BFCBD7400F6FCA7 /* currentLocation.png in Resources */,
 				2412BF6A1BDE5D2500C53372 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

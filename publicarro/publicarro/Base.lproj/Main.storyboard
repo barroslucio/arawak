@@ -1221,14 +1221,34 @@
                                     <constraint firstAttribute="height" constant="79" id="njR-Rw-D38"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VmT-7N-eDG">
-                                <rect key="frame" x="20" y="8" width="335" height="32"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VmT-7N-eDG">
+                                <rect key="frame" x="0.0" y="565" width="375" height="47"/>
                                 <animations/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.14509803921568626" green="0.18431372549019609" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o8T-nc-fiX">
+                                <rect key="frame" x="0.0" y="612" width="375" height="55"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.10588235294117647" green="0.14509803921568626" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <state key="normal" title="Estou aqui">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="estouAqui:" destination="rzB-qo-qz8" eventType="touchUpInside" id="H3h-m7-tip"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAx-a4-IxW">
+                                <rect key="frame" x="325" y="505" width="30" height="30"/>
+                                <animations/>
+                                <state key="normal" image="currentLocation.png"/>
+                                <connections>
+                                    <action selector="current:" destination="rzB-qo-qz8" eventType="touchUpInside" id="quI-JT-Np5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1236,12 +1256,9 @@
                             <constraint firstItem="pYd-hU-zAS" firstAttribute="leading" secondItem="XR3-ye-ceD" secondAttribute="leading" id="13v-Fj-eRk"/>
                             <constraint firstItem="WR1-Vj-0hu" firstAttribute="top" secondItem="pYd-hU-zAS" secondAttribute="bottom" id="7wx-MN-dER"/>
                             <constraint firstItem="uVt-vf-30f" firstAttribute="centerY" secondItem="XR3-ye-ceD" secondAttribute="centerY" id="EwD-1R-op3"/>
-                            <constraint firstItem="VmT-7N-eDG" firstAttribute="leading" secondItem="XR3-ye-ceD" secondAttribute="leadingMargin" id="PXJ-Nn-5XB"/>
                             <constraint firstAttribute="trailing" secondItem="pYd-hU-zAS" secondAttribute="trailing" id="UEs-yv-EZs"/>
                             <constraint firstItem="pYd-hU-zAS" firstAttribute="top" secondItem="QgR-CB-4Ev" secondAttribute="bottom" id="g6B-Yc-j3i"/>
                             <constraint firstItem="uVt-vf-30f" firstAttribute="centerX" secondItem="XR3-ye-ceD" secondAttribute="centerX" id="idv-2n-9eJ"/>
-                            <constraint firstItem="VmT-7N-eDG" firstAttribute="top" secondItem="QgR-CB-4Ev" secondAttribute="bottom" constant="8" id="sFD-KN-0qJ"/>
-                            <constraint firstItem="VmT-7N-eDG" firstAttribute="trailing" secondItem="XR3-ye-ceD" secondAttribute="trailingMargin" id="tiF-cE-hV1"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -1257,7 +1274,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2815.5" y="3121.5"/>
+            <point key="canvasLocation" x="2684.5" y="3004.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WzX-jp-Tpc">
@@ -1285,6 +1302,7 @@
     <resources>
         <image name="carroAnimation" width="956" height="430"/>
         <image name="carroIcon" width="1048" height="1048"/>
+        <image name="currentLocation.png" width="30" height="30"/>
         <image name="emailIcon" width="350" height="350"/>
         <image name="janela2Animation" width="241" height="151"/>
         <image name="janelaAnimation" width="172" height="161"/>
