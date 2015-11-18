@@ -253,8 +253,6 @@ class PBCCadastroMotoristaViewController: UIViewController
                         switch errorUser?.code
                         {
                             case 125?: mensagem = "Email inválido."
-                            case 200?: mensagem = "Informe um email."
-                            case 201?: mensagem = "Informe uma senha."
                             case 202?: mensagem = "Email já cadastrado."
                             default: mensagem = "[ALGUM ERRO]"
                         }
