@@ -118,17 +118,7 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     
  /*   func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
