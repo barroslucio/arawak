@@ -5,7 +5,10 @@ import CoreLocation
 
 class PBCCadastroMotoristaViewController: UIViewController
 {
-    let loadAnimationView = PBCLoadAnimationViewController()
+    
+    //variavel que vai receber a view de load
+    var controller: PBCLoadAnimationViewController!
+    
     // Outlet da constraint de base do botão de cadastro que vai ser manipulado quando o teclado aparecer ou sumir.
     @IBOutlet var bottonConstraint: NSLayoutConstraint!
     //Instância da classe com os outlets
@@ -93,19 +96,33 @@ class PBCCadastroMotoristaViewController: UIViewController
             {
                 mensagem = "Celular incorreto."
             }
-            let alertView = UIAlertController(title: "Aviso", message: mensagem, preferredStyle: .Alert)
-            presentViewController(alertView, animated: false, completion: nil)
+            
+            //se os campos estiverem validados, carrega a view de load
+            controller = storyboard!.instantiateViewControllerWithIdentifier("LoadView") as! PBCLoadAnimationViewController
+            addChildViewController(controller!)
+            UIView.transitionWithView(view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+                
+            
+                
+                self.view.addSubview(self.controller!.view)
+                
+                self.controller.falha()
+                
+                self.controller.infoLabel.text = mensagem
+                
+                }, completion: nil)
+            
+
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.0*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),
             {
-                alertView.dismissViewControllerAnimated(false, completion: nil)
+                self.controller.view.removeFromSuperview()
             })
             return false
         }
         return true
     }
     
-    //variavel que vai receber a view de load
-    var controller: UIViewController?
+    
 
     @IBAction func cadastroTapped(sender: AnyObject)
     {
@@ -113,12 +130,18 @@ class PBCCadastroMotoristaViewController: UIViewController
         if validarCampos() == true
         {
         
+            
             //se os campos estiverem validados, carrega a view de load
-            controller = storyboard!.instantiateViewControllerWithIdentifier("LoadView")
+            controller = storyboard!.instantiateViewControllerWithIdentifier("LoadView") as! PBCLoadAnimationViewController
             addChildViewController(controller!)
-            UIView.transitionWithView(view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {self.view.addSubview(self.controller!.view)}, completion: nil)
+            UIView.transitionWithView(view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+                
+                self.view.addSubview(self.controller!.view)
+                self.controller.infoLabel.text = "Cadastrando..."
+                
+                }, completion: nil)
         
-
+            
         
             //Objeto da classes _User
             let user = PFUser()
@@ -138,11 +161,22 @@ class PBCCadastroMotoristaViewController: UIViewController
                     
                     //Objeto da classe Motorista
                     let motorista = PFObject(className: "Motorista")
+                    let location = PBCCadastroMotoristaTableViewController.motoristaLocation!
+                    
                     motorista["user"] = user
                     motorista["telefone"] = self.embeddedCadastroMotoristaViewController.celularTextField.text
-                    motorista["latitude"] = Double((PBCCadastroMotoristaTableViewController.locationTeste?.latitude)!)
-                    motorista["longitude"] = Double((PBCCadastroMotoristaTableViewController.locationTeste?.longitude)!)
+                    
+                    motorista["latitude"] = Double(location.latitude)
+                    motorista["longitude"] = Double(location.longitude)
+                    motorista["localizacao"] = PFGeoPoint(latitude: Double(location.latitude), longitude: Double(location.longitude))
+                    
+                    motorista["taxista"] = self.embeddedCadastroMotoristaViewController.switchControl.on
+                    
+                    motorista["ativo"] = false
 
+
+                    
+                    
                     if(PBCCadastroMotoristaTableViewController.chosenImage != nil)
                     {
                         print("image")
@@ -177,7 +211,18 @@ class PBCCadastroMotoristaViewController: UIViewController
                                 {
                                     print("\n\nSave carro sucess")
                                     //caso tenha conseguido salvar com sucesso, para de exibir a view de load.
-                                    self.controller!.view.removeFromSuperview()
+                                    
+                                    self.controller.sucesso()
+                                    self.controller.infoLabel.text = "Cadastrado com sucesso."
+                                   
+                                    
+                               
+                                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(3.0*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),
+                                              {
+                                                self.controller!.view.removeFromSuperview()
+
+                                               })
+
                                 }
                                 else
                                 {
@@ -208,20 +253,21 @@ class PBCCadastroMotoristaViewController: UIViewController
                         switch errorUser?.code
                         {
                             case 125?: mensagem = "Email inválido."
-                            case 200?: mensagem = "Informe um email."
-                            case 201?: mensagem = "Informe uma senha."
                             case 202?: mensagem = "Email já cadastrado."
                             default: mensagem = "[ALGUM ERRO]"
                         }
                         
-                        //caso tenha dado erro remove a tela de load antes de exibir o erro.
-                        self.controller!.view.removeFromSuperview()
-
-                        let alertView = UIAlertController(title: "Aviso", message: mensagem, preferredStyle: .Alert)
-                        self.presentViewController(alertView, animated: false, completion: nil)
+                        
+                        self.controller.infoLabel.text = mensagem
+                        
+                        self.controller.falha()
+                       
+                       
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.0*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),
                         {
-                            alertView.dismissViewControllerAnimated(false, completion: nil)
+                            //caso tenha dado erro remove a tela de load antes de exibir o erro.
+                            self.controller!.view.removeFromSuperview()
+
                         })
                     }
                 }

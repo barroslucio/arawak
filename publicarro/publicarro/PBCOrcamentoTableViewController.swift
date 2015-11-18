@@ -64,6 +64,14 @@ class PBCOrcamentoTableViewController: UITableViewController, UITextFieldDelegat
         return true
     }
     
+    func textFieldDidBeginEditing(textField: UITextField)
+    {
+        if textField == celularTextField && celularTextField.text?.isEmpty != true
+        {
+            textField.text = ""
+        }
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
         textField.resignFirstResponder()
