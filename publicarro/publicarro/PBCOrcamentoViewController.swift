@@ -15,7 +15,20 @@ class PBCOrcamentoViewController: UIViewController, UIAlertViewDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: view.window)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: view.window)
+        
+        
+        let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        view.addGestureRecognizer(dismiss)
+
         navigationController?.navigationBar.hidden = false
+    }
+    
+    
+    func DismissKeyboard(){
+        view.endEditing(true)
     }
     
     override func didReceiveMemoryWarning()
@@ -124,6 +137,34 @@ class PBCOrcamentoViewController: UIViewController, UIAlertViewDelegate
         if segue.identifier == "OrcamentoEmbedSegue"
         {
             embeddedViewController = segue.destinationViewController as? PBCOrcamentoTableViewController
+        }
+    }
+    
+    
+    func keyboardWillShow(notification: NSNotification)
+    {
+        adjustingHeight(true, notification: notification)
+    }
+    
+    func keyboardWillHide(notification: NSNotification)
+    {
+        adjustingHeight(false, notification: notification)
+    }
+    
+    func adjustingHeight(show:Bool, notification: NSNotification)
+    {
+        let changeInHeight = CGRectGetHeight(notification.userInfo![UIKeyboardFrameBeginUserInfoKey]!.CGRectValue) * (show ? 1 : -1)
+        if show == true && bottonConstraint.constant == 0
+        {
+            UIView.animateWithDuration(0.25, animations: { () -> Void in
+                self.bottonConstraint.constant += changeInHeight
+            })
+        }
+        else if show == false
+        {
+            UIView.animateWithDuration(0.25, animations: { () -> Void in
+                self.bottonConstraint.constant += changeInHeight
+            })
         }
     }
 }

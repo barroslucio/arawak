@@ -18,9 +18,18 @@ class PBCLoginViewController: UIViewController
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: view.window)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: view.window)
+        
+        let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        view.addGestureRecognizer(dismiss)
+        
         navigationController?.navigationBar.hidden = false
     }
     
+    
+    
+    func DismissKeyboard(){
+        view.endEditing(true)
+    }
     
     override func didReceiveMemoryWarning()
     {
