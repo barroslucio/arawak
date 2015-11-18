@@ -29,13 +29,13 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
         locationManager.requestAlwaysAuthorization()
         locationManager.delegate = self
         locationManager.requestLocation()
+        
         geoCoder = CLGeocoder()
     
         self.mapView.delegate = self
         
-        local.layer.masksToBounds = true
-        local.layer.cornerRadius = 8.0
-   
+              //
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,6 +46,7 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print(error)
     }
+  
     
     func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         let location = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
@@ -71,12 +72,14 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
         let reg = MKCoordinateRegionMakeWithDistance(location.coordinate, 1500, 1500)
         self.mapView.setRegion(reg, animated: true)
         
-    
+
         geoCode(location)
         
         
+        
     }
-    
+  
+
     
     func geoCode(location: CLLocation!) {
         
@@ -105,8 +108,6 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
           self.endereco = address
         })
         
-      
-        
         
     }
     
@@ -117,6 +118,24 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
         print("LOCAL DO MOTORISTA: \(endereco)")
     }
     
+ 
+    @IBAction func current(sender: AnyObject) {
+        
+
+        mapView.showsUserLocation = true
+        
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.5*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),
+            {
+                self.mapView.showsUserLocation = false
+            })
+        
+
+
+        
+        
+        
+        
+    }
     
 
     
