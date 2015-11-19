@@ -61,7 +61,7 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
         mapView.centerCoordinate = (userLocation.location?.coordinate)!
     }
     
-    
+    //Pega localização em movimento
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
         let location: CLLocation = locations.first!
@@ -73,6 +73,7 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
         geoCode(location)
     }
     
+    //Faz requisição dos detalhes da localização
     func geoCode(location: CLLocation!)
     {
         // location contém os dados das coordenadas
@@ -104,7 +105,7 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
         })
     }
     
-    
+    //Salva a localizão escolhida
     @IBAction func estouAqui(sender: AnyObject)
     {
         PBCCadastroMotoristaTableViewController.printLocationMotorista(PBCCadastroMotoristaTableViewController.detalhesLocation!)
@@ -112,7 +113,7 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
         self.navigationController?.popViewControllerAnimated(true)
     }
     
- 
+    //Volta para location manager
     @IBAction func current(sender: AnyObject)
     {
         mapView.showsUserLocation = true
