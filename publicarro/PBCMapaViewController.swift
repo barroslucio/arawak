@@ -101,11 +101,11 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
             // addresssDictionary fornece o endereco completo
             let addrList = addressDict["FormattedAddressLines"] as! [String]
             
-            
+        
             PBCCadastroMotoristaTableViewController.motoristaLocation = loc.location?.coordinate
 
            let address = addrList.joinWithSeparator(" ,")
-           print(address)
+           print("\n\nAdress:\(address)")
            self.local.text = address
           self.endereco = address
         })
@@ -117,7 +117,8 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
     
     @IBAction func estouAqui(sender: AnyObject) {
         
-        print("LOCAL DO MOTORISTA: \(locationManager.location?.coordinate)")
+        PBCCadastroMotoristaTableViewController.printLocationMotorista(PBCCadastroMotoristaTableViewController.motoristaLocation!)
+        
         self.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -132,85 +133,5 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
                 self.mapView.showsUserLocation = false
             })
     }
-    
-/*
-    
-    
-   func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
-        print("Localização \(newLocation.coordinate.latitude),\(newLocation.coordinate.longitude)")
-        
-    
-    print("\n\n\n:\(newLocation.coordinate)\n\n\n")
-       // locationManager.stopUpdatingLocation()
-        
-       var span = MKCoordinateSpanMake(0.03,0.03)
-
-       var region = MKCoordinateRegion(center:newLocation.coordinate,span:span)
-        mapView.setRegion(region,animated:true)
-        
-       // locationManager.stopUpdatingLocation()
-        
-     
-        
-    }
-    
-   
-    
-    
-    func addPin(gestureRecognizer:UIGestureRecognizer){
-        
-       
-        let touchPoint = gestureRecognizer.locationInView(mapView)
-        let newCoordinates = mapView.convertPoint(touchPoint, toCoordinateFromView: mapView)
-        var annotation = MKPointAnnotation()
-        
-        annotation.coordinate = newCoordinates
-        
-        
-        annotation.title = "Aqui"
-        annotation.subtitle = "Estou aqui"
-        
-         self.mapView.removeAnnotations(mapView.annotations)
- 
-        self.mapView.addAnnotation(annotation)
-      
-        
-    
-}
-    
-    
-   
-    
-  
-
-     /* @IBAction func addPin(sender: UILongPressGestureRecognizer) {
-
-        let location = sender.locationInView(self.mapView)
-
-        let locCoord = self.mapView.convertPoint(location, toCoordinateFromView: self.mapView)
-
-        var annotation = MKPointAnnotation()
-
-        annotation.coordinate = locCoord
-        
-        
-        annotation.title = "Aqui"
-        annotation.subtitle = "Estou aqui"
-        
-        self.mapView.removeAnnotations(mapView.annotations)
-        self.mapView.addAnnotation(annotation)
-        
-        
-        
-    }
-*/
-
-*/
-    
-    
-    
-  
-
-
 
 }

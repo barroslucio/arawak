@@ -57,8 +57,11 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
     {
         super.didReceiveMemoryWarning()
     }
-    override func viewDidAppear(animated: Bool) {
-        print("\n\n\n\n---->>>>>>:\(PBCCadastroMotoristaTableViewController.motoristaLocation)")
+    
+    static func printLocationMotorista(coordinate: CLLocationCoordinate2D)
+    {
+        print("\n\nLocal do Motorista:\(PBCCadastroMotoristaTableViewController.motoristaLocation)")
+    
     }
     
     // TABLEVIEW
@@ -210,11 +213,11 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
         
         //definição das classes  do delegado para locationmanager
         //especifica a precisão da localizacao e comeca a receber atualizacoes de localizacao do coreLocation
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+
         
+        PBCCadastroMotoristaTableViewController.motoristaLocation = locationManager.location?.coordinate
+        PBCCadastroMotoristaTableViewController.printLocationMotorista(PBCCadastroMotoristaTableViewController.motoristaLocation!)
+
         //obter atualizacao da localizacao
     }
     
@@ -230,7 +233,7 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
             }
             
             if placemarks?.count > 0{
-                let pm = placemarks![0] as CLPlacemark
+                let pm = placemarks!.last! as CLPlacemark
                 self.displayLocationInfo(pm)
                 
             }
@@ -241,11 +244,10 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
             
                  })
         
-        
-        
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        PBCCadastroMotoristaTableViewController.motoristaLocation = manager.location!.coordinate
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        PBCCadastroMotoristaTableViewController.motoristaLocation = locValue
+        
+        PBCCadastroMotoristaTableViewController.printLocationMotorista(PBCCadastroMotoristaTableViewController.motoristaLocation!)
         
     }
     
@@ -253,19 +255,30 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
     func displayLocationInfo(placemark:CLPlacemark){
     
         // parar de atualizar local para economizar bateria
+        // parar de atualizar local para economizar bateria
         
-            // parar de atualizar local para economizar bateria
-            locationManager.stopUpdatingLocation()
+        locationManager.stopUpdatingLocation()
+    
+        print(placemark.addressDictionary)
+    
+        print(placemark.locality)
+    
+        print(placemark.postalCode)
+    
+        print(placemark.administrativeArea)
+    
+        print(placemark.country)
         
-            print(placemark.addressDictionary)
-        
-            print(placemark.locality)
-        
-            print(placemark.postalCode)
-        
-            print(placemark.administrativeArea)
-        
-            print(placemark.country)
+        print(placemark.name)
+        print(placemark.ISOcountryCode)
+        print(placemark.subAdministrativeArea)
+        print(placemark.subLocality)
+        print(placemark.thoroughfare)
+        print(placemark.subThoroughfare)
+        print(placemark.region)
+        print(placemark.timeZone)
+
+
         
     }
     
