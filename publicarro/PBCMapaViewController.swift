@@ -95,13 +95,15 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
             }
             
             // CLPlacemark armazena dados de uma determina Latitude e longitude como cidade, estado ,país
-            let loc: CLPlacemark = placemarks[0]
+            let loc: CLPlacemark = placemarks.last!
             
             let addressDict: [NSString:NSObject] = loc.addressDictionary as! [NSString: NSObject]
             // addresssDictionary fornece o endereco completo
             let addrList = addressDict["FormattedAddressLines"] as! [String]
             
             
+            PBCCadastroMotoristaTableViewController.motoristaLocation = loc.location?.coordinate
+
            let address = addrList.joinWithSeparator(" ,")
            print(address)
            self.local.text = address
@@ -115,7 +117,8 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
     
     @IBAction func estouAqui(sender: AnyObject) {
         
-        print("LOCAL DO MOTORISTA: \(endereco)")
+        print("LOCAL DO MOTORISTA: \(locationManager.location?.coordinate)")
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
  
@@ -128,23 +131,16 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
             {
                 self.mapView.showsUserLocation = false
             })
-        
-
-
-        
-        
-        
-        
     }
     
-
+/*
     
     
- /*   func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
+   func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
         print("Localização \(newLocation.coordinate.latitude),\(newLocation.coordinate.longitude)")
         
     
-        myPosition = newLocation.coordinate
+    print("\n\n\n:\(newLocation.coordinate)\n\n\n")
        // locationManager.stopUpdatingLocation()
         
        var span = MKCoordinateSpanMake(0.03,0.03)
@@ -157,7 +153,8 @@ class PBCMapaViewController: UIViewController,CLLocationManagerDelegate,MKMapVie
      
         
     }
-  
+    
+   
     
     
     func addPin(gestureRecognizer:UIGestureRecognizer){

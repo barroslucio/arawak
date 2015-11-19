@@ -57,7 +57,9 @@ class PBCCadastroMotoristaTableViewController: UITableViewController, UITextFiel
     {
         super.didReceiveMemoryWarning()
     }
-    
+    override func viewDidAppear(animated: Bool) {
+        print("\n\n\n\n---->>>>>>:\(PBCCadastroMotoristaTableViewController.motoristaLocation)")
+    }
     
     // TABLEVIEW
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
