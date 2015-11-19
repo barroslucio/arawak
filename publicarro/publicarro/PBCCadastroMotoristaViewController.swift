@@ -1,7 +1,7 @@
 
 import UIKit
 import Parse
-import CoreLocation
+//import CoreLocation
 
 class PBCCadastroMotoristaViewController: UIViewController
 {
@@ -161,15 +161,24 @@ class PBCCadastroMotoristaViewController: UIViewController
                     
                     //Objeto da classe Motorista
                     let motorista = PFObject(className: "Motorista")
-                    let location = PBCCadastroMotoristaTableViewController.motoristaLocation!
-                    
+                    let placemark = PBCCadastroMotoristaTableViewController.detalhesLocation
+                    let coordinate = placemark?.location?.coordinate
                     motorista["user"] = user
                     motorista["telefone"] = self.embeddedCadastroMotoristaViewController.celularTextField.text
                     
-                    motorista["latitude"] = Double(location.latitude)
-                    motorista["longitude"] = Double(location.longitude)
-                    motorista["localizacao"] = PFGeoPoint(latitude: Double(location.latitude), longitude: Double(location.longitude))
+                    motorista["latitude"] = Double((coordinate?.latitude)!)
+                    motorista["longitude"] = Double((coordinate?.longitude)!)
                     
+                    motorista["localizacao"] = PFGeoPoint(latitude: Double((coordinate?.latitude)!), longitude: Double((coordinate?.longitude)!))
+                    
+                    motorista["pais"] = placemark?.country
+                    motorista["uf"] = placemark?.administrativeArea
+                    motorista["cidade"] = placemark?.locality
+                    motorista["cep"] = placemark?.postalCode
+                    motorista["bairro"] = placemark?.subLocality
+                    motorista["endereco"] = placemark?.thoroughfare
+                        
+ 
                     motorista["taxista"] = self.embeddedCadastroMotoristaViewController.switchControl.on
                     
                     motorista["ativo"] = false
