@@ -34,6 +34,9 @@
 		2A679E781BE1063B00969DDF /* PBCAnunciosLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A679E771BE1063B00969DDF /* PBCAnunciosLoginViewController.swift */; };
 		2AD4EFF41BE3973500F5DF29 /* PBCCadastroPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD4EFF31BE3973500F5DF29 /* PBCCadastroPopUpViewController.swift */; };
 		2AD4EFF61BE3B90F00F5DF29 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD4EFF51BE3B90F00F5DF29 /* ParseUI.framework */; };
+		776B6B2E1C036255008EDDE4 /* PBCAnunciosLogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776B6B2D1C036255008EDDE4 /* PBCAnunciosLogoutViewController.swift */; };
+		776B6B301C036271008EDDE4 /* PBCAnunciosHistoricoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776B6B2F1C036271008EDDE4 /* PBCAnunciosHistoricoViewController.swift */; };
+		776B6B321C03628F008EDDE4 /* PBCPerfilMotoristaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776B6B311C03628F008EDDE4 /* PBCPerfilMotoristaViewController.swift */; };
 		778622891BEA46C9008136AC /* PBCCadastroMotoristaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778622881BEA46C9008136AC /* PBCCadastroMotoristaTableViewController.swift */; };
 		778C30671BEA36A20091548E /* PBCCadastroMotoristaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C30661BEA36A20091548E /* PBCCadastroMotoristaViewController.swift */; };
 		778C306D1BEA3F350091548E /* PBCLoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C306C1BEA3F350091548E /* PBCLoginTableViewController.swift */; };
@@ -96,6 +99,9 @@
 		2A679E771BE1063B00969DDF /* PBCAnunciosLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCAnunciosLoginViewController.swift; sourceTree = "<group>"; };
 		2AD4EFF31BE3973500F5DF29 /* PBCCadastroPopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCCadastroPopUpViewController.swift; sourceTree = "<group>"; };
 		2AD4EFF51BE3B90F00F5DF29 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		776B6B2D1C036255008EDDE4 /* PBCAnunciosLogoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCAnunciosLogoutViewController.swift; sourceTree = "<group>"; };
+		776B6B2F1C036271008EDDE4 /* PBCAnunciosHistoricoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCAnunciosHistoricoViewController.swift; sourceTree = "<group>"; };
+		776B6B311C03628F008EDDE4 /* PBCPerfilMotoristaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCPerfilMotoristaViewController.swift; sourceTree = "<group>"; };
 		778622881BEA46C9008136AC /* PBCCadastroMotoristaTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCCadastroMotoristaTableViewController.swift; sourceTree = "<group>"; };
 		778C30661BEA36A20091548E /* PBCCadastroMotoristaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCCadastroMotoristaViewController.swift; sourceTree = "<group>"; };
 		778C306C1BEA3F350091548E /* PBCLoginTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCLoginTableViewController.swift; sourceTree = "<group>"; };
@@ -171,21 +177,21 @@
 		2412BF631BDE5D2500C53372 /* publicarro */ = {
 			isa = PBXGroup;
 			children = (
+				776B6B2B1C036198008EDDE4 /* Cadastro Motorista */,
 				2A6FE6661BFB5A7800F846B0 /* Login */,
+				776B6B2C1C0361A5008EDDE4 /* Orçamento */,
 				2412BF681BDE5D2500C53372 /* Main.storyboard */,
+				776B6B2D1C036255008EDDE4 /* PBCAnunciosLogoutViewController.swift */,
+				776B6B2F1C036271008EDDE4 /* PBCAnunciosHistoricoViewController.swift */,
+				776B6B311C03628F008EDDE4 /* PBCPerfilMotoristaViewController.swift */,
 				2412BF641BDE5D2500C53372 /* AppDelegate.swift */,
 				2412BF661BDE5D2500C53372 /* ViewController.swift */,
 				2412BF991BDE668900C53372 /* PageItemController.swift */,
 				24C42D881BF39DB0005CAD4C /* PBCImagemCNHViewController.swift */,
 				778E6D261BF248E000A44106 /* PBCLoadAnimationViewController.swift */,
-				7794DEBE1BE932130069E00A /* PBCOrcamentoViewController.swift */,
-				778C306E1BEA400C0091548E /* PBCOrcamentoTableViewController.swift */,
-				778622881BEA46C9008136AC /* PBCCadastroMotoristaTableViewController.swift */,
-				778C30661BEA36A20091548E /* PBCCadastroMotoristaViewController.swift */,
 				2412BF9B1BDE717600C53372 /* PBCColor.swift */,
 				2A679E771BE1063B00969DDF /* PBCAnunciosLoginViewController.swift */,
 				2AD4EFF31BE3973500F5DF29 /* PBCCadastroPopUpViewController.swift */,
-				EE0F1B0C1BF4E51100989195 /* PBCMapaViewController.swift */,
 				2412BF6E1BDE5D2500C53372 /* Assets.xcassets */,
 				2412BF701BDE5D2500C53372 /* LaunchScreen.storyboard */,
 				2412BF731BDE5D2500C53372 /* Info.plist */,
@@ -241,6 +247,25 @@
 				7794DEC01BE933A20069E00A /* PBCLoginViewController.swift */,
 			);
 			name = Login;
+			sourceTree = "<group>";
+		};
+		776B6B2B1C036198008EDDE4 /* Cadastro Motorista */ = {
+			isa = PBXGroup;
+			children = (
+				EE0F1B0C1BF4E51100989195 /* PBCMapaViewController.swift */,
+				778622881BEA46C9008136AC /* PBCCadastroMotoristaTableViewController.swift */,
+				778C30661BEA36A20091548E /* PBCCadastroMotoristaViewController.swift */,
+			);
+			name = "Cadastro Motorista";
+			sourceTree = "<group>";
+		};
+		776B6B2C1C0361A5008EDDE4 /* Orçamento */ = {
+			isa = PBXGroup;
+			children = (
+				7794DEBE1BE932130069E00A /* PBCOrcamentoViewController.swift */,
+				778C306E1BEA400C0091548E /* PBCOrcamentoTableViewController.swift */,
+			);
+			name = "Orçamento";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -381,8 +406,10 @@
 				EE0F1B0D1BF4E51100989195 /* PBCMapaViewController.swift in Sources */,
 				778622891BEA46C9008136AC /* PBCCadastroMotoristaTableViewController.swift in Sources */,
 				2AD4EFF41BE3973500F5DF29 /* PBCCadastroPopUpViewController.swift in Sources */,
+				776B6B321C03628F008EDDE4 /* PBCPerfilMotoristaViewController.swift in Sources */,
 				2412BF671BDE5D2500C53372 /* ViewController.swift in Sources */,
 				778C306D1BEA3F350091548E /* PBCLoginTableViewController.swift in Sources */,
+				776B6B2E1C036255008EDDE4 /* PBCAnunciosLogoutViewController.swift in Sources */,
 				7794DEC11BE933A20069E00A /* PBCLoginViewController.swift in Sources */,
 				2412BF9C1BDE717600C53372 /* PBCColor.swift in Sources */,
 				778C306F1BEA400C0091548E /* PBCOrcamentoTableViewController.swift in Sources */,
@@ -390,6 +417,7 @@
 				2412BF9A1BDE668900C53372 /* PageItemController.swift in Sources */,
 				778E6D271BF248E000A44106 /* PBCLoadAnimationViewController.swift in Sources */,
 				778C30671BEA36A20091548E /* PBCCadastroMotoristaViewController.swift in Sources */,
+				776B6B301C036271008EDDE4 /* PBCAnunciosHistoricoViewController.swift in Sources */,
 				2412BF6D1BDE5D2500C53372 /* publicarro.xcdatamodeld in Sources */,
 				7794DEBF1BE932130069E00A /* PBCOrcamentoViewController.swift in Sources */,
 				24C42D891BF39DB0005CAD4C /* PBCImagemCNHViewController.swift in Sources */,
