@@ -1315,7 +1315,7 @@
                                 <animations/>
                                 <color key="backgroundColor" red="0.1450980392" green="0.1843137255" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="AnuncioCell" rowHeight="140" id="Vrf-WB-Mcf">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="AnuncioCell" rowHeight="140" id="Vrf-WB-Mcf" customClass="AnuncioDisponivelTableViewCell" customModule="publiCarro" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vrf-WB-Mcf" id="ViP-OA-9ro">
@@ -1428,7 +1428,7 @@
                                 <animations/>
                                 <color key="backgroundColor" red="0.1450980392" green="0.1843137255" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="AnuncioCell" rowHeight="140" id="DsO-hH-bmx">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="AnuncioCell" rowHeight="140" id="DsO-hH-bmx" customClass="AnuncioDisponivelTableViewCell" customModule="publiCarro" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DsO-hH-bmx" id="Oz7-BN-Mh9">
