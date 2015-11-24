@@ -8,9 +8,16 @@
 
 import UIKit
 
-class AnuncioDisponivelTableViewCell: UITableViewCell {
+class AnuncioDisponivelTableViewCell: UITableViewCell
+{
+    @IBOutlet weak var oneLabel: UILabel!
+    @IBOutlet weak var twoLabel: UILabel!
+    @IBOutlet weak var threeLabel: UILabel!
+    @IBOutlet weak var fourLabel: UILabel!
+    @IBOutlet weak var imagem: UIImageView!
 
-    override func awakeFromNib() {
+    override func awakeFromNib()
+    {
         super.awakeFromNib()
         // Initialization code
     }

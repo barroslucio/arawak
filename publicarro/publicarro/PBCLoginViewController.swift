@@ -8,6 +8,9 @@ class PBCLoginViewController: UIViewController
     
     
     //variavel que vai receber a view de load
+    
+    var array = NSArray()
+    
     var controller: PBCLoadAnimationViewController!
 
     @IBOutlet var bottonConstraint: NSLayoutConstraint!
@@ -89,6 +92,8 @@ class PBCLoginViewController: UIViewController
                 if user != nil
                 {
                     print("Usuário Logado")
+                    self.performSegueWithIdentifier("segueLoginAnuncio", sender: nil)
+                    
                 }
                 else
                 {

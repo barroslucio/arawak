@@ -1,11 +1,22 @@
 import UIKit
+import Parse
 
-class PBCAnunciosLoginViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
+class PBCAnunciosLoginViewController: UITableViewController
 {
+    var array = NSArray()
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
+
         navigationController?.navigationBar.hidden = false
+
+        let query = PFQuery(className: "Anuncio")
+        query.findObjectsInBackgroundWithBlock({ (anuncio, error) -> Void in
+            self.array = anuncio!
+            self.tableView.reloadData()
+            print("1:\(self.array)")
+        })
     }
     
     override func didReceiveMemoryWarning()
@@ -18,21 +29,31 @@ class PBCAnunciosLoginViewController: UIViewController, UITableViewDataSource, U
        
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 10
+        return self.array.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        return tableView.dequeueReusableCellWithIdentifier("AnuncioCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("AnuncioCell", forIndexPath: indexPath) as! AnuncioDisponivelTableViewCell
+        let object = array.objectAtIndex(indexPath.row)
+        cell.oneLabel.text = object.objectForKey("inicio") as? String
+        cell.twoLabel.text = object.objectForKey("fim") as? String
+        object.objectForKey("imagem")!.getDataInBackgroundWithBlock{
+            (imageData: NSData?, error: NSError?) -> Void in
+            if error == nil
+            {
+                cell.imagem.image = UIImage(data:imageData!)
+            }
+        }
+        return cell
     }
-    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
