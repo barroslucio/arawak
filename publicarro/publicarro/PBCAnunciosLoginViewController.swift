@@ -9,11 +9,25 @@ class PBCAnunciosLoginViewController: UITableViewController
     {
         super.viewDidLoad()
         navigationController?.navigationBar.hidden = false
+    }
+    override func viewDidAppear(animated: Bool) {
+        query()
+    }
+    
+    //Requisição de anúncios
+    func query()
+    {
         let query = PFQuery(className: "Anuncio")
         query.findObjectsInBackgroundWithBlock({ (anuncio, error) -> Void in
-            self.array = anuncio!
-            self.tableView.reloadData()
-            print("1:\(self.array)")
+            
+            if error == nil
+            {
+                self.array = anuncio!
+                self.tableView.reloadData()
+            } else
+            {
+                print(error)
+            }
         })
     }
     
@@ -41,14 +55,23 @@ class PBCAnunciosLoginViewController: UITableViewController
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("AnuncioCell", forIndexPath: indexPath) as! AnuncioDisponivelTableViewCell
         let object = array.objectAtIndex(indexPath.row)
-        cell.oneLabel.text = object.objectForKey("inicio") as? String
-        cell.twoLabel.text = object.objectForKey("fim") as? String
-        object.objectForKey("imagem")!.getDataInBackgroundWithBlock{
+        
+        cell.oneLabel.text = object.objectForKey("nome") as? String
+        cell.twoLabel.text = object.objectForKey("inicio") as? String
+        cell.threeLabel.text = object.objectForKey("fim") as? String
+        cell.fourLabel.text = String(object.objectForKey("carros") as! Int)
+
+        
+        cell.activityIndicator.startAnimating()
+        object.objectForKey("imagem")!.getDataInBackgroundWithBlock
+        {
             (imageData: NSData?, error: NSError?) -> Void in
-            if error == nil
-            {
-                cell.imagem.image = UIImage(data:imageData!)
-            }
+            
+                if error == nil
+                {
+                    cell.activityIndicator.hidden = true
+                    cell.imagem.image = UIImage(data:imageData!)
+                }
         }
         return cell
     }

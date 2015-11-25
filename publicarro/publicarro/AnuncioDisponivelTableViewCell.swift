@@ -15,6 +15,7 @@ class AnuncioDisponivelTableViewCell: UITableViewCell
     @IBOutlet weak var threeLabel: UILabel!
     @IBOutlet weak var fourLabel: UILabel!
     @IBOutlet weak var imagem: UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     override func awakeFromNib()
     {
