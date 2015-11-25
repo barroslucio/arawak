@@ -4,6 +4,7 @@ import Parse
 class PBCAnunciosLoginViewController: UITableViewController
 {
     var array = NSArray()
+    var arrayImage:[UIImage]?
     
     override func viewDidLoad()
     {
@@ -35,12 +36,7 @@ class PBCAnunciosLoginViewController: UITableViewController
     {
         super.didReceiveMemoryWarning()
     }
-    
-    @IBAction func signUpButton(sender: AnyObject)
-    {
-       
-    }
-    
+        
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
         return 1
@@ -70,6 +66,7 @@ class PBCAnunciosLoginViewController: UITableViewController
                 if error == nil
                 {
                     cell.activityIndicator.hidden = true
+                    self.arrayImage?.append(UIImage(data:imageData!)!)
                     cell.imagem.image = UIImage(data:imageData!)
                 }
         }
@@ -110,14 +107,21 @@ class PBCAnunciosLoginViewController: UITableViewController
     }
     */
     
-    /*
+    
     // MARK: - Navigation
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+        if segue.identifier == "segueDetalhesAnuncio"
+        {
+            if let destination = segue.destinationViewController as? PBCDetalhesAnunciosTableViewController {
+                if let index = tableView.indexPathForSelectedRow?.row {
+                    destination.object = array.objectAtIndex(index) as? PFObject
+                    print(arrayImage?.description)
+                }
+            }
+        }
+
     }
-    */
+
     
 }
