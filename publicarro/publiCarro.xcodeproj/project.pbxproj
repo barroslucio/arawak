@@ -18,6 +18,7 @@
 		2412BF9A1BDE668900C53372 /* PageItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2412BF991BDE668900C53372 /* PageItemController.swift */; };
 		24B036211C04909A000F84EC /* AnuncioDisponivelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B036201C04909A000F84EC /* AnuncioDisponivelTableViewCell.swift */; };
 		24C42D891BF39DB0005CAD4C /* PBCImagemCNHViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C42D881BF39DB0005CAD4C /* PBCImagemCNHViewController.swift */; };
+		2A2D29121C05F02D00C83ACF /* LogoutAnuncioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2D29111C05F02D00C83ACF /* LogoutAnuncioTableViewCell.swift */; };
 		2A550BDD1BE24F7000036839 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A550BDC1BE24F7000036839 /* Bolts.framework */; };
 		2A550BDF1BE24F7C00036839 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A550BDE1BE24F7C00036839 /* Parse.framework */; };
 		2A550BE11BE24FC000036839 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A550BE01BE24FC000036839 /* Accounts.framework */; };
@@ -83,6 +84,7 @@
 		2412BF991BDE668900C53372 /* PageItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageItemController.swift; sourceTree = "<group>"; };
 		24B036201C04909A000F84EC /* AnuncioDisponivelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnuncioDisponivelTableViewCell.swift; sourceTree = "<group>"; };
 		24C42D881BF39DB0005CAD4C /* PBCImagemCNHViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCImagemCNHViewController.swift; sourceTree = "<group>"; };
+		2A2D29111C05F02D00C83ACF /* LogoutAnuncioTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutAnuncioTableViewCell.swift; sourceTree = "<group>"; };
 		2A550BDC1BE24F7000036839 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		2A550BDE1BE24F7C00036839 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		2A550BE01BE24FC000036839 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -220,6 +222,7 @@
 				776B6B2F1C036271008EDDE4 /* PBCAnunciosHistoricoViewController.swift */,
 				2A679E771BE1063B00969DDF /* PBCAnunciosLoginViewController.swift */,
 				24B036201C04909A000F84EC /* AnuncioDisponivelTableViewCell.swift */,
+				2A2D29111C05F02D00C83ACF /* LogoutAnuncioTableViewCell.swift */,
 			);
 			name = Anuncio;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				2412BF9A1BDE668900C53372 /* PageItemController.swift in Sources */,
 				778E6D271BF248E000A44106 /* PBCLoadAnimationViewController.swift in Sources */,
 				778C30671BEA36A20091548E /* PBCCadastroMotoristaViewController.swift in Sources */,
+				2A2D29121C05F02D00C83ACF /* LogoutAnuncioTableViewCell.swift in Sources */,
 				776B6B301C036271008EDDE4 /* PBCAnunciosHistoricoViewController.swift in Sources */,
 				2412BF6D1BDE5D2500C53372 /* publicarro.xcdatamodeld in Sources */,
 				7794DEBF1BE932130069E00A /* PBCOrcamentoViewController.swift in Sources */,
@@ -529,7 +533,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -568,7 +572,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -117,7 +117,7 @@
         <!--Anúncios-->
         <scene sceneID="ifJ-b6-cOH">
             <objects>
-                <viewController title="Anúncios" id="KIr-0d-9r9" sceneMemberID="viewController">
+                <viewController title="Anúncios" id="KIr-0d-9r9" customClass="PBCAnunciosLogoutViewController" customModule="publiCarro" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yA6-ra-jiw"/>
                         <viewControllerLayoutGuide type="bottom" id="z7s-dO-5zk"/>
@@ -126,15 +126,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="127" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SYY-PW-5JQ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="143" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SYY-PW-5JQ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="611"/>
                                 <color key="backgroundColor" red="0.1450980392" green="0.1843137255" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="AnuncioCell" rowHeight="140" id="byv-TL-rie" customClass="AnuncioDisponivelTableViewCell" customModule="publiCarro" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="140"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CELL" rowHeight="143" id="byv-TL-rie" customClass="LogoutAnuncioTableViewCell" customModule="publiCarro" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="375" height="143"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="byv-TL-rie" id="fhC-YA-Ipy">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="140"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="143"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="carroIcon" translatesAutoresizingMaskIntoConstraints="NO" id="8mY-gy-ys0">
@@ -160,11 +160,14 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.14509803921568626" green="0.18431372549019609" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="imageAnuncio" destination="8mY-gy-ys0" id="W6M-Hm-Fjl"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="KIr-0d-9r9" id="kdy-gE-Dds"/>
-                                    <outlet property="delegate" destination="KIr-0d-9r9" id="rya-g4-92I"/>
+                                    <outlet property="dataSource" destination="KIr-0d-9r9" id="tFS-ao-zTe"/>
+                                    <outlet property="delegate" destination="KIr-0d-9r9" id="QgY-Zr-4T0"/>
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u83-oB-FiN">
@@ -186,14 +189,19 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="signUpButton:" destination="KIr-0d-9r9" eventType="touchUpInside" id="N2z-d8-uJq"/>
+                                    <action selector="cadastro:" destination="KIr-0d-9r9" eventType="touchUpInside" id="ziV-XJ-lcf"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.14509803921568626" green="0.18431372549019609" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="QUn-fe-WqA"/>
+                    <navigationItem key="navigationItem" title="Visualização" id="QUn-fe-WqA">
+                        <barButtonItem key="backBarButtonItem" title=" " id="107-BO-Ab5"/>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="tableView" destination="SYY-PW-5JQ" id="zgC-R5-KkP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zEv-Z8-WJt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1177,7 +1185,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="135"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6PR-4b-gKF" id="nl6-Gh-iTV">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="135"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="134.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="carroIcon" translatesAutoresizingMaskIntoConstraints="NO" id="FNY-dP-DTD">
@@ -1328,7 +1336,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dOc-rQ-nFR" id="uCL-Ud-eTj">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
