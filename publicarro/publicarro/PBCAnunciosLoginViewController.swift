@@ -110,7 +110,8 @@ class PBCAnunciosLoginViewController: UITableViewController
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
         if segue.identifier == "segueDetalhesAnuncio"
         {
             if let destination = segue.destinationViewController as? PBCDetalhesAnunciosTableViewController {

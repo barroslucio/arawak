@@ -1477,6 +1477,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="btParticipar" destination="ImZ-UR-fQr" id="Op3-NL-e3N"/>
                         <outlet property="fourLabel" destination="aen-DR-olU" id="u72-7n-BuA"/>
                         <outlet property="imagem" destination="5DM-eX-4ve" id="Wqs-P6-rwC"/>
                         <outlet property="oneLabel" destination="2qJ-yO-y76" id="f75-2a-T6s"/>
