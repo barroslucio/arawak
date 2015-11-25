@@ -16,7 +16,6 @@
 		2412BF7D1BDE5D2500C53372 /* publicarroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2412BF7C1BDE5D2500C53372 /* publicarroTests.swift */; };
 		2412BF881BDE5D2500C53372 /* publicarroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2412BF871BDE5D2500C53372 /* publicarroUITests.swift */; };
 		2412BF9A1BDE668900C53372 /* PageItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2412BF991BDE668900C53372 /* PageItemController.swift */; };
-		2412BF9C1BDE717600C53372 /* PBCColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2412BF9B1BDE717600C53372 /* PBCColor.swift */; };
 		24B036211C04909A000F84EC /* AnuncioDisponivelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B036201C04909A000F84EC /* AnuncioDisponivelTableViewCell.swift */; };
 		24C42D891BF39DB0005CAD4C /* PBCImagemCNHViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C42D881BF39DB0005CAD4C /* PBCImagemCNHViewController.swift */; };
 		2A550BDD1BE24F7000036839 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A550BDC1BE24F7000036839 /* Bolts.framework */; };
@@ -82,7 +81,6 @@
 		2412BF871BDE5D2500C53372 /* publicarroUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = publicarroUITests.swift; sourceTree = "<group>"; };
 		2412BF891BDE5D2500C53372 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2412BF991BDE668900C53372 /* PageItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageItemController.swift; sourceTree = "<group>"; };
-		2412BF9B1BDE717600C53372 /* PBCColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCColor.swift; sourceTree = "<group>"; };
 		24B036201C04909A000F84EC /* AnuncioDisponivelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnuncioDisponivelTableViewCell.swift; sourceTree = "<group>"; };
 		24C42D881BF39DB0005CAD4C /* PBCImagemCNHViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCImagemCNHViewController.swift; sourceTree = "<group>"; };
 		2A550BDC1BE24F7000036839 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
@@ -159,7 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				2A550BDB1BE24F4F00036839 /* Frameworks */,
-				2412BF631BDE5D2500C53372 /* publicarro */,
+				2412BF631BDE5D2500C53372 /* Classes */,
 				2412BF7B1BDE5D2500C53372 /* publicarroTests */,
 				2412BF861BDE5D2500C53372 /* publicarroUITests */,
 				2412BF621BDE5D2500C53372 /* Products */,
@@ -176,7 +174,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2412BF631BDE5D2500C53372 /* publicarro */ = {
+		2412BF631BDE5D2500C53372 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				776B6B2B1C036198008EDDE4 /* Motorista */,
@@ -188,12 +186,12 @@
 				2412BF641BDE5D2500C53372 /* AppDelegate.swift */,
 				2AD4EFF31BE3973500F5DF29 /* PBCCadastroPopUpViewController.swift */,
 				778E6D261BF248E000A44106 /* PBCLoadAnimationViewController.swift */,
-				2412BF9B1BDE717600C53372 /* PBCColor.swift */,
 				2412BF6E1BDE5D2500C53372 /* Assets.xcassets */,
 				2412BF701BDE5D2500C53372 /* LaunchScreen.storyboard */,
 				2412BF731BDE5D2500C53372 /* Info.plist */,
 				2412BF6B1BDE5D2500C53372 /* publicarro.xcdatamodeld */,
 			);
+			name = Classes;
 			path = publicarro;
 			sourceTree = "<group>";
 		};
@@ -431,7 +429,6 @@
 				776B6B2E1C036255008EDDE4 /* PBCAnunciosLogoutViewController.swift in Sources */,
 				7794DEC11BE933A20069E00A /* PBCLoginViewController.swift in Sources */,
 				24B036211C04909A000F84EC /* AnuncioDisponivelTableViewCell.swift in Sources */,
-				2412BF9C1BDE717600C53372 /* PBCColor.swift in Sources */,
 				778C306F1BEA400C0091548E /* PBCOrcamentoTableViewController.swift in Sources */,
 				2412BF651BDE5D2500C53372 /* AppDelegate.swift in Sources */,
 				2412BF9A1BDE668900C53372 /* PageItemController.swift in Sources */,

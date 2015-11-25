@@ -9,7 +9,6 @@ class PBCAnunciosLoginViewController: UITableViewController
     {
         super.viewDidLoad()
         navigationController?.navigationBar.hidden = false
-
         let query = PFQuery(className: "Anuncio")
         query.findObjectsInBackgroundWithBlock({ (anuncio, error) -> Void in
             self.array = anuncio!
