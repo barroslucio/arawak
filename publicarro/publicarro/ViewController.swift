@@ -11,14 +11,11 @@ class ViewController: UIViewController, UIPageViewControllerDataSource
         "Somos uma forma de expandir sua marca ou produto abrangendo todos os segmentos e classes sociais com uma propaganda que fica sempre ao nível dos olhos de motoristas e passageiros."
     ]
     
-    @IBOutlet weak var btClose: UIButton!
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         createPageViewController()
         setupPageViewControl()
-        btClose.layer.cornerRadius = 25
     }
     
     override func viewWillAppear(animated: Bool)
@@ -26,13 +23,13 @@ class ViewController: UIViewController, UIPageViewControllerDataSource
         navigationController?.navigationBar.hidden = true
     }
     
-    @IBAction func buttonTapped(sender: AnyObject)
+    @IBAction func fecharTutorial(sender: AnyObject)
     {
-        let controller = storyboard!.instantiateViewControllerWithIdentifier("AnunciosTabBar") 
+        let controller = storyboard!.instantiateViewControllerWithIdentifier("AnunciosNavBar")
         presentViewController(controller, animated: true, completion: nil)
     }
     
-    @IBAction func button1(sender: AnyObject)
+    @IBAction func cadastro(sender: AnyObject)
     {
         let controller = storyboard!.instantiateViewControllerWithIdentifier("CadastroView")
         addChildViewController(controller)
