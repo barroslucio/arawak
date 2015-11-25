@@ -415,7 +415,6 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="bottonConstraint" destination="aoa-Cc-4IE" id="cNN-ff-EFj"/>
-                        <segue destination="TNS-SL-tho" kind="show" identifier="segueLoginAnuncio" id="L9s-bK-yEs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HH9-Fc-NAe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -538,7 +537,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="576-yf-57A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2814.5" y="1744.5"/>
+            <point key="canvasLocation" x="3446.5" y="1804.5"/>
         </scene>
         <!--Orçamento-->
         <scene sceneID="RlY-As-Swa">

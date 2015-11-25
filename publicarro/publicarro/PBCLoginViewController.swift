@@ -94,7 +94,10 @@ class PBCLoginViewController: UIViewController
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.0*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),
                         { self.controller.view.removeFromSuperview()})
                     print("Usuário Logado")
-                    self.performSegueWithIdentifier("segueLoginAnuncio", sender: nil)
+                    
+                    let controller = self.storyboard!.instantiateViewControllerWithIdentifier("AnunciosTabBar")
+                    self.presentViewController(controller, animated: true, completion: nil)
+
                     
                 }
                 else
