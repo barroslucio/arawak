@@ -8,7 +8,6 @@ class PBCAnunciosLoginViewController: UITableViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
         navigationController?.navigationBar.hidden = false
 
         let query = PFQuery(className: "Anuncio")

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TNS-SL-tho">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zkl-zE-LtD">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -357,7 +357,7 @@
                                 <rect key="frame" x="-4" y="64" width="383" height="548"/>
                                 <color key="backgroundColor" red="0.08235294118" green="0.098039215690000001" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <segue destination="fAh-3F-KxO" kind="embed" identifier="LoginEmbedSegue" id="vZW-7I-1qk"/>
+                                    <segue destination="TNS-SL-tho" kind="show" identifier="segueLoginAnuncio" id="DGd-97-OV7"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -388,7 +388,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HH9-Fc-NAe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2068.5" y="1457.5"/>
+            <point key="canvasLocation" x="2052.5" y="1477.5"/>
         </scene>
         <!--Login Table View Controller-->
         <scene sceneID="7Jg-Re-8nU">
@@ -1282,7 +1282,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="b5b-gb-dom">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="TNS-SL-tho" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="AnunciosTabBar" automaticallyAdjustsScrollViewInsets="NO" id="TNS-SL-tho" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Ntw-it-Te7">

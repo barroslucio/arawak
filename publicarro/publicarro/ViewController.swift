@@ -28,7 +28,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource
     
     @IBAction func buttonTapped(sender: AnyObject)
     {
-        let controller = storyboard!.instantiateViewControllerWithIdentifier("AnunciosNavBar") 
+        let controller = storyboard!.instantiateViewControllerWithIdentifier("AnunciosTabBar") 
         presentViewController(controller, animated: true, completion: nil)
     }
     
