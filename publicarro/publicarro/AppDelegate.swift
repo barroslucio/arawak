@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()
-        
+        window?.tintColor = UIColor.blackColor()
         return true
     }
     

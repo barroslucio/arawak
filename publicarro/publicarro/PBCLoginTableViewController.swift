@@ -31,9 +31,28 @@ class PBCLoginTableViewController: UITableViewController, UITextFieldDelegate
     
     @IBAction func resetPassword(sender: AnyObject)
     {
-        if let emailTextField = emailTextField
+        if emailTextField.text?.isEmpty != true
         {
-            PFUser.requestPasswordResetForEmailInBackground(emailTextField.text!)
+            PFUser.requestPasswordResetForEmailInBackground(self.emailTextField!.text!)
+            let alertView = UIAlertController(title: "Recuperação de Senha", message: "Verifique seu email: "+emailTextField.text!, preferredStyle: .Alert)
+            alertView.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
+            presentViewController(alertView, animated: true, completion: nil)
+        }
+        else
+        {
+            var email: UITextField?
+            let alertView = UIAlertController(title: "Recuperação de Senha", message: "Informe seu email de acesso:", preferredStyle: .Alert)
+            alertView.addTextFieldWithConfigurationHandler { (text) -> Void in
+                email = text
+                email!.placeholder = "email@email.com"
+                email!.keyboardAppearance = UIKeyboardAppearance.Dark
+                email!.keyboardType = UIKeyboardType.Alphabet
+            }
+            alertView.addAction(UIAlertAction(title: "Cancelar", style: .Cancel, handler: nil))
+            alertView.addAction(UIAlertAction(title: "OK", style: .Default) { (action) -> Void in
+                PFUser.requestPasswordResetForEmailInBackground(self.emailTextField!.text!)
+                })
+            presentViewController(alertView, animated: true, completion: nil)
         }
     }
     
