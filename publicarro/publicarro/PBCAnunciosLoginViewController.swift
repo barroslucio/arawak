@@ -4,7 +4,7 @@ import Parse
 class PBCAnunciosLoginViewController: UITableViewController
 {
     var array = NSArray()
-    var arrayImage:[UIImage]?
+    var arrayImage:[UIImage] = []
     
     override func viewDidLoad()
     {
@@ -66,7 +66,7 @@ class PBCAnunciosLoginViewController: UITableViewController
                 if error == nil
                 {
                     cell.activityIndicator.hidden = true
-                    self.arrayImage?.append(UIImage(data:imageData!)!)
+                    self.arrayImage.append(UIImage(data:imageData!)!)
                     cell.imagem.image = UIImage(data:imageData!)
                 }
         }
@@ -116,7 +116,7 @@ class PBCAnunciosLoginViewController: UITableViewController
             if let destination = segue.destinationViewController as? PBCDetalhesAnunciosTableViewController {
                 if let index = tableView.indexPathForSelectedRow?.row {
                     destination.object = array.objectAtIndex(index) as? PFObject
-                    print(arrayImage?.description)
+                    destination.imageSegue = arrayImage[index]
                 }
             }
         }

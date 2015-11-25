@@ -21,7 +21,7 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController {
         twoLabel.text = String(object?.objectForKey("carros") as! Int)
         threeLabel.text = object?.objectForKey("inicio") as? String
         fourLabel.text = object?.objectForKey("fim") as? String
-        
+        imagem.image = imageSegue
     }
 
     override func didReceiveMemoryWarning() {
