@@ -1,21 +1,22 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIPageViewControllerDataSource
+class ViewController: UIViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource
 {
-    private var pageViewController: UIPageViewController?
+    private var pageViewController: UIPageViewController!
     private let contentImages = ["pessoaIcon.pdf", "anuncianteIcon.pdf"]
     private let contentLabelTitles = ["Para o motorista...", "Para o anunciante..."]
-    private let contentTextView = [
-        "É uma forma de se relacionar com anunciantes prestando serviços de divulgação, ganhando uma gratificação financeira e uma lavagem de carro.",
-        "Somos uma forma de expandir sua marca ou produto abrangendo todos os segmentos e classes sociais com uma propaganda que fica sempre ao nível dos olhos de motoristas e passageiros."
-    ]
+    private let contentTextView = ["É uma forma de se relacionar com anunciantes prestando serviços de divulgação, ganhando uma gratificação financeira e uma lavagem de carro.", "Somos uma forma de expandir sua marca ou produto abrangendo todos os segmentos e classes sociais com uma propaganda que fica sempre ao nível dos olhos de motoristas e passageiros."]
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         createPageViewController()
-        setupPageViewControl()
+    }
+    
+    override func didReceiveMemoryWarning()
+    {
+        super.didReceiveMemoryWarning()
     }
     
     override func viewWillAppear(animated: Bool)
@@ -25,8 +26,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource
     
     @IBAction func fecharTutorial(sender: AnyObject)
     {
-        let controller = storyboard!.instantiateViewControllerWithIdentifier("AnunciosNavBar")
-        presentViewController(controller, animated: true, completion: nil)
+        presentViewController(storyboard!.instantiateViewControllerWithIdentifier("AnunciosNavBar"), animated: true, completion: nil)
     }
     
     @IBAction func cadastro(sender: AnyObject)
@@ -38,21 +38,15 @@ class ViewController: UIViewController, UIPageViewControllerDataSource
     
     private func createPageViewController()
     {
-        pageViewController = (storyboard!.instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController)
-        pageViewController!.dataSource = self
+        pageViewController = storyboard!.instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
+//        pageViewController.dataSource = self
         if contentImages.count > 0
         {
-            pageViewController!.setViewControllers([getItemController(0)!], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+            pageViewController.setViewControllers([getItemController(0)!], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
         }
-        pageViewController?.view.frame = CGRectMake(0, view.frame.width-300, view.frame.width, view.frame.height-120)
-        addChildViewController(pageViewController!)
+        pageViewController.view.frame = CGRectMake(0, view.frame.width-300, view.frame.width, view.frame.height-120)
+        addChildViewController(pageViewController)
         view.addSubview(pageViewController!.view)
-    }
-    
-    private func setupPageViewControl()
-    {
-        UIPageControl.appearance().pageIndicatorTintColor = UIColor.grayColor()
-        UIPageControl.appearance().currentPageIndicatorTintColor = UIColor.whiteColor()
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController?
