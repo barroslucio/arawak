@@ -5,7 +5,8 @@ class PBCAnunciosLoginViewController: UITableViewController
 {
     var array = NSArray()
     var arrayImage:[UIImage] = []
-    
+    var objectMotorista:PFObject!
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -18,19 +19,59 @@ class PBCAnunciosLoginViewController: UITableViewController
     //Requisição de anúncios
     func query()
     {
-//        let queryAM = PFQuery(className: "AnuncioMotorista")
-        let query = PFQuery(className: "Anuncio")
-        query.findObjectsInBackgroundWithBlock({ (anuncio, error) -> Void in
-            
+        // Query Motorista
+        let queryMotorista = PFQuery(className: "Motorista")
+        
+        // Query somente Motorista logado
+        queryMotorista.whereKey("user", equalTo: PFUser.currentUser()!)
+        queryMotorista.getFirstObjectInBackgroundWithBlock { (motorista, error) -> Void in
             if error == nil
             {
-                self.array = anuncio!
-                self.tableView.reloadData()
+                self.objectMotorista = motorista
+                // Query AnuncioMotorista
+                let queryAM = PFQuery(className: "AnuncioMotorista")
+                // Query somente do que o motorista participa
+                queryAM.whereKey("motorista", equalTo: motorista!)
+                queryAM.findObjectsInBackgroundWithBlock({ (arrayNotAnuncioMotorista, error) -> Void in
+                    if error == nil
+                    {
+                        // Recebe os objectId's dos anúncios que o motorista participa e não poderão ser exibidos
+                        var arrayNotAnuncios : [String] = []
+                        // Objetos de AnuncioMotorista que o motorista participa
+                        if let objectsNotAnuncioMotorista = arrayNotAnuncioMotorista
+                        {
+                            for object in objectsNotAnuncioMotorista
+                            {
+                                // Adiciona objectId de Anuncio's na lista de Anuncio que o motorista participa
+                                arrayNotAnuncios.append(object["anuncio"].objectId!!)
+                            }
+                        }
+                        // Query Anuncio
+                        let queryAnuncios = PFQuery(className: "Anuncio")
+                        
+                        // Query somente de Anuncio's que o motorista não participa
+                        queryAnuncios.whereKey("objectId", notContainedIn: arrayNotAnuncios)
+                        
+                        queryAnuncios.findObjectsInBackgroundWithBlock({ (arrayAnuncios, error) -> Void in
+                        if error == nil
+                        {
+                            // Lista de Anuncio's
+                            self.array = arrayAnuncios!
+                            self.tableView.reloadData()
+                        } else {
+                            print("Erro query Anuncios")
+                        }
+                       })
+                    } else
+                    {
+                        print("Erro query AnuncioMotorista")
+                    }
+                })
             } else
             {
-                print(error)
+                print("Erro query Motorista")
             }
-        })
+        }
     }
     
     override func didReceiveMemoryWarning()
@@ -51,7 +92,7 @@ class PBCAnunciosLoginViewController: UITableViewController
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("AnuncioCell", forIndexPath: indexPath) as! AnuncioDisponivelTableViewCell
-        let object = array.objectAtIndex(indexPath.row)
+        let object = array[indexPath.row]
         
         cell.oneLabel.text = object.objectForKey("nome") as? String
         cell.twoLabel.text = object.objectForKey("inicio") as? String
@@ -73,41 +114,6 @@ class PBCAnunciosLoginViewController: UITableViewController
         }
         return cell
     }
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    // Return false if you do not want the specified item to be editable.
-    return true
-    }
-    */
-    
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    if editingStyle == .Delete {
-    // Delete the row from the data source
-    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-    } else if editingStyle == .Insert {
-    // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }
-    }
-    */
-    
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-    
-    }
-    */
-    
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    // Return false if you do not want the item to be re-orderable.
-    return true
-    }
-    */
-    
     
     // MARK: - Navigation
     
@@ -118,6 +124,7 @@ class PBCAnunciosLoginViewController: UITableViewController
             if let destination = segue.destinationViewController as? PBCDetalhesAnunciosTableViewController {
                 if let index = tableView.indexPathForSelectedRow?.row {
                     destination.objectAnuncio = array.objectAtIndex(index) as? PFObject
+//                    destination.objectMotorista = self.objectMotorista
                     destination.imageSegue = arrayImage[index]
                 }
             }
