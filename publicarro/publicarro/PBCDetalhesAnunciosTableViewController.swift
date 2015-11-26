@@ -13,23 +13,25 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
     @IBOutlet weak var imagem: UIImageView!
     @IBOutlet weak var btParticipar: UIButton!
     
+    
     var imageSegue:UIImage?
-    var object:PFObject?
-    var ativo = false
-    var motorista : PFObject!
+    var objectAnuncio:PFObject?
+    var objectAnuncioMotorista = PFObject(className: "AnuncioMotorista")
+    var objectMotorista : PFObject!
+    
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        oneLabel.text = object?.objectForKey("nome") as? String
-        twoLabel.text = String(object?.objectForKey("carros") as! Int)
-        threeLabel.text = object?.objectForKey("inicio") as? String
-        fourLabel.text = object?.objectForKey("fim") as? String
+        oneLabel.text = objectAnuncio?.objectForKey("nome") as? String
+        twoLabel.text = String(objectAnuncio?.objectForKey("carros") as! Int)
+        threeLabel.text = objectAnuncio?.objectForKey("inicio") as? String
+        fourLabel.text = objectAnuncio?.objectForKey("fim") as? String
         imagem.image = imageSegue
+       
         queryMotorista()
     }
-    
     
     func queryMotorista()
     {
@@ -40,27 +42,19 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
             
             if error == nil
             {
-                self.motorista = motorista
+                self.objectMotorista = motorista
+                self.btParticipar.setTitle("Participar", forState: .Normal)
                 
-                if self.motorista!["ativo"] as! Bool
+                if self.objectMotorista!["ativo"] as! Bool
                 {
-                    print("cancel")
-                    self.btParticipar.setTitle("Cancelar", forState: .Normal)
-                    self.btParticipar.setTitleColor(UIColor.redColor(), forState:.Normal)
-                    
+                    self.btParticipar.setTitleColor(UIColor.blueColor(), forState:.Normal)
                 } else
                 {
-                    self.btParticipar.setTitle("Participar", forState: .Normal)
-                    self.btParticipar.setTitleColor(UIColor.blueColor(), forState:.Normal)
-
-                    print("participar")
-
+                    self.btParticipar.setTitleColor(UIColor.grayColor(), forState:.Normal)
+                    self.btParticipar.enabled = false
                 }
-                
             }
-            
         }
-
     }
 
     override func didReceiveMemoryWarning()
@@ -70,15 +64,19 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
     
     @IBAction func participar(sender: AnyObject)
     {
-        motorista["ativo"] = !(motorista["ativo"] as! Bool)
+        objectAnuncioMotorista["anuncio"] = objectAnuncio
+        objectAnuncioMotorista["motorista"] = objectMotorista
         
-        motorista.saveInBackgroundWithBlock { (save, error) -> Void in
+        objectAnuncioMotorista.saveInBackgroundWithBlock { (success, error) -> Void in
             if error == nil
             {
-                print("Save motorista")
-                self.queryMotorista()
+                print("save anuncio motorista")
+            } else
+            {
+                print(error)
             }
         }
+        
         
     }
     // MARK: - Table view data source

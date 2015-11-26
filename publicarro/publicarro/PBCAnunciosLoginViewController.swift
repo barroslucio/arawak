@@ -18,6 +18,7 @@ class PBCAnunciosLoginViewController: UITableViewController
     //Requisição de anúncios
     func query()
     {
+//        let queryAM = PFQuery(className: "AnuncioMotorista")
         let query = PFQuery(className: "Anuncio")
         query.findObjectsInBackgroundWithBlock({ (anuncio, error) -> Void in
             
@@ -116,7 +117,7 @@ class PBCAnunciosLoginViewController: UITableViewController
         {
             if let destination = segue.destinationViewController as? PBCDetalhesAnunciosTableViewController {
                 if let index = tableView.indexPathForSelectedRow?.row {
-                    destination.object = array.objectAtIndex(index) as? PFObject
+                    destination.objectAnuncio = array.objectAtIndex(index) as? PFObject
                     destination.imageSegue = arrayImage[index]
                 }
             }

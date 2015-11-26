@@ -1416,7 +1416,7 @@
                         <sections>
                             <tableViewSection id="Vj3-Al-tdd">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="550" id="qgR-LZ-FXV">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="550" id="qgR-LZ-FXV">
                                         <rect key="frame" x="0.0" y="64" width="375" height="550"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qgR-LZ-FXV" id="OjT-Bi-S0z">
