@@ -4,16 +4,32 @@ import Parse
 class PBCAnunciosLoginViewController: UITableViewController
 {
     var array = NSArray()
+    var arrayImage:[UIImage] = []
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         navigationController?.navigationBar.hidden = false
+    }
+    override func viewDidAppear(animated: Bool) {
+        query()
+    }
+    
+    //Requisição de anúncios
+    func query()
+    {
+//        let queryAM = PFQuery(className: "AnuncioMotorista")
         let query = PFQuery(className: "Anuncio")
         query.findObjectsInBackgroundWithBlock({ (anuncio, error) -> Void in
-            self.array = anuncio!
-            self.tableView.reloadData()
-            print("1:\(self.array)")
+            
+            if error == nil
+            {
+                self.array = anuncio!
+                self.tableView.reloadData()
+            } else
+            {
+                print(error)
+            }
         })
     }
     
@@ -21,12 +37,7 @@ class PBCAnunciosLoginViewController: UITableViewController
     {
         super.didReceiveMemoryWarning()
     }
-    
-    @IBAction func signUpButton(sender: AnyObject)
-    {
-       
-    }
-    
+        
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
         return 1
@@ -41,14 +52,24 @@ class PBCAnunciosLoginViewController: UITableViewController
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("AnuncioCell", forIndexPath: indexPath) as! AnuncioDisponivelTableViewCell
         let object = array.objectAtIndex(indexPath.row)
-        cell.oneLabel.text = object.objectForKey("inicio") as? String
-        cell.twoLabel.text = object.objectForKey("fim") as? String
-        object.objectForKey("imagem")!.getDataInBackgroundWithBlock{
+        
+        cell.oneLabel.text = object.objectForKey("nome") as? String
+        cell.twoLabel.text = object.objectForKey("inicio") as? String
+        cell.threeLabel.text = object.objectForKey("fim") as? String
+        cell.fourLabel.text = String(object.objectForKey("carros") as! Int)
+
+        
+        cell.activityIndicator.startAnimating()
+        object.objectForKey("imagem")!.getDataInBackgroundWithBlock
+        {
             (imageData: NSData?, error: NSError?) -> Void in
-            if error == nil
-            {
-                cell.imagem.image = UIImage(data:imageData!)
-            }
+            
+                if error == nil
+                {
+                    cell.activityIndicator.hidden = true
+                    self.arrayImage.append(UIImage(data:imageData!)!)
+                    cell.imagem.image = UIImage(data:imageData!)
+                }
         }
         return cell
     }
@@ -87,14 +108,22 @@ class PBCAnunciosLoginViewController: UITableViewController
     }
     */
     
-    /*
+    
     // MARK: - Navigation
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if segue.identifier == "segueDetalhesAnuncio"
+        {
+            if let destination = segue.destinationViewController as? PBCDetalhesAnunciosTableViewController {
+                if let index = tableView.indexPathForSelectedRow?.row {
+                    destination.objectAnuncio = array.objectAtIndex(index) as? PFObject
+                    destination.imageSegue = arrayImage[index]
+                }
+            }
+        }
+
     }
-    */
+
     
 }
