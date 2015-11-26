@@ -5,7 +5,6 @@ import Parse
 class PBCAnunciosLoginViewController: UITableViewController
 {
     var array = NSArray()
-    var image: UIImage!
     
     override func viewDidLoad()
     {
@@ -55,8 +54,7 @@ class PBCAnunciosLoginViewController: UITableViewController
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! AnuncioDisponivelTableViewCell
-        image = cell.imagem.image!
-        performSegueWithIdentifier("segueDetalhesAnuncio", sender: self)
+        performSegueWithIdentifier("segueDetalhesAnuncio", sender: cell.imagem.image!)
     }
     
     func ParseContent()
@@ -82,7 +80,7 @@ class PBCAnunciosLoginViewController: UITableViewController
             let destination = segue.destinationViewController as? PBCDetalhesAnunciosTableViewController
             let index = tableView.indexPathForSelectedRow?.row
             destination!.objectAnuncio = array.objectAtIndex(index!) as? PFObject
-            destination!.imageSegue = image
+            destination!.imageSegue = sender as? UIImage
         }
     }
 }
