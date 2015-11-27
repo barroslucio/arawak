@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2412BF651BDE5D2500C53372 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2412BF641BDE5D2500C53372 /* AppDelegate.swift */; };
-		2412BF671BDE5D2500C53372 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2412BF661BDE5D2500C53372 /* ViewController.swift */; };
+		2412BF671BDE5D2500C53372 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2412BF661BDE5D2500C53372 /* TutorialViewController.swift */; };
 		2412BF6A1BDE5D2500C53372 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2412BF681BDE5D2500C53372 /* Main.storyboard */; };
 		2412BF6D1BDE5D2500C53372 /* publicarro.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2412BF6B1BDE5D2500C53372 /* publicarro.xcdatamodeld */; };
 		2412BF6F1BDE5D2500C53372 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2412BF6E1BDE5D2500C53372 /* Assets.xcassets */; };
@@ -70,7 +70,7 @@
 /* Begin PBXFileReference section */
 		2412BF611BDE5D2500C53372 /* publiCarro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = publiCarro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2412BF641BDE5D2500C53372 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2412BF661BDE5D2500C53372 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2412BF661BDE5D2500C53372 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		2412BF691BDE5D2500C53372 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2412BF6C1BDE5D2500C53372 /* publicarro.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = publicarro.xcdatamodel; sourceTree = "<group>"; };
 		2412BF6E1BDE5D2500C53372 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -181,6 +181,7 @@
 		2412BF631BDE5D2500C53372 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2AD9CACC1C08951100E3E9BC /* PopUp */,
 				776B6B2B1C036198008EDDE4 /* Motorista */,
 				2A6FE6661BFB5A7800F846B0 /* Login */,
 				776B6B2C1C0361A5008EDDE4 /* Orçamento */,
@@ -188,7 +189,6 @@
 				24B0361F1C0371A3000F84EC /* Tutorial */,
 				2412BF681BDE5D2500C53372 /* Main.storyboard */,
 				2412BF641BDE5D2500C53372 /* AppDelegate.swift */,
-				2AD4EFF31BE3973500F5DF29 /* PBCCadastroPopUpViewController.swift */,
 				778E6D261BF248E000A44106 /* PBCLoadAnimationViewController.swift */,
 				2412BF6E1BDE5D2500C53372 /* Assets.xcassets */,
 				2412BF701BDE5D2500C53372 /* LaunchScreen.storyboard */,
@@ -233,7 +233,7 @@
 		24B0361F1C0371A3000F84EC /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
-				2412BF661BDE5D2500C53372 /* ViewController.swift */,
+				2412BF661BDE5D2500C53372 /* TutorialViewController.swift */,
 				2412BF991BDE668900C53372 /* PageItemController.swift */,
 			);
 			name = Tutorial;
@@ -268,6 +268,14 @@
 				7794DEC01BE933A20069E00A /* PBCLoginViewController.swift */,
 			);
 			name = Login;
+			sourceTree = "<group>";
+		};
+		2AD9CACC1C08951100E3E9BC /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				2AD4EFF31BE3973500F5DF29 /* PBCCadastroPopUpViewController.swift */,
+			);
+			name = PopUp;
 			sourceTree = "<group>";
 		};
 		776B6B2B1C036198008EDDE4 /* Motorista */ = {
@@ -431,7 +439,7 @@
 				778622891BEA46C9008136AC /* PBCCadastroMotoristaTableViewController.swift in Sources */,
 				2AD4EFF41BE3973500F5DF29 /* PBCCadastroPopUpViewController.swift in Sources */,
 				776B6B321C03628F008EDDE4 /* PBCPerfilMotoristaViewController.swift in Sources */,
-				2412BF671BDE5D2500C53372 /* ViewController.swift in Sources */,
+				2412BF671BDE5D2500C53372 /* TutorialViewController.swift in Sources */,
 				778C306D1BEA3F350091548E /* PBCLoginTableViewController.swift in Sources */,
 				776B6B2E1C036255008EDDE4 /* PBCAnunciosLogoutViewController.swift in Sources */,
 				7794DEC11BE933A20069E00A /* PBCLoginViewController.swift in Sources */,

@@ -9,7 +9,7 @@
         <!--Tutorial-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Tutorial" id="BYZ-38-t0r" customClass="ViewController" customModule="publiCarro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Tutorial" id="BYZ-38-t0r" customClass="TutorialViewController" customModule="publiCarro" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -62,10 +62,10 @@
             </objects>
             <point key="canvasLocation" x="1469.5" y="622.5"/>
         </scene>
-        <!--Page Item Controller-->
+        <!--Conteudo do Tutorial-->
         <scene sceneID="6H9-9M-ljo">
             <objects>
-                <viewController storyboardIdentifier="ContentController" id="nBK-Zg-gKa" customClass="PageItemController" customModule="publiCarro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContentController" title="Conteudo do Tutorial" id="nBK-Zg-gKa" customClass="PageItemController" customModule="publiCarro" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="amj-gP-BK7"/>
                         <viewControllerLayoutGuide type="bottom" id="5ug-qE-ONv"/>
@@ -104,10 +104,10 @@
             </objects>
             <point key="canvasLocation" x="771.5" y="-202.5"/>
         </scene>
-        <!--Anúncios-->
+        <!--Visualização-->
         <scene sceneID="ifJ-b6-cOH">
             <objects>
-                <viewController title="Anúncios" id="KIr-0d-9r9" customClass="PBCAnunciosLogoutViewController" customModule="publiCarro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="KIr-0d-9r9" customClass="PBCAnunciosLogoutViewController" customModule="publiCarro" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yA6-ra-jiw"/>
                         <viewControllerLayoutGuide type="bottom" id="z7s-dO-5zk"/>
@@ -203,7 +203,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zkl-zE-LtD" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="zpf-ta-RIS">
+                    <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" barStyle="black" id="zpf-ta-RIS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -218,10 +218,10 @@
             </objects>
             <point key="canvasLocation" x="771" y="622"/>
         </scene>
-        <!--Cadastro Pop Up View Controller-->
+        <!--PopUp Cadastro-->
         <scene sceneID="pmx-eE-Fei">
             <objects>
-                <viewController storyboardIdentifier="CadastroView" id="kpM-FR-cIg" customClass="PBCCadastroPopUpViewController" customModule="publiCarro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CadastroView" title="PopUp Cadastro" id="kpM-FR-cIg" customClass="PBCCadastroPopUpViewController" customModule="publiCarro" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gGk-y4-CX1"/>
                         <viewControllerLayoutGuide type="bottom" id="Hpd-aM-V9x"/>
@@ -287,7 +287,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="button:" destination="kpM-FR-cIg" eventType="touchUpInside" id="n34-QZ-YQn"/>
+                                    <action selector="fechar:" destination="kpM-FR-cIg" eventType="touchUpInside" id="Ldi-Ff-f1O"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -298,12 +298,12 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="btClose" destination="cce-HS-2bs" id="5Qi-A0-MfQ"/>
-                        <outlet property="viewPopUp" destination="THH-0V-KyQ" id="GTw-3Q-UIu"/>
+                        <outlet property="viewPopUp" destination="THH-0V-KyQ" id="7Dr-k9-0Zb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ukp-kS-R7c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="985.5" y="1603.5"/>
+            <point key="canvasLocation" x="770.5" y="1485.5"/>
         </scene>
         <!--Login-->
         <scene sceneID="Gju-7r-35p">
@@ -539,7 +539,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sKz-l8-8u4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="649.5" y="2521.5"/>
+            <point key="canvasLocation" x="505.5" y="2421.5"/>
         </scene>
         <!--Imagem da CNH-->
         <scene sceneID="Mgh-JU-QFE">
@@ -722,12 +722,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SPy-Gg-etQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="649.5" y="3417.5"/>
+            <point key="canvasLocation" x="505.5" y="3353.5"/>
         </scene>
-        <!--Load Animation View Controller-->
+        <!--Carregamento-->
         <scene sceneID="KCH-JU-Xob">
             <objects>
-                <viewController storyboardIdentifier="LoadView" id="wzn-gG-1g6" customClass="PBCLoadAnimationViewController" customModule="publiCarro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoadView" title="Carregamento" id="wzn-gG-1g6" customClass="PBCLoadAnimationViewController" customModule="publiCarro" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cQo-kA-flg"/>
                         <viewControllerLayoutGuide type="bottom" id="HcG-dm-9K9"/>
@@ -851,7 +851,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xPd-dK-axG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1336.5" y="2521.5"/>
+            <point key="canvasLocation" x="1054.5" y="2421.5"/>
         </scene>
         <!--Cadastro Motorista Table View Controller-->
         <scene sceneID="DFL-cR-zsA">
@@ -1143,7 +1143,7 @@
         <!--Navigation Controller-->
         <scene sceneID="WzX-jp-Tpc">
             <objects>
-                <navigationController storyboardIdentifier="AnunciosNavBar" automaticallyAdjustsScrollViewInsets="NO" id="DAU-Bh-Mhj" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="AnunciosNavigationBar" automaticallyAdjustsScrollViewInsets="NO" id="DAU-Bh-Mhj" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="6LZ-se-kuc">
@@ -1288,19 +1288,19 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1yh-py-gjf">
                                                     <rect key="frame" x="69" y="210" width="98" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EUt-uQ-oEc">
                                                     <rect key="frame" x="211" y="180" width="98" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aen-DR-olU">
                                                     <rect key="frame" x="211" y="209" width="98" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5DM-eX-4ve">
@@ -1309,7 +1309,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qJ-yO-y76">
                                                     <rect key="frame" x="69" y="181" width="98" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>

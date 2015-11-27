@@ -17,11 +17,6 @@ class PBCAnunciosLogoutViewController: UIViewController
     {
         parseContent()
     }
-
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-    }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
@@ -46,13 +41,6 @@ class PBCAnunciosLogoutViewController: UIViewController
         return cell
     }
     
-    @IBAction func cadastro(sender: AnyObject)
-    {
-        let controller = storyboard!.instantiateViewControllerWithIdentifier("CadastroView")
-        addChildViewController(controller)
-        UIView.transitionWithView(view, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {self.view.addSubview(controller.view)}, completion: nil)
-    }
-    
     func parseContent()
     {
         let query = PFQuery(className: "Anuncio")
@@ -60,5 +48,12 @@ class PBCAnunciosLogoutViewController: UIViewController
             self.array = data!
             self.tableView.reloadData()
         })
+    }
+    
+    @IBAction func cadastro(sender: AnyObject)
+    {
+        let controller = storyboard!.instantiateViewControllerWithIdentifier("CadastroView")
+        addChildViewController(controller)
+        UIView.transitionWithView(view, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {self.view.addSubview(controller.view)}, completion: nil)
     }
 }

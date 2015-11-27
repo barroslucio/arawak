@@ -7,7 +7,7 @@ class PageItemController: UIViewController
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var label: UILabel!
     
-    var itemIndex: Int?
+    var itemIndex: Int!
     var imageName: String!
     var labelName: String!
     var textTutorial: String!
