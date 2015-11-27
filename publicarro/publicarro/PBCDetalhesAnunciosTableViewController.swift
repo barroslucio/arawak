@@ -29,33 +29,8 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
         threeLabel.text = objectAnuncio?.objectForKey("inicio") as? String
         fourLabel.text = objectAnuncio?.objectForKey("fim") as? String
         imagem.image = imageSegue
-       
-        queryMotorista()
     }
     
-    func queryMotorista()
-    {
-        let query = PFQuery(className: "Motorista")
-        query.whereKey("user", equalTo: PFUser.currentUser()!)
-        
-        query.getFirstObjectInBackgroundWithBlock { (motorista, error) -> Void in
-            
-            if error == nil
-            {
-                self.objectMotorista = motorista
-                self.btParticipar.setTitle("Participar", forState: .Normal)
-                
-                if self.objectMotorista!["ativo"] as! Bool
-                {
-                    self.btParticipar.setTitleColor(UIColor.blueColor(), forState:.Normal)
-                } else
-                {
-                    self.btParticipar.setTitleColor(UIColor.grayColor(), forState:.Normal)
-                    self.btParticipar.enabled = false
-                }
-            }
-        }
-    }
 
     override func didReceiveMemoryWarning()
     {
@@ -64,21 +39,141 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
     
     @IBAction func participar(sender: AnyObject)
     {
-        objectAnuncioMotorista["anuncio"] = objectAnuncio
-        objectAnuncioMotorista["motorista"] = objectMotorista
+        if self.objectMotorista!["ativo"] as! Bool
+        {
+            
+            // Query AnuncioMotorista
+            let queryAM = PFQuery(className: "AnuncioMotorista")
+            
+            // Query somente do que o motorista participa
+            queryAM.whereKey("motorista", equalTo: objectMotorista)
+            queryAM.findObjectsInBackgroundWithBlock({ (arrayAnuncioMotorista, error) -> Void in
+                if error == nil
+                {
+                    // Recebe os objectId's dos anúncios que o motorista participa
+                    var arrayAnuncios : [String] = []
+                    
+                    // Objetos de AnuncioMotorista que o motorista participa
+                    if let objectsAnuncioMotorista = arrayAnuncioMotorista
+                    {
+                        for object in objectsAnuncioMotorista
+                        {
+                            // Adiciona objectId de Anuncio's na lista de Anuncio que o motorista participa
+                            arrayAnuncios.append(object["anuncio"].objectId!!)
+                        }
+                    }
+                    
+                    // Query Anuncio
+                    let queryAnuncios = PFQuery(className: "Anuncio")
+                    
+                    // Query somente de Anuncio's que o motorista já participa
+                    queryAnuncios.whereKey("objectId", containedIn: arrayAnuncios)
+                    
+                    queryAnuncios.findObjectsInBackgroundWithBlock({ (arrayAnuncios, error) -> Void in
+                        if error == nil
+                        {
+                            if self.objectMotorista["participando"] as! Bool
+                            {
+                                // Lista de Anuncio's em aberto que o motorista já participa
+                                if let objectsExists = arrayAnuncios
+                                {
+                                    if objectsExists.count < 2
+                                    {
+                                        for object in objectsExists
+                                        {
+                                            let currentFimAdesivamento: NSDate = self.objectAnuncio!["fimAdesivamento"] as! NSDate
+                                            let objectFimAnuncio: NSDate = object["fimAnuncio"] as! NSDate
+                                            
+                                            //let currentFimAnuncio: NSDate = self.objectAnuncio!["fimAnuncio"] as! NSDate
+                                            //let objectFimAdesivamento: NSDate = object["fimAdesivamento"] as! NSDate
+                                            
+                                            // Verifica se essa campanha é depois da qual ele já participa
+                                            if self.maiorIgual(currentFimAdesivamento, rhs: objectFimAnuncio)
+                                                // Verifica se é antes da qual ele já participa
+                                                //&& self.menor(currentFimAnuncio, rhs: objectFimAdesivamento)
+                                            {
+                                                print("\nVocê está sendo vinculado a segunda campanha em aberto")
+                                                self.salvarParticipacao()
+                                            } else
+                                            {
+                                                print("\nVocê não pode participar pois há conflito de datas entre as campanhas")
+                                            }
+                                        }
+                                    } else
+                                    {
+                                       print("\nVocê não pode estar vinculado a mais de duas campanhas")
+                                    
+                                    }
+                                }
+                            } else
+                            {
+                                print("\nVocê Você está sendo vinculado a uma campanha em aberto")
+                                self.salvarParticipacao()
+                            }
+
+                        } else {
+                            print("Erro query Anuncios")
+                        }
+                    })
+                } else
+                {
+                    print("Erro query AnuncioMotorista")
+                }
+            })
+        } else
+        {
+            print("Motorista inativo")
+
+        }
         
-        objectAnuncioMotorista.saveInBackgroundWithBlock { (success, error) -> Void in
+    }
+    
+    func salvarParticipacao()
+    {
+        self.objectAnuncioMotorista["anuncio"] = self.objectAnuncio
+        self.objectAnuncioMotorista["motorista"] = self.objectMotorista
+        
+        self.objectAnuncioMotorista.saveInBackgroundWithBlock { (success, error) -> Void in
             if error == nil
             {
                 print("save anuncio motorista")
+                
+                self.objectMotorista["participando"] = true
+                self.objectMotorista.saveInBackground()
+                
+                let vagas = (self.objectAnuncio!["vagas"] as! Int) - 1
+                
+                self.objectAnuncio!["vagas"] = vagas
+                self.objectAnuncio?.saveInBackground()
+                
+                self.navigationController?.popViewControllerAnimated(true)
             } else
             {
-                print(error)
+                print("error save Anuncio")
             }
         }
-        
-        
+
     }
+
+    // Comparando datas
+    func menorIgual(lhs: NSDate, rhs: NSDate) -> Bool
+    {return lhs.timeIntervalSince1970 <= rhs.timeIntervalSince1970}
+    
+    func maiorIgual(lhs: NSDate, rhs: NSDate) -> Bool
+    {return lhs.timeIntervalSince1970 >= rhs.timeIntervalSince1970}
+    
+    func maior(lhs: NSDate, rhs: NSDate) -> Bool
+    {
+        print("\(lhs) > \(rhs)")
+        return lhs.timeIntervalSince1970 > rhs.timeIntervalSince1970
+    }
+    
+    func menor(lhs: NSDate, rhs: NSDate) -> Bool
+    {return lhs.timeIntervalSince1970 < rhs.timeIntervalSince1970}
+    
+    func igual(lhs: NSDate, rhs: NSDate) -> Bool
+    {return lhs.timeIntervalSince1970 == rhs.timeIntervalSince1970}
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
@@ -90,58 +185,5 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
     {
         return 1
     }
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    
-    // MARK: - Navigation
-    /*
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-    }
-    */
 
 }

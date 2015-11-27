@@ -5,6 +5,7 @@ import Parse
 class PBCAnunciosLoginViewController: UITableViewController
 {
     var array = NSArray()
+    var objectMotorista : PFObject?
     
     override func viewDidLoad()
     {
@@ -31,10 +32,12 @@ class PBCAnunciosLoginViewController: UITableViewController
         let cell = tableView.dequeueReusableCellWithIdentifier("AnuncioCell", forIndexPath: indexPath) as! AnuncioDisponivelTableViewCell
         let object = array[indexPath.row]
         
+        
         cell.oneLabel.text = object.objectForKey("nome") as? String
-        cell.twoLabel.text = object.objectForKey("inicio") as? String
-        cell.threeLabel.text = object.objectForKey("fim") as? String
-        cell.fourLabel.text = object.objectForKey("carros")?.stringValue
+        cell.twoLabel.text = convertFromNSdateToString(object.objectForKey("inicioAnuncio") as! NSDate)
+        cell.threeLabel.text = convertFromNSdateToString(object.objectForKey("fimAnuncio") as! NSDate)
+
+        cell.fourLabel.text = "restam " + (object.objectForKey("carros")?.stringValue)! + " vagas"
         cell.activityIndicator.startAnimating()
         object.objectForKey("imagem")!.getDataInBackgroundWithBlock { (imageData, error) -> Void in
             if error == nil
@@ -55,6 +58,16 @@ class PBCAnunciosLoginViewController: UITableViewController
     
     // MARK: - Navigation
     
+    
+    func convertFromNSdateToString(date:NSDate) -> String
+    {
+        let dateFormatter = NSDateFormatter()
+        
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        
+        return dateFormatter.stringFromDate(date)
+    }
+    
     func ParseContent()
     {
         // Query Motorista
@@ -65,6 +78,8 @@ class PBCAnunciosLoginViewController: UITableViewController
         queryMotorista.getFirstObjectInBackgroundWithBlock { (motorista, error) -> Void in
             if error == nil
             {
+                self.objectMotorista = motorista
+                
                 // Query AnuncioMotorista
                 let queryAM = PFQuery(className: "AnuncioMotorista")
                 
@@ -82,6 +97,7 @@ class PBCAnunciosLoginViewController: UITableViewController
                             for object in objectsNotAnuncioMotorista
                             {
                                 // Adiciona objectId de Anuncio's na lista de Anuncio que o motorista participa
+                                
                                 arrayNotAnuncios.append(object["anuncio"].objectId!!)
                             }
                         }
@@ -91,6 +107,10 @@ class PBCAnunciosLoginViewController: UITableViewController
                         
                         // Query somente de Anuncio's que o motorista não participa
                         queryAnuncios.whereKey("objectId", notContainedIn: arrayNotAnuncios)
+                        
+                        // Query somente de Anuncio's em aberto
+                        queryAnuncios.whereKey("emAberto", equalTo: true)
+                        
                         
                         queryAnuncios.findObjectsInBackgroundWithBlock({ (arrayAnuncios, error) -> Void in
                             if error == nil
@@ -122,6 +142,7 @@ class PBCAnunciosLoginViewController: UITableViewController
             let index = tableView.indexPathForSelectedRow?.row
             destination!.objectAnuncio = array.objectAtIndex(index!) as? PFObject
             destination!.imageSegue = sender as? UIImage
+            destination?.objectMotorista = objectMotorista
         }
     }
 }
