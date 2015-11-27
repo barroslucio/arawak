@@ -11,11 +11,6 @@ class PBCAnunciosLoginViewController: UITableViewController
         super.viewDidLoad()
     }
     
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-    }
-    
     override func viewDidAppear(animated: Bool)
     {
         ParseContent()
@@ -34,7 +29,8 @@ class PBCAnunciosLoginViewController: UITableViewController
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("AnuncioCell", forIndexPath: indexPath) as! AnuncioDisponivelTableViewCell
-        let object = array.objectAtIndex(indexPath.row)
+        let object = array[indexPath.row]
+        
         cell.oneLabel.text = object.objectForKey("nome") as? String
         cell.twoLabel.text = object.objectForKey("inicio") as? String
         cell.threeLabel.text = object.objectForKey("fim") as? String
@@ -57,20 +53,65 @@ class PBCAnunciosLoginViewController: UITableViewController
         performSegueWithIdentifier("segueDetalhesAnuncio", sender: cell.imagem.image!)
     }
     
+    // MARK: - Navigation
+    
     func ParseContent()
     {
-        let query = PFQuery(className: "Anuncio")
-        query.findObjectsInBackgroundWithBlock({ (anuncio, error) -> Void in
+        // Query Motorista
+        let queryMotorista = PFQuery(className: "Motorista")
+        
+        // Query somente Motorista logado
+        queryMotorista.whereKey("user", equalTo: PFUser.currentUser()!)
+        queryMotorista.getFirstObjectInBackgroundWithBlock { (motorista, error) -> Void in
             if error == nil
             {
-                self.array = anuncio!
-                self.tableView.reloadData()
-            }
-            else
+                // Query AnuncioMotorista
+                let queryAM = PFQuery(className: "AnuncioMotorista")
+                
+                // Query somente do que o motorista participa
+                queryAM.whereKey("motorista", equalTo: motorista!)
+                queryAM.findObjectsInBackgroundWithBlock({ (arrayNotAnuncioMotorista, error) -> Void in
+                    if error == nil
+                    {
+                        // Recebe os objectId's dos anúncios que o motorista participa e não poderão ser exibidos
+                        var arrayNotAnuncios : [String] = []
+                        
+                        // Objetos de AnuncioMotorista que o motorista participa
+                        if let objectsNotAnuncioMotorista = arrayNotAnuncioMotorista
+                        {
+                            for object in objectsNotAnuncioMotorista
+                            {
+                                // Adiciona objectId de Anuncio's na lista de Anuncio que o motorista participa
+                                arrayNotAnuncios.append(object["anuncio"].objectId!!)
+                            }
+                        }
+                        
+                        // Query Anuncio
+                        let queryAnuncios = PFQuery(className: "Anuncio")
+                        
+                        // Query somente de Anuncio's que o motorista não participa
+                        queryAnuncios.whereKey("objectId", notContainedIn: arrayNotAnuncios)
+                        
+                        queryAnuncios.findObjectsInBackgroundWithBlock({ (arrayAnuncios, error) -> Void in
+                            if error == nil
+                            {
+                                // Lista de Anuncio's
+                                self.array = arrayAnuncios!
+                                self.tableView.reloadData()
+                            } else {
+                                print("Erro query Anuncios")
+                            }
+                        })
+                    } else
+                    {
+                        print("Erro query AnuncioMotorista")
+                    }
+                })
+            } else
             {
-                print(error)
+                print("Erro query Motorista")
             }
-        })
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
