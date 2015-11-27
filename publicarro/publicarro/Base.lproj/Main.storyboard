@@ -104,16 +104,6 @@
             </objects>
             <point key="canvasLocation" x="771.5" y="-202.5"/>
         </scene>
-        <!--Page View Controller-->
-        <scene sceneID="BZw-GW-Me3">
-            <objects>
-                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="rYF-xE-VUy" sceneMemberID="viewController">
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </pageViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3Qt-kF-uX8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1469.5" y="-202.5"/>
-        </scene>
         <!--Anúncios-->
         <scene sceneID="ifJ-b6-cOH">
             <objects>

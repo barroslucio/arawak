@@ -38,8 +38,8 @@ class ViewController: UIViewController, UIPageViewControllerDelegate, UIPageView
     
     private func createPageViewController()
     {
-        pageViewController = storyboard!.instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
-//        pageViewController.dataSource = self
+        pageViewController = UIPageViewController(transitionStyle: UIPageViewControllerTransitionStyle.Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
+        pageViewController.dataSource = self
         if contentImages.count > 0
         {
             pageViewController.setViewControllers([getItemController(0)!], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
