@@ -28,8 +28,10 @@ class PBCAnunciosLoginViewController: UITableViewController
             if error == nil
             {
                 self.objectMotorista = motorista
+                
                 // Query AnuncioMotorista
                 let queryAM = PFQuery(className: "AnuncioMotorista")
+                
                 // Query somente do que o motorista participa
                 queryAM.whereKey("motorista", equalTo: motorista!)
                 queryAM.findObjectsInBackgroundWithBlock({ (arrayNotAnuncioMotorista, error) -> Void in
@@ -37,6 +39,7 @@ class PBCAnunciosLoginViewController: UITableViewController
                     {
                         // Recebe os objectId's dos anúncios que o motorista participa e não poderão ser exibidos
                         var arrayNotAnuncios : [String] = []
+                        
                         // Objetos de AnuncioMotorista que o motorista participa
                         if let objectsNotAnuncioMotorista = arrayNotAnuncioMotorista
                         {
@@ -46,6 +49,7 @@ class PBCAnunciosLoginViewController: UITableViewController
                                 arrayNotAnuncios.append(object["anuncio"].objectId!!)
                             }
                         }
+                        
                         // Query Anuncio
                         let queryAnuncios = PFQuery(className: "Anuncio")
                         
