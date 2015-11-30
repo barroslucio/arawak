@@ -20,7 +20,7 @@ class PBCLoginViewController: UIViewController
         navigationController?.navigationBar.hidden = false
     }
     
-    func DismissKeyboard()
+    func dismissKeyboard()
     {
         view.endEditing(true)
     }
@@ -63,11 +63,12 @@ class PBCLoginViewController: UIViewController
             {
                 self.view.addSubview(controller.view)
                 controller.infoLabel.text = "Realizando login..."
+                self.dismissKeyboard()
             }, completion: nil)
                 PFUser.logInWithUsernameInBackground(embeddedLoginViewController.emailTextField.text!, password: embeddedLoginViewController.senhaTextField.text!, block: { (user, error) -> Void in
                 if user != nil
                 {
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.0*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),
                         { controller.view.removeFromSuperview()
                             self.presentViewController(self.storyboard!.instantiateViewControllerWithIdentifier("AnunciosTabBar"), animated: true, completion: nil)
                     })
