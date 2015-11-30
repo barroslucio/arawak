@@ -30,12 +30,13 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
         fourLabel.text = objectAnuncio?.objectForKey("fim") as? String
         imagem.image = imageSegue
     }
-    
+
 
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
     }
+    
     
     @IBAction func participar(sender: AnyObject)
     {
@@ -132,7 +133,6 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
     {
         self.objectAnuncioMotorista["anuncio"] = self.objectAnuncio
         self.objectAnuncioMotorista["motorista"] = self.objectMotorista
-        
         self.objectAnuncioMotorista.saveInBackgroundWithBlock { (success, error) -> Void in
             if error == nil
             {
