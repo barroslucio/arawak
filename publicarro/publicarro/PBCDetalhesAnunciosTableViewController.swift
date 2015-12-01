@@ -13,9 +13,9 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
     @IBOutlet weak var imagem: UIImageView!
     @IBOutlet weak var btParticipar: UIButton!
     
-    
+    var previousControllerIdentifier: String!
     var imageSegue:UIImage?
-    var objectAnuncio:PFObject?
+    var objectAnuncio:PFObject!
     var objectAnuncioMotorista = PFObject(className: "AnuncioMotorista")
     var objectMotorista : PFObject!
     
@@ -30,15 +30,88 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
         fourLabel.text = objectAnuncio?.objectForKey("fim") as? String
         imagem.image = imageSegue
     }
-    
 
+    override func viewWillAppear(animated: Bool) {
+        
+        switch (previousControllerIdentifier)
+        {
+        case "AnuncioHistorico":
+            if objectAnuncio!["emAberto"] as! Bool
+            {
+                btParticipar.setTitle("Cancelar", forState: .Normal)
+            }else
+            {
+                btParticipar.hidden = true
+            }
+            break
+        case "AnuncioLogin":
+            btParticipar.setTitle("Participar", forState: .Normal)
+            break
+        default:
+            break
+        }
+        
+    }
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
     }
-    
-    @IBAction func participar(sender: AnyObject)
+    func AnuncioHistorico()
     {
+        print("Cancelar")
+        
+        let vagas = (self.objectAnuncio!["vagas"] as! Int) + 1
+        
+        self.objectAnuncio!["vagas"] = vagas
+        self.objectAnuncio?.saveInBackground()
+        
+        // Query AnuncioMotorista
+        let queryAM = PFQuery(className: "AnuncioMotorista")
+        
+        // Query somente do que o motorista participa
+        queryAM.whereKey("motorista", equalTo: objectMotorista)
+        
+        //Query de todos os objetos
+        queryAM.findObjectsInBackgroundWithBlock { (tamanho, errorGet) -> Void in
+            if errorGet == nil
+            {
+                
+                // Query somente deste anúncio
+                queryAM.whereKey("anuncio", equalTo: self.objectAnuncio)
+                
+                // Query do objeto a ser excluído
+                queryAM.getFirstObjectInBackgroundWithBlock({ (AnuncioMotorista, errorGet) -> Void in
+                    if errorGet == nil
+                    {
+                        // Se o motorista pertence a somente uma campanha, a participação será alterado para false
+                        if tamanho?.count == 1
+                        {
+                            self.objectMotorista["participando"] = false
+                            self.objectMotorista.saveEventually()
+                        }
+
+                        // Deleta o objeto AnuncioMotorista
+                        AnuncioMotorista?.deleteEventually()
+                        
+                        self.navigationController?.popViewControllerAnimated(true)
+                    } else
+                    {
+                        print(errorGet)
+                    }
+                })
+
+            } else
+            {
+                print(errorGet)
+            }
+
+        }
+        
+            }
+    func AnuncioLogin()
+    {
+        print("Participar")
+        
         if self.objectMotorista!["ativo"] as! Bool
         {
             
@@ -68,7 +141,6 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
                     
                     // Query somente de Anuncio's que o motorista já participa
                     queryAnuncios.whereKey("objectId", containedIn: arrayAnuncios)
-                    
                     queryAnuncios.findObjectsInBackgroundWithBlock({ (arrayAnuncios, error) -> Void in
                         if error == nil
                         {
@@ -186,7 +258,6 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
     {
         self.objectAnuncioMotorista["anuncio"] = self.objectAnuncio
         self.objectAnuncioMotorista["motorista"] = self.objectMotorista
-        
         self.objectAnuncioMotorista.saveInBackgroundWithBlock { (success, error) -> Void in
             if error == nil
             {
