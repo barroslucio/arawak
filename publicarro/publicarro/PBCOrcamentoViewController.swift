@@ -75,6 +75,7 @@ class PBCOrcamentoViewController: UIViewController, UIAlertViewDelegate
             UIView.transitionWithView(view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
                 self.view.addSubview(self.controller!.view)
                 self.controller.infoLabel.text = "Enviando . . ."
+                self.controller.animacao()
             }, completion: nil)
             let orcamento = PFObject(className: "Orcamento")
             orcamento["nome"] = embeddedViewController.nomeTextField.text

@@ -16,7 +16,6 @@ class PBCLoadAnimationViewController: UIViewController
         super.viewDidLoad()
         respostaView.hidden = true
         backgroundView.layer.cornerRadius = 10
-        animacao()
     }
     
     func sucesso()
