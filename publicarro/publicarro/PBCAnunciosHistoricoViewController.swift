@@ -19,7 +19,7 @@ class PBCAnunciosHistoricoViewController: UITableViewController {
         super.viewDidLoad()
     }
     
-    override func viewDidAppear(animated: Bool)
+    override func viewWillAppear(animated: Bool)
     {
         ParseContent()
     }

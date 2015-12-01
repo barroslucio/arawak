@@ -12,7 +12,7 @@ class PBCAnunciosLoginViewController: UITableViewController
         super.viewDidLoad()
     }
     
-    override func viewDidAppear(animated: Bool)
+    override func viewWillAppear(animated: Bool)
     {
         ParseContent()
     }
@@ -143,7 +143,7 @@ class PBCAnunciosLoginViewController: UITableViewController
             destination!.objectAnuncio = array.objectAtIndex(index!) as? PFObject
             destination!.imageSegue = sender as? UIImage
             destination?.objectMotorista = objectMotorista
-            destination?.previousControllerIdentifier = "AnunciosLogin"
+            destination?.previousControllerIdentifier = "AnuncioLogin"
         }
     }
 }
