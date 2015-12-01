@@ -13,7 +13,7 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
     @IBOutlet weak var imagem: UIImageView!
     @IBOutlet weak var btParticipar: UIButton!
     
-    
+    var previousControllerIdentifier: String?
     var imageSegue:UIImage?
     var objectAnuncio:PFObject?
     var objectAnuncioMotorista = PFObject(className: "AnuncioMotorista")
@@ -31,15 +31,45 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
         imagem.image = imageSegue
     }
 
-
+    override func viewWillAppear(animated: Bool) {
+        
+        switch (previousControllerIdentifier!)
+        {
+        case "AnuncioHistorico":
+            if objectAnuncio!["emAberto"] as! Bool
+            {
+                btParticipar.setTitle("Cancelar", forState: .Normal)
+            }else
+            {
+                btParticipar.hidden = true
+            }
+            break
+        case "AnuncioLogin":
+            btParticipar.setTitle("Participar", forState: .Normal)
+            break
+        default:
+            break
+        }
+        
+    }
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
+    }
+    func AnuncioHistorico()
+    {
+        print("Cancelar")
+    }
+    func AnuncioLogin()
+    {
+        print("Participar")
     }
     
     
     @IBAction func participar(sender: AnyObject)
     {
+        
+        
         if self.objectMotorista!["ativo"] as! Bool
         {
             
@@ -69,7 +99,6 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
                     
                     // Query somente de Anuncio's que o motorista já participa
                     queryAnuncios.whereKey("objectId", containedIn: arrayAnuncios)
-                    
                     queryAnuncios.findObjectsInBackgroundWithBlock({ (arrayAnuncios, error) -> Void in
                         if error == nil
                         {

@@ -113,11 +113,7 @@ class PBCAnunciosHistoricoViewController: UITableViewController {
                         let queryAnuncios = PFQuery(className: "Anuncio")
                         
                         // Query somente de Anuncio's que o motorista participa
-                        queryAnuncios.whereKey("objectId", containedIn: arrayAnuncios)
-                        
-                        // Query somente de Anuncio's em aberto
-                        queryAnuncios.whereKey("emAberto", equalTo: true)
-                        
+                        queryAnuncios.whereKey("objectId", containedIn: arrayAnuncios)                        
                         
                         queryAnuncios.findObjectsInBackgroundWithBlock({ (arrayAnuncios, error) -> Void in
                             if error == nil
@@ -150,6 +146,7 @@ class PBCAnunciosHistoricoViewController: UITableViewController {
             destination!.objectAnuncio = array.objectAtIndex(index!) as? PFObject
             destination!.imageSegue = sender as? UIImage
             destination?.objectMotorista = objectMotorista
+            destination?.previousControllerIdentifier = "AnuncioHistorico"
         }
     }
 
