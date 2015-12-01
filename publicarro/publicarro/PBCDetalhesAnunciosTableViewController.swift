@@ -92,40 +92,94 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
                                                 // Verifica se é antes da qual ele já participa
                                                 //&& self.menor(currentFimAnuncio, rhs: objectFimAdesivamento)
                                             {
-                                                print("\nVocê está sendo vinculado a segunda campanha em aberto")
                                                 self.salvarParticipacao()
-                                            } else
+                                                let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoadView") as! PBCLoadAnimationViewController
+                                                self.addChildViewController(controller)
+                                                UIView.transitionWithView(self.view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations:
+                                                    {
+                                                        self.view.addSubview(controller.view)
+                                                        controller.infoLabel.text = "Você está sendo vinculado a segunda campanha em aberto"
+                                                        controller.falha()
+                                                    }, completion: nil)
+                                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.7*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),{
+                                                    controller.view.removeFromSuperview()
+                                                })
+                                            }
+                                            else
                                             {
-                                                print("\nVocê não pode participar pois há conflito de datas entre as campanhas")
+                                                let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoadView") as! PBCLoadAnimationViewController
+                                                self.addChildViewController(controller)
+                                                UIView.transitionWithView(self.view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations:
+                                                    {
+                                                        self.view.addSubview(controller.view)
+                                                        controller.infoLabel.text = "Você não pode participar pois há conflito de datas entre as campanhas"
+                                                        controller.falha()
+                                                    }, completion: nil)
+                                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.7*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),{
+                                                    controller.view.removeFromSuperview()
+                                                })
                                             }
                                         }
-                                    } else
+                                    }
+                                    else
                                     {
-                                       print("\nVocê não pode estar vinculado a mais de duas campanhas")
-                                    
+                                        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoadView") as! PBCLoadAnimationViewController
+                                        self.addChildViewController(controller)
+                                        UIView.transitionWithView(self.view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations:
+                                            {
+                                                self.view.addSubview(controller.view)
+                                                controller.infoLabel.text = "Você não pode estar vinculado a mais de duas campanhas"
+                                                controller.falha()
+                                            }, completion: nil)
+                                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.7*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),{
+                                            controller.view.removeFromSuperview()
+                                        })
                                     }
                                 }
-                            } else
+                            }
+                            else
                             {
-                                print("\nVocê Você está sendo vinculado a uma campanha em aberto")
+                                let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoadView") as! PBCLoadAnimationViewController
+                                self.addChildViewController(controller)
+                                UIView.transitionWithView(self.view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations:
+                                    {
+                                        self.view.addSubview(controller.view)
+                                        controller.infoLabel.text = "Você Você está sendo vinculado a uma campanha em aberto"
+                                        controller.falha()
+                                    }, completion: nil)
+                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.7*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),{
+                                    controller.view.removeFromSuperview()
+                                })
                                 self.salvarParticipacao()
                             }
 
-                        } else {
-                            print("Erro query Anuncios")
+                        }
+                        else
+                        {
+                            print("Erro = Query Anuncios")
                         }
                     })
-                } else
+                }
+                else
                 {
-                    print("Erro query AnuncioMotorista")
+                    print("Erro = Query AnuncioMotorista")
                 }
             })
-        } else
-        {
-            print("Motorista inativo")
-
         }
-        
+        else
+        {
+            let controller = storyboard!.instantiateViewControllerWithIdentifier("LoadView") as! PBCLoadAnimationViewController
+            addChildViewController(controller)
+            UIView.transitionWithView(view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations:
+                {
+                    self.view.addSubview(controller.view)
+                    controller.infoLabel.text = "Motorista inativo."
+                    controller.falha()
+                }, completion: nil)
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.7*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),{
+                controller.view.removeFromSuperview()
+            })
+        }
     }
     
     func salvarParticipacao()
