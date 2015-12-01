@@ -1385,6 +1385,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="Mag-8D-mVx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.10980392156862745" green="0.13725490196078433" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1393,7 +1394,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O58-Rv-ZQ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3925.5" y="2979.5"/>
+            <point key="canvasLocation" x="3925.5" y="2963.5"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="dDv-qp-YD4">
@@ -1430,9 +1431,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yri-VR-xmn" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Perfil" id="eSJ-8X-aDh"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0eB-ys-2bO">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="0eB-ys-2bO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.12941176469999999" green="0.14901960780000001" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1441,7 +1443,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="07y-hM-Jev" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5503.5" y="2979.5"/>
+            <point key="canvasLocation" x="5441.5" y="2979.5"/>
         </scene>
         <!--Item-->
         <scene sceneID="vWF-rd-hWk">
@@ -1449,9 +1451,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kLY-br-b6w" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="P7k-eO-NZN"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Tzi-gX-CjP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="Tzi-gX-CjP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.12941176470588237" green="0.14901960784313725" blue="0.17647058823529413" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
