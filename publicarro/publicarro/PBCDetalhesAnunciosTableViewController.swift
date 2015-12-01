@@ -18,17 +18,21 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
     var objectAnuncio:PFObject!
     var objectAnuncioMotorista = PFObject(className: "AnuncioMotorista")
     var objectMotorista : PFObject!
-    
+    var controller: PBCLoadAnimationViewController!
+
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
         oneLabel.text = objectAnuncio?.objectForKey("nome") as? String
-        twoLabel.text = String(objectAnuncio?.objectForKey("carros") as! Int)
-        threeLabel.text = objectAnuncio?.objectForKey("inicio") as? String
-        fourLabel.text = objectAnuncio?.objectForKey("fim") as? String
+        twoLabel.text = String(objectAnuncio?.objectForKey("vagas") as! Int)
+        threeLabel.text = String.convertFromNSDateToString(objectAnuncio["inicioAnuncio"] as! NSDate)
+        fourLabel.text = String.convertFromNSDateToString(objectAnuncio["inicioAnuncio"] as! NSDate)
         imagem.image = imageSegue
+        
+        self.controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoadView") as! PBCLoadAnimationViewController
+
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -60,10 +64,10 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
     {
         print("Cancelar")
         
-        let vagas = (self.objectAnuncio!["vagas"] as! Int) + 1
+        let vagas = self.objectAnuncio!["vagas"].integerValue
         
-        self.objectAnuncio!["vagas"] = vagas
-        self.objectAnuncio?.saveInBackground()
+        self.objectAnuncio!["vagas"] = vagas + 1
+        self.objectAnuncio!.saveInBackground()
         
         // Query AnuncioMotorista
         let queryAM = PFQuery(className: "AnuncioMotorista")
@@ -83,17 +87,24 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
                 queryAM.getFirstObjectInBackgroundWithBlock({ (AnuncioMotorista, errorGet) -> Void in
                     if errorGet == nil
                     {
+
+                        // Deleta o objeto AnuncioMotorista
+                        AnuncioMotorista?.deleteEventually()
+                        
                         // Se o motorista pertence a somente uma campanha, a participação será alterado para false
                         if tamanho?.count == 1
                         {
                             self.objectMotorista["participando"] = false
                             self.objectMotorista.saveEventually()
                         }
+                        UIView.transitionWithView(self.view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations:
+                            {
+                                self.view.addSubview(self.controller.view)
+                                self.controller.infoLabel.text = "Você saiu da campanha"
+                                self.controller.sucesso()
+                            }, completion: nil)
 
-                        // Deleta o objeto AnuncioMotorista
-                        AnuncioMotorista?.deleteEventually()
-                        
-                        self.navigationController?.popViewControllerAnimated(true)
+                        self.removeSubViewAndPop()
                     } else
                     {
                         print(errorGet)
@@ -111,7 +122,6 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
     func AnuncioLogin()
     {
         print("Participar")
-        
         if self.objectMotorista!["ativo"] as! Bool
         {
             
@@ -156,75 +166,39 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
                                             let currentFimAdesivamento: NSDate = self.objectAnuncio!["fimAdesivamento"] as! NSDate
                                             let objectFimAnuncio: NSDate = object["fimAnuncio"] as! NSDate
                                             
-                                            //let currentFimAnuncio: NSDate = self.objectAnuncio!["fimAnuncio"] as! NSDate
-                                            //let objectFimAdesivamento: NSDate = object["fimAdesivamento"] as! NSDate
-                                            
-                                            // Verifica se essa campanha é depois da qual ele já participa
-                                            if self.maiorIgual(currentFimAdesivamento, rhs: objectFimAnuncio)
-                                                // Verifica se é antes da qual ele já participa
-                                                //&& self.menor(currentFimAnuncio, rhs: objectFimAdesivamento)
+                                            if self.maior(currentFimAdesivamento, rhs: objectFimAnuncio)
                                             {
-                                                self.salvarParticipacao()
-                                                let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoadView") as! PBCLoadAnimationViewController
-                                                self.addChildViewController(controller)
-                                                UIView.transitionWithView(self.view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations:
-                                                    {
-                                                        self.view.addSubview(controller.view)
-                                                        controller.infoLabel.text = "Você está sendo vinculado a segunda campanha em aberto"
-                                                        controller.falha()
-                                                    }, completion: nil)
-                                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.7*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),{
-                                                    controller.view.removeFromSuperview()
-                                                })
+                                                self.salvarParticipacao("Você está sendo vinculado a segunda campanha em aberto")
                                             }
                                             else
                                             {
-                                                let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoadView") as! PBCLoadAnimationViewController
-                                                self.addChildViewController(controller)
                                                 UIView.transitionWithView(self.view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations:
                                                     {
-                                                        self.view.addSubview(controller.view)
-                                                        controller.infoLabel.text = "Você não pode participar pois há conflito de datas entre as campanhas"
-                                                        controller.falha()
+                                                        self.view.addSubview(self.controller.view)
+                                                        self.controller.infoLabel.text = "Você não pode participar pois há conflito de datas entre as campanhas"
+                                                        self.controller.falha()
                                                     }, completion: nil)
-                                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.7*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),{
-                                                    controller.view.removeFromSuperview()
-                                                })
+                                                self.removeSubView()
                                             }
                                         }
                                     }
                                     else
                                     {
-                                        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoadView") as! PBCLoadAnimationViewController
-                                        self.addChildViewController(controller)
+                                        self.addChildViewController(self.controller)
                                         UIView.transitionWithView(self.view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations:
                                             {
-                                                self.view.addSubview(controller.view)
-                                                controller.infoLabel.text = "Você não pode estar vinculado a mais de duas campanhas"
-                                                controller.falha()
+                                                self.view.addSubview(self.controller.view)
+                                                self.controller.infoLabel.text = "Você não pode estar vinculado a mais de duas campanhas"
+                                                self.controller.falha()
                                             }, completion: nil)
-                                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.7*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),{
-                                            controller.view.removeFromSuperview()
-                                        })
+                                        self.removeSubView()
                                     }
                                 }
                             }
                             else
                             {
-                                let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoadView") as! PBCLoadAnimationViewController
-                                self.addChildViewController(controller)
-                                UIView.transitionWithView(self.view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations:
-                                    {
-                                        self.view.addSubview(controller.view)
-                                        controller.infoLabel.text = "Você Você está sendo vinculado a uma campanha em aberto"
-                                        controller.falha()
-                                    }, completion: nil)
-                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.7*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),{
-                                    controller.view.removeFromSuperview()
-                                })
-                                self.salvarParticipacao()
+                                self.salvarParticipacao("Você está sendo vinculado a uma campanha em aberto")
                             }
-
                         }
                         else
                         {
@@ -240,21 +214,32 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
         }
         else
         {
-            let controller = storyboard!.instantiateViewControllerWithIdentifier("LoadView") as! PBCLoadAnimationViewController
-            addChildViewController(controller)
             UIView.transitionWithView(view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations:
                 {
-                    self.view.addSubview(controller.view)
-                    controller.infoLabel.text = "Motorista inativo."
-                    controller.falha()
+                    self.view.addSubview(self.controller.view)
+                    self.controller.infoLabel.text = "Motorista inativo."
+                    self.controller.falha()
                 }, completion: nil)
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.7*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),{
-                controller.view.removeFromSuperview()
-            })
+            self.removeSubView()
         }
     }
     
-    func salvarParticipacao()
+    @IBAction func participar(sender: AnyObject)
+    {
+        self.addChildViewController(self.controller)
+
+        UIView.transitionWithView(view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations:
+        {
+            self.view.addSubview(self.controller.view)
+            self.controller.infoLabel.text = "Carregando..."
+            self.controller.animacao()
+        }, completion: nil)
+
+        performSelector(Selector(previousControllerIdentifier))
+        
+    }
+
+    func salvarParticipacao(message:String)
     {
         self.objectAnuncioMotorista["anuncio"] = self.objectAnuncio
         self.objectAnuncioMotorista["motorista"] = self.objectMotorista
@@ -266,12 +251,19 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
                 self.objectMotorista["participando"] = true
                 self.objectMotorista.saveInBackground()
                 
-                let vagas = (self.objectAnuncio!["vagas"] as! Int) - 1
+                let vagas = self.objectAnuncio!["vagas"].integerValue
                 
-                self.objectAnuncio!["vagas"] = vagas
-                self.objectAnuncio?.saveInBackground()
+                self.objectAnuncio!["vagas"] = vagas - 1
+                self.objectAnuncio?.saveEventually()
                 
-                self.navigationController?.popViewControllerAnimated(true)
+                UIView.transitionWithView(self.view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations:
+                    {
+                        self.view.addSubview(self.controller.view)
+                        self.controller.infoLabel.text = message
+                        self.controller.sucesso()
+                    }, completion: nil)
+                self.removeSubViewAndPop()
+                
             } else
             {
                 print("error save Anuncio")
@@ -279,7 +271,24 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
         }
 
     }
-
+    
+    func removeSubView()
+    {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(3.0*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),{
+            self.controller.view.removeFromSuperview()
+        })
+        
+    }
+    
+    func removeSubViewAndPop()
+    {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(3.0*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),{
+            self.controller.view.removeFromSuperview()
+            self.navigationController?.popViewControllerAnimated(true)
+        })
+        
+    }
+    
     // Comparando datas
     func menorIgual(lhs: NSDate, rhs: NSDate) -> Bool
     {return lhs.timeIntervalSince1970 <= rhs.timeIntervalSince1970}

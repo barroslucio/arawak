@@ -17,6 +17,7 @@
 		2412BF881BDE5D2500C53372 /* publicarroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2412BF871BDE5D2500C53372 /* publicarroUITests.swift */; };
 		2412BF9A1BDE668900C53372 /* PageItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2412BF991BDE668900C53372 /* PageItemController.swift */; };
 		24732BA51C0C892D00873EFF /* PBCAnunciosHistoricoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24732BA41C0C892D00873EFF /* PBCAnunciosHistoricoTableViewCell.swift */; };
+		24732BA71C0DFA7E00873EFF /* PBCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24732BA61C0DFA7E00873EFF /* PBCExtension.swift */; };
 		249948E91C05F7B500406ACC /* PBCDetalhesAnunciosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249948E81C05F7B500406ACC /* PBCDetalhesAnunciosTableViewController.swift */; };
 		24B036211C04909A000F84EC /* AnuncioDisponivelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B036201C04909A000F84EC /* AnuncioDisponivelTableViewCell.swift */; };
 		24C42D891BF39DB0005CAD4C /* PBCImagemCNHViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C42D881BF39DB0005CAD4C /* PBCImagemCNHViewController.swift */; };
@@ -85,6 +86,7 @@
 		2412BF891BDE5D2500C53372 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2412BF991BDE668900C53372 /* PageItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageItemController.swift; sourceTree = "<group>"; };
 		24732BA41C0C892D00873EFF /* PBCAnunciosHistoricoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCAnunciosHistoricoTableViewCell.swift; sourceTree = "<group>"; };
+		24732BA61C0DFA7E00873EFF /* PBCExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCExtension.swift; sourceTree = "<group>"; };
 		249948E81C05F7B500406ACC /* PBCDetalhesAnunciosTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCDetalhesAnunciosTableViewController.swift; sourceTree = "<group>"; };
 		24B036201C04909A000F84EC /* AnuncioDisponivelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnuncioDisponivelTableViewCell.swift; sourceTree = "<group>"; };
 		24C42D881BF39DB0005CAD4C /* PBCImagemCNHViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCImagemCNHViewController.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				2412BF681BDE5D2500C53372 /* Main.storyboard */,
 				2412BF641BDE5D2500C53372 /* AppDelegate.swift */,
 				778E6D261BF248E000A44106 /* PBCLoadAnimationViewController.swift */,
+				24732BA61C0DFA7E00873EFF /* PBCExtension.swift */,
 				2412BF6E1BDE5D2500C53372 /* Assets.xcassets */,
 				2412BF701BDE5D2500C53372 /* LaunchScreen.storyboard */,
 				2412BF731BDE5D2500C53372 /* Info.plist */,
@@ -443,6 +446,7 @@
 				2AD4EFF41BE3973500F5DF29 /* PBCCadastroPopUpViewController.swift in Sources */,
 				776B6B321C03628F008EDDE4 /* PBCPerfilMotoristaViewController.swift in Sources */,
 				2412BF671BDE5D2500C53372 /* TutorialViewController.swift in Sources */,
+				24732BA71C0DFA7E00873EFF /* PBCExtension.swift in Sources */,
 				24732BA51C0C892D00873EFF /* PBCAnunciosHistoricoTableViewCell.swift in Sources */,
 				778C306D1BEA3F350091548E /* PBCLoginTableViewController.swift in Sources */,
 				776B6B2E1C036255008EDDE4 /* PBCAnunciosLogoutViewController.swift in Sources */,

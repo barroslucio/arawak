@@ -40,11 +40,11 @@ class PBCAnunciosHistoricoViewController: UITableViewController {
         let object = array[indexPath.row]
         
         
-        cell.oneLabel.text = object.objectForKey("nome") as? String
-        cell.twoLabel.text = convertFromNSdateToString(object.objectForKey("inicioAnuncio") as! NSDate)
-        cell.threeLabel.text = convertFromNSdateToString(object.objectForKey("fimAnuncio") as! NSDate)
+        cell.oneLabel.text = object["nome"] as? String
+        cell.twoLabel.text = String.convertFromNSDateToString(object["inicioAnuncio"] as! NSDate)
+        cell.threeLabel.text = String.convertFromNSDateToString(object["fimAnuncio"] as! NSDate)
         
-        cell.fourLabel.text = "restam " + (object.objectForKey("carros")?.stringValue)! + " vagas"
+        cell.fourLabel.text = "restam " + (object["vagas"]?!.stringValue)! + " vagas"
         cell.activityIndicator.startAnimating()
         object.objectForKey("imagem")!.getDataInBackgroundWithBlock { (imageData, error) -> Void in
             if error == nil
