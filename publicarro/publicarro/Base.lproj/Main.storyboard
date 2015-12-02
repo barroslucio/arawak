@@ -337,7 +337,7 @@
         <!--Login-->
         <scene sceneID="Gju-7r-35p">
             <objects>
-                <viewController title="Login" id="lue-Ad-I02" customClass="PBCLoginViewController" customModule="publiCarro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginController" title="Login" id="lue-Ad-I02" customClass="PBCLoginViewController" customModule="publiCarro" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bZN-g9-7hy"/>
                         <viewControllerLayoutGuide type="bottom" id="IoG-Jl-bxf"/>
@@ -1491,10 +1491,10 @@
             </objects>
             <point key="canvasLocation" x="4288.5" y="4715.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Perfil Motorista View Controller-->
         <scene sceneID="fZo-ho-ft5">
             <objects>
-                <viewController id="Cxb-k2-act" sceneMemberID="viewController">
+                <viewController id="Cxb-k2-act" customClass="PBCPerfilMotoristaViewController" customModule="publiCarro" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OHV-tT-zqw"/>
                         <viewControllerLayoutGuide type="bottom" id="YRz-NY-UlB"/>
@@ -1502,6 +1502,16 @@
                     <view key="view" contentMode="scaleToFill" id="Kzt-zA-zdO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wTO-Sb-hbt">
+                                <rect key="frame" x="155" y="101" width="48" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logout:" destination="Cxb-k2-act" eventType="touchUpInside" id="pfB-Mj-H11"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

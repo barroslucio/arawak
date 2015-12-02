@@ -17,6 +17,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()
         window?.tintColor = UIColor.blackColor()
+        
+        if PFUser.currentUser() != nil
+        {
+        
+            // get your storyboard
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            // instantiate your desired ViewController
+            let rootController = storyboard.instantiateViewControllerWithIdentifier("AnunciosTabBar") as! UITabBarController
+            
+            // Because self.window is an optional you should check it's value first and assign your rootViewController
+            if self.window != nil {
+                self.window!.rootViewController = rootController
+            }
+        }
+
         return true
     }
     
