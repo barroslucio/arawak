@@ -64,9 +64,8 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
     {
         print("Cancelar")
         
-        let vagas = self.objectAnuncio!["vagas"].integerValue
-        
-        self.objectAnuncio!["vagas"] = vagas + 1
+        self.objectAnuncio.incrementKey("vagas")
+
         self.objectAnuncio!.saveInBackground()
         
         // Query AnuncioMotorista
@@ -251,9 +250,7 @@ class PBCDetalhesAnunciosTableViewController: UITableViewController
                 self.objectMotorista["participando"] = true
                 self.objectMotorista.saveInBackground()
                 
-                let vagas = self.objectAnuncio!["vagas"].integerValue
-                
-                self.objectAnuncio!["vagas"] = vagas - 1
+                self.objectAnuncio.incrementKey("vagas", byAmount: -1)
                 self.objectAnuncio?.saveEventually()
                 
                 UIView.transitionWithView(self.view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations:
