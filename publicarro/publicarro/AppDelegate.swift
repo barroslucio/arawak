@@ -32,9 +32,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate
                 self.window!.rootViewController = rootController
             }
         }
+        
+        
+        // permitindo permissao ao usuario para enviar notificacao
+        
+        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Sound, .Badge], categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        UIApplication.sharedApplication().registerForRemoteNotifications()
+        
+        if let launchOptions = launchOptions as? [String : AnyObject] {
+            if let notificationDictionary = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey] as? [NSObject : AnyObject] {
+                self.application(application, didReceiveRemoteNotification: notificationDictionary)
+            }
+        }
+        
+        
+        
+
 
         return true
     }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData)
+    {
+        
+        if PFUser.currentUser() != nil
+        {
+            
+            
+            let installation = PFInstallation.currentInstallation()
+            installation["user"] = PFUser.currentUser()
+            installation.setDeviceTokenFromData(deviceToken)
+            installation.saveInBackground()
+            
+        }
+        
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        PFPush.handlePush(userInfo)
+    }
+  
+    func applicationDidBecomeActive(application: UIApplication) {
+    }
+
     
     func applicationWillResignActive(application: UIApplication){}
 
@@ -42,7 +83,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 
     func applicationWillEnterForeground(application: UIApplication){}
 
-    func applicationDidBecomeActive(application: UIApplication){}
 
     func applicationWillTerminate(application: UIApplication)
     {
