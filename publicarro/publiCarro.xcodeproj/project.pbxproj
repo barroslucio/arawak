@@ -50,23 +50,6 @@
 		EE0F1B0B1BF4E4AF00989195 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0F1B0A1BF4E4AF00989195 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		2412BF791BDE5D2500C53372 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2412BF591BDE5D2500C53372 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2412BF601BDE5D2500C53372;
-			remoteInfo = publicarro;
-		};
-		2412BF841BDE5D2500C53372 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2412BF591BDE5D2500C53372 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2412BF601BDE5D2500C53372;
-			remoteInfo = publicarro;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		2412BF611BDE5D2500C53372 /* publiCarro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = publiCarro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2412BF641BDE5D2500C53372 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -76,8 +59,6 @@
 		2412BF6E1BDE5D2500C53372 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2412BF711BDE5D2500C53372 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2412BF731BDE5D2500C53372 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2412BF781BDE5D2500C53372 /* publiCarro.temp_caseinsensitive_rename.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = publiCarro.temp_caseinsensitive_rename.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2412BF831BDE5D2500C53372 /* publiCarro.temp_caseinsensitive_rename.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = publiCarro.temp_caseinsensitive_rename.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2412BF991BDE668900C53372 /* PageItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageItemController.swift; sourceTree = "<group>"; };
 		24732BA41C0C892D00873EFF /* PBCAnunciosHistoricoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCAnunciosHistoricoTableViewCell.swift; sourceTree = "<group>"; };
 		24732BA61C0DFA7E00873EFF /* PBCExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCExtension.swift; sourceTree = "<group>"; };
@@ -138,20 +119,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2412BF751BDE5D2500C53372 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2412BF801BDE5D2500C53372 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -168,8 +135,6 @@
 			isa = PBXGroup;
 			children = (
 				2412BF611BDE5D2500C53372 /* publiCarro.app */,
-				2412BF781BDE5D2500C53372 /* publiCarro.temp_caseinsensitive_rename.xctest */,
-				2412BF831BDE5D2500C53372 /* publiCarro.temp_caseinsensitive_rename.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -299,42 +264,6 @@
 			productReference = 2412BF611BDE5D2500C53372 /* publiCarro.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2412BF771BDE5D2500C53372 /* publicarroTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2412BF8F1BDE5D2500C53372 /* Build configuration list for PBXNativeTarget "publicarroTests" */;
-			buildPhases = (
-				2412BF741BDE5D2500C53372 /* Sources */,
-				2412BF751BDE5D2500C53372 /* Frameworks */,
-				2412BF761BDE5D2500C53372 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2412BF7A1BDE5D2500C53372 /* PBXTargetDependency */,
-			);
-			name = publicarroTests;
-			productName = publicarroTests;
-			productReference = 2412BF781BDE5D2500C53372 /* publiCarro.temp_caseinsensitive_rename.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		2412BF821BDE5D2500C53372 /* publicarroUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2412BF921BDE5D2500C53372 /* Build configuration list for PBXNativeTarget "publicarroUITests" */;
-			buildPhases = (
-				2412BF7F1BDE5D2500C53372 /* Sources */,
-				2412BF801BDE5D2500C53372 /* Frameworks */,
-				2412BF811BDE5D2500C53372 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2412BF851BDE5D2500C53372 /* PBXTargetDependency */,
-			);
-			name = publicarroUITests;
-			productName = publicarroUITests;
-			productReference = 2412BF831BDE5D2500C53372 /* publiCarro.temp_caseinsensitive_rename.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -352,14 +281,6 @@
 							};
 						};
 					};
-					2412BF771BDE5D2500C53372 = {
-						CreatedOnToolsVersion = 7.0.1;
-						TestTargetID = 2412BF601BDE5D2500C53372;
-					};
-					2412BF821BDE5D2500C53372 = {
-						CreatedOnToolsVersion = 7.0.1;
-						TestTargetID = 2412BF601BDE5D2500C53372;
-					};
 				};
 			};
 			buildConfigurationList = 2412BF5C1BDE5D2500C53372 /* Build configuration list for PBXProject "publiCarro" */;
@@ -376,8 +297,6 @@
 			projectRoot = "";
 			targets = (
 				2412BF601BDE5D2500C53372 /* publicarro */,
-				2412BF771BDE5D2500C53372 /* publicarroTests */,
-				2412BF821BDE5D2500C53372 /* publicarroUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -390,20 +309,6 @@
 				2412BF721BDE5D2500C53372 /* LaunchScreen.storyboard in Resources */,
 				2412BF6F1BDE5D2500C53372 /* Assets.xcassets in Resources */,
 				2412BF6A1BDE5D2500C53372 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2412BF761BDE5D2500C53372 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2412BF811BDE5D2500C53372 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,34 +345,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2412BF741BDE5D2500C53372 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2412BF7F1BDE5D2500C53372 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		2412BF7A1BDE5D2500C53372 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2412BF601BDE5D2500C53372 /* publicarro */;
-			targetProxy = 2412BF791BDE5D2500C53372 /* PBXContainerItemProxy */;
-		};
-		2412BF851BDE5D2500C53372 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2412BF601BDE5D2500C53372 /* publicarro */;
-			targetProxy = 2412BF841BDE5D2500C53372 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2412BF681BDE5D2500C53372 /* Main.storyboard */ = {
@@ -608,58 +486,6 @@
 			};
 			name = Release;
 		};
-		2412BF901BDE5D2500C53372 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = publicarroTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tambatech.publicarroTests;
-				PRODUCT_NAME = publiCarro.temp_caseinsensitive_rename;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/publiCarro.temp_caseinsensitive_rename.app/publiCarro.temp_caseinsensitive_rename";
-			};
-			name = Debug;
-		};
-		2412BF911BDE5D2500C53372 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = publicarroTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tambatech.publicarroTests;
-				PRODUCT_NAME = publiCarro.temp_caseinsensitive_rename;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/publiCarro.temp_caseinsensitive_rename.app/publiCarro.temp_caseinsensitive_rename";
-			};
-			name = Release;
-		};
-		2412BF931BDE5D2500C53372 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = publicarroUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tambatech.publicarroUITests;
-				PRODUCT_NAME = publiCarro.temp_caseinsensitive_rename;
-				TEST_TARGET_NAME = publicarro;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		2412BF941BDE5D2500C53372 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = publicarroUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tambatech.publicarroUITests;
-				PRODUCT_NAME = publiCarro.temp_caseinsensitive_rename;
-				TEST_TARGET_NAME = publicarro;
-				USES_XCTRUNNER = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -677,24 +503,6 @@
 			buildConfigurations = (
 				2412BF8D1BDE5D2500C53372 /* Debug */,
 				2412BF8E1BDE5D2500C53372 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2412BF8F1BDE5D2500C53372 /* Build configuration list for PBXNativeTarget "publicarroTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2412BF901BDE5D2500C53372 /* Debug */,
-				2412BF911BDE5D2500C53372 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2412BF921BDE5D2500C53372 /* Build configuration list for PBXNativeTarget "publicarroUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2412BF931BDE5D2500C53372 /* Debug */,
-				2412BF941BDE5D2500C53372 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
