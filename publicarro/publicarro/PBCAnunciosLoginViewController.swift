@@ -15,6 +15,7 @@ class PBCAnunciosLoginViewController: UITableViewController
     override func viewWillAppear(animated: Bool)
     {
         ParseContent()
+        clearBadges()
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
@@ -134,6 +135,21 @@ class PBCAnunciosLoginViewController: UITableViewController
             destination!.imageSegue = sender as? UIImage
             destination?.objectMotorista = objectMotorista
             destination?.previousControllerIdentifier = "AnuncioLogin"
+        }
+    }
+    
+    
+    func clearBadges() {
+        let installation = PFInstallation.currentInstallation()
+        installation.badge = 0
+        installation.saveInBackgroundWithBlock { (success, error) -> Void in
+            if success {
+                print("cleared badges")
+                UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+            }
+            else {
+                print("failed to clear badges")
+            }
         }
     }
 }
