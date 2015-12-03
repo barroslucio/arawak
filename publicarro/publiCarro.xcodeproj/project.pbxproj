@@ -21,6 +21,8 @@
 		24C42D891BF39DB0005CAD4C /* PBCImagemCNHViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C42D881BF39DB0005CAD4C /* PBCImagemCNHViewController.swift */; };
 		2A2D29121C05F02D00C83ACF /* LogoutAnuncioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2D29111C05F02D00C83ACF /* LogoutAnuncioTableViewCell.swift */; };
 		2A3CC99D1C1081CB00E0EDAA /* PBCMapaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3CC99C1C1081CB00E0EDAA /* PBCMapaViewController.swift */; };
+		2A415D211C1094B200845A17 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A415D201C1094B200845A17 /* MapKit.framework */; };
+		2A415D231C1094DA00845A17 /* Testando.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A415D221C1094DA00845A17 /* Testando.swift */; };
 		2A550BDD1BE24F7000036839 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A550BDC1BE24F7000036839 /* Bolts.framework */; };
 		2A550BDF1BE24F7C00036839 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A550BDE1BE24F7C00036839 /* Parse.framework */; };
 		2A550BE11BE24FC000036839 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A550BE01BE24FC000036839 /* Accounts.framework */; };
@@ -47,7 +49,6 @@
 		778E6D271BF248E000A44106 /* PBCLoadAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E6D261BF248E000A44106 /* PBCLoadAnimationViewController.swift */; };
 		7794DEBF1BE932130069E00A /* PBCOrcamentoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7794DEBE1BE932130069E00A /* PBCOrcamentoViewController.swift */; };
 		7794DEC11BE933A20069E00A /* PBCLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7794DEC01BE933A20069E00A /* PBCLoginViewController.swift */; };
-		EE0F1B0B1BF4E4AF00989195 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0F1B0A1BF4E4AF00989195 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,8 @@
 		24C42D881BF39DB0005CAD4C /* PBCImagemCNHViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCImagemCNHViewController.swift; sourceTree = "<group>"; };
 		2A2D29111C05F02D00C83ACF /* LogoutAnuncioTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutAnuncioTableViewCell.swift; sourceTree = "<group>"; };
 		2A3CC99C1C1081CB00E0EDAA /* PBCMapaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCMapaViewController.swift; sourceTree = "<group>"; };
+		2A415D201C1094B200845A17 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		2A415D221C1094DA00845A17 /* Testando.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Testando.swift; sourceTree = "<group>"; };
 		2A550BDC1BE24F7000036839 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		2A550BDE1BE24F7C00036839 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		2A550BE01BE24FC000036839 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -93,7 +96,6 @@
 		778E6D261BF248E000A44106 /* PBCLoadAnimationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCLoadAnimationViewController.swift; sourceTree = "<group>"; };
 		7794DEBE1BE932130069E00A /* PBCOrcamentoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCOrcamentoViewController.swift; sourceTree = "<group>"; };
 		7794DEC01BE933A20069E00A /* PBCLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCLoginViewController.swift; sourceTree = "<group>"; };
-		EE0F1B0A1BF4E4AF00989195 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +103,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE0F1B0B1BF4E4AF00989195 /* MapKit.framework in Frameworks */,
 				2A550BF71BE2506B00036839 /* libsqlite3.tbd in Frameworks */,
 				2A550BF51BE2504800036839 /* libz.tbd in Frameworks */,
 				2A550BF31BE2502D00036839 /* SystemConfiguration.framework in Frameworks */,
@@ -109,6 +110,7 @@
 				2A550BED1BE2500300036839 /* Security.framework in Frameworks */,
 				2A550BEB1BE24FF900036839 /* QuartzCore.framework in Frameworks */,
 				2A550BE91BE24FEE00036839 /* CoreLocation.framework in Frameworks */,
+				2A415D211C1094B200845A17 /* MapKit.framework in Frameworks */,
 				2A550BE71BE24FE900036839 /* CoreGraphics.framework in Frameworks */,
 				2A550BE51BE24FD700036839 /* CFNetwork.framework in Frameworks */,
 				2A550BE31BE24FCB00036839 /* AudioToolbox.framework in Frameworks */,
@@ -125,6 +127,7 @@
 		2412BF581BDE5D2500C53372 = {
 			isa = PBXGroup;
 			children = (
+				2A415D221C1094DA00845A17 /* Testando.swift */,
 				2A550BDB1BE24F4F00036839 /* Frameworks */,
 				2412BF631BDE5D2500C53372 /* Classes */,
 				2412BF621BDE5D2500C53372 /* Products */,
@@ -187,9 +190,9 @@
 		2A550BDB1BE24F4F00036839 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2A415D201C1094B200845A17 /* MapKit.framework */,
 				2A550BF61BE2506B00036839 /* libsqlite3.tbd */,
 				2A550BF41BE2504800036839 /* libz.tbd */,
-				EE0F1B0A1BF4E4AF00989195 /* MapKit.framework */,
 				2AD4EFF51BE3B90F00F5DF29 /* ParseUI.framework */,
 				2A550BF21BE2502D00036839 /* SystemConfiguration.framework */,
 				2A550BEE1BE2501200036839 /* Social.framework */,
@@ -275,12 +278,16 @@
 				TargetAttributes = {
 					2412BF601BDE5D2500C53372 = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = QDM8KY5J4B;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
 							};
-							com.apple.Push = {
+							com.apple.Maps.iOS = {
 								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 0;
 							};
 						};
 					};
@@ -341,6 +348,7 @@
 				778C30671BEA36A20091548E /* PBCCadastroMotoristaViewController.swift in Sources */,
 				2A2D29121C05F02D00C83ACF /* LogoutAnuncioTableViewCell.swift in Sources */,
 				776B6B301C036271008EDDE4 /* PBCAnunciosHistoricoViewController.swift in Sources */,
+				2A415D231C1094DA00845A17 /* Testando.swift in Sources */,
 				2412BF6D1BDE5D2500C53372 /* publicarro.xcdatamodeld in Sources */,
 				7794DEBF1BE932130069E00A /* PBCOrcamentoViewController.swift in Sources */,
 				24C42D891BF39DB0005CAD4C /* PBCImagemCNHViewController.swift in Sources */,
@@ -409,7 +417,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "9cd298c4-ec5f-4a94-86b8-2a90ec6521a9";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -448,7 +456,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "9cd298c4-ec5f-4a94-86b8-2a90ec6521a9";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -460,6 +468,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -469,6 +478,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tambatech.publicarro;
 				PRODUCT_NAME = publiCarro;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -478,6 +488,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -487,6 +498,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tambatech.publicarro;
 				PRODUCT_NAME = publiCarro.temp_caseinsensitive_rename;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
