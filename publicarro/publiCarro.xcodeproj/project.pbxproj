@@ -22,7 +22,6 @@
 		2A2D29121C05F02D00C83ACF /* LogoutAnuncioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2D29111C05F02D00C83ACF /* LogoutAnuncioTableViewCell.swift */; };
 		2A3CC99D1C1081CB00E0EDAA /* PBCMapaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3CC99C1C1081CB00E0EDAA /* PBCMapaViewController.swift */; };
 		2A415D211C1094B200845A17 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A415D201C1094B200845A17 /* MapKit.framework */; };
-		2A415D231C1094DA00845A17 /* Testando.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A415D221C1094DA00845A17 /* Testando.swift */; };
 		2A550BDD1BE24F7000036839 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A550BDC1BE24F7000036839 /* Bolts.framework */; };
 		2A550BDF1BE24F7C00036839 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A550BDE1BE24F7C00036839 /* Parse.framework */; };
 		2A550BE11BE24FC000036839 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A550BE01BE24FC000036839 /* Accounts.framework */; };
@@ -69,7 +68,6 @@
 		2A2D29111C05F02D00C83ACF /* LogoutAnuncioTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutAnuncioTableViewCell.swift; sourceTree = "<group>"; };
 		2A3CC99C1C1081CB00E0EDAA /* PBCMapaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCMapaViewController.swift; sourceTree = "<group>"; };
 		2A415D201C1094B200845A17 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		2A415D221C1094DA00845A17 /* Testando.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Testando.swift; sourceTree = "<group>"; };
 		2A550BDC1BE24F7000036839 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		2A550BDE1BE24F7C00036839 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		2A550BE01BE24FC000036839 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -127,7 +125,6 @@
 		2412BF581BDE5D2500C53372 = {
 			isa = PBXGroup;
 			children = (
-				2A415D221C1094DA00845A17 /* Testando.swift */,
 				2A550BDB1BE24F4F00036839 /* Frameworks */,
 				2412BF631BDE5D2500C53372 /* Classes */,
 				2412BF621BDE5D2500C53372 /* Products */,
@@ -278,7 +275,6 @@
 				TargetAttributes = {
 					2412BF601BDE5D2500C53372 = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = QDM8KY5J4B;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
@@ -348,7 +344,6 @@
 				778C30671BEA36A20091548E /* PBCCadastroMotoristaViewController.swift in Sources */,
 				2A2D29121C05F02D00C83ACF /* LogoutAnuncioTableViewCell.swift in Sources */,
 				776B6B301C036271008EDDE4 /* PBCAnunciosHistoricoViewController.swift in Sources */,
-				2A415D231C1094DA00845A17 /* Testando.swift in Sources */,
 				2412BF6D1BDE5D2500C53372 /* publicarro.xcdatamodeld in Sources */,
 				7794DEBF1BE932130069E00A /* PBCOrcamentoViewController.swift in Sources */,
 				24C42D891BF39DB0005CAD4C /* PBCImagemCNHViewController.swift in Sources */,
