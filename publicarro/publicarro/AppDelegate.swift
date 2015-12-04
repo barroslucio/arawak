@@ -72,6 +72,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         PFPush.handlePush(userInfo)
     }
+    
+    func application(application: UIApplication, didRegisterForRemoteNoticationsWithDeviceToken deviceToken: NSData) {
+        print(deviceToken)
+        
+    }
+//    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {print(deviceToken)
+//                //retorna o token do usuário quando ele aceita receber notificações
+//    }
   
     func applicationDidBecomeActive(application: UIApplication) {
     }
