@@ -77,9 +77,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         print(deviceToken)
         
     }
-//    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {print(deviceToken)
-//                //retorna o token do usuário quando ele aceita receber notificações
-//    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        
+        print(error.description)
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        
+    }
+    
   
     func applicationDidBecomeActive(application: UIApplication) {
     }
