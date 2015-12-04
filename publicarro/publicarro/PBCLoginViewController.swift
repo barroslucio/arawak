@@ -54,62 +54,53 @@ class PBCLoginViewController: UIViewController
     
     @IBAction func loginTapped(sender: AnyObject)
     {
-        var controller: PBCLoadAnimationViewController
-        if isConnectedToNetwork()
+        dismissKeyboard()
+        let controller = storyboard!.instantiateViewControllerWithIdentifier("LoadView") as! PBCLoadAnimationViewController
+        addChildViewController(controller)
+        if isConnectedToNetwork() == true
         {
-            controller = storyboard!.instantiateViewControllerWithIdentifier("LoadView") as! PBCLoadAnimationViewController
-            addChildViewController(controller)
-            UIView.transitionWithView(view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations:
-            {
+            UIView.transitionWithView(view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
                 self.view.addSubview(controller.view)
                 controller.infoLabel.text = "Realizando login..."
                 controller.animacao()
-                self.dismissKeyboard()
-            }, completion: nil)
-                PFUser.logInWithUsernameInBackground(embeddedLoginViewController.emailTextField.text!, password: embeddedLoginViewController.senhaTextField.text!, block: { (user, error) -> Void in
-                if user != nil
+                }, completion: nil)
+            PFUser.logInWithUsernameInBackground(embeddedLoginViewController.emailTextField.text!, password: embeddedLoginViewController.senhaTextField.text!, block: { (user, error) -> Void in
+                if user != nil && error == nil
                 {
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),
-                        { controller.view.removeFromSuperview()
-                            self.presentViewController(self.storyboard!.instantiateViewControllerWithIdentifier("AnunciosTabBar"), animated: true, completion: nil)
-                    })
+                    self.presentViewController(self.storyboard!.instantiateViewControllerWithIdentifier("AnunciosTabBar"), animated: false, completion: nil)
                 }
                 else
                 {
-                    var mensagem: String!
-                    switch(error?.code)
+                    switch error!.code
                     {
-                        case 101?:
-                        mensagem = "Email ou senha incorretos."
+                    case PFErrorCode.ErrorObjectNotFound.rawValue:
+                        controller.infoLabel.text = "Email ou senha incorretos."
+                        controller.falha()
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.8*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),{
+                            controller.view.hidden = true
+                        })
                         break
-                        default:
-                        mensagem = "[ALGUM ERRO]"
-                        break
+                    default:
+                        let alertView = UIAlertController(title: "Problem Code: "+error!.code.description, message: error!.localizedDescription, preferredStyle: .Alert)
+                        alertView.addAction(UIAlertAction(title: "Click", style: .Cancel, handler: nil))
+                        self.presentViewController(alertView, animated: true, completion: nil)
                     }
-                    controller.infoLabel.text = mensagem
-                    controller.falha()
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.7*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),{
-                        controller.view.removeFromSuperview()
-                    })
                 }
             })
         }
         else
         {
-            controller = storyboard!.instantiateViewControllerWithIdentifier("LoadView") as! PBCLoadAnimationViewController
-            addChildViewController(controller)
-            UIView.transitionWithView(view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations:
-            {
+            UIView.transitionWithView(view, duration: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
                 self.view.addSubview(controller.view)
                 controller.infoLabel.text = "Sem conexão."
                 controller.falha()
-            }, completion: nil)
+                }, completion: nil)
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.7*Double(NSEC_PER_SEC))),dispatch_get_main_queue(),{
-                controller.view.removeFromSuperview()
+                controller.view.hidden = true
             })
         }
     }
-
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         if(segue.identifier == "LoginEmbedSegue")
