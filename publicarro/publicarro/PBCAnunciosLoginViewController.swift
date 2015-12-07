@@ -38,7 +38,7 @@ class PBCAnunciosLoginViewController: UITableViewController
         cell.twoLabel.text = String.convertFromNSDateToString(object["inicioAnuncio"] as! NSDate)
         cell.threeLabel.text = String.convertFromNSDateToString(object["fimAnuncio"] as! NSDate)
 
-        cell.fourLabel.text = "restam " + (object["vagas"]?!.stringValue)! + " vagas"
+        cell.fourLabel.text = (object["vagas"]?!.stringValue)!
         cell.activityIndicator.startAnimating()
         object.objectForKey("imagem")!.getDataInBackgroundWithBlock { (imageData, error) -> Void in
             if error == nil
