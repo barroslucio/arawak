@@ -73,20 +73,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         PFPush.handlePush(userInfo)
     }
     
-    func application(application: UIApplication, didRegisterForRemoteNoticationsWithDeviceToken deviceToken: NSData) {
-        print(deviceToken)
-        
-    }
-    
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
         
         print(error.description)
     }
-    
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        
-    }
-    
   
     func applicationDidBecomeActive(application: UIApplication) {
     }
