@@ -35,6 +35,6 @@ class PBCPerfilMotoristaViewController: UIViewController
     @IBAction func logout(sender: AnyObject)
     {
         PFUser.logOut()
-        presentViewController((storyboard?.instantiateViewControllerWithIdentifier("NavigationBarTutorial"))!, animated: false, completion: nil)
+        presentViewController((storyboard?.instantiateViewControllerWithIdentifier("NavigationBarTutorial"))!, animated: true, completion: nil)
     }
 }
